@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -115,6 +117,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="user")
      */
     private $images;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeOfUser::class, inversedBy="users")
+     */
+    private $typeOfUser;
 
     public function __construct()
     {
@@ -475,6 +482,18 @@ class User implements UserInterface
                 $image->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypeOfUser(): ?TypeOfUser
+    {
+        return $this->typeOfUser;
+    }
+
+    public function setTypeOfUser(?TypeOfUser $typeOfUser): self
+    {
+        $this->typeOfUser = $typeOfUser;
 
         return $this;
     }
