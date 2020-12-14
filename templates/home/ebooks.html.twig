@@ -3,6 +3,51 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <img src="https://media.giphy.com/media/hS58Kb2OOCMPS/giphy.gif" alt="Dewey dancing">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 card-filter pt-3">
+            {# {{form_start(form, {attr: {class:'filter'}})}} #}
+            <h4><span class="color-letter">F</span>iltres</h4><hr>
+            {# {{form_row(form.q)}}<hr> #}
+            <div class="accordion-item">
+                <p class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                        aria-controls="flush-collapseOne">
+                        <span class="color-letter">E</span>xpertises
+                    </button>
+                </p>
+            </div>
+            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="form-check" class="accordion-body">
+                        {# {{ form_row(form.typeRecipe)}} #}
+                </div>           
+            </div>
+            <hr>
+            <div class="accordion-item">
+                <p class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                        aria-controls="flush-collapseTwo">
+                        <span class="color-letter">D</span>ate de sortie
+                    </button>
+                </p>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-inscription"> Rechercher</button>
+                {# {{form_end(form)}} #}
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="container-fluid">
+                <div class="row">
+                    {% for ebook in ebooks %}
+                    {% include 'home/ebooks_card.html.twig' with {ebook: ebook} only %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
