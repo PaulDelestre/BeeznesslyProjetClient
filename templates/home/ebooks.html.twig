@@ -13,8 +13,9 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-3 card-filter pt-3">
+            {{form_start(searchForm)}}
             <h2><span class="color-letter">F</span>iltres</h2>
-            <hr>
+            {{form_row(searchForm.q)}}
             <div class="accordion" id="accordionExample">
                 <div>
                     <div id="headingOne">
@@ -26,7 +27,7 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit
+                            {{ form_row(searchForm.expertise)}}
                         </div>
                     </div>
                 </div>
@@ -38,9 +39,10 @@
                             <h4><span class="color-letter">D</span>ate de sortie</h4>
                         </button>
                     </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" 
+                        data-parent="#accordionExample">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            
                         </div>
                     </div>
                 </div>
@@ -49,6 +51,7 @@
                 <hr>
                 <button type="submit" class="btn btn-inscription"> Rechercher</button>
             </div>
+            {{form_end(searchForm)}}
         </div>
         <div class="col-md-9">
             <div class="container-fluid">

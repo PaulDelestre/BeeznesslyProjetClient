@@ -13,7 +13,9 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-3 card-filter pt-3">
+            {{form_start(searchForm)}}
             <h2><span class="color-letter">F</span>iltres</h2>
+            {{form_row(searchForm.q)}}
             <hr>
             <div class="accordion" id="accordionExample">
                 <div>
@@ -26,7 +28,7 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit
+                            {{ form_row(searchForm.provider)}}
                         </div>
                     </div>
                 </div>
@@ -40,15 +42,32 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            {{ form_row(searchForm.expertise)}}
                         </div>
                     </div>
                 </div>
             </div>
+            <div>
+                <div id="headingThree">
+                    <hr>
+                    <button class="btn text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h4><span class="color-letter">P</span>restations</h4>
+                    </button>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Filtre à finir
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+            </div>
             <div class="text-center pb-3 pt-3">
-                <hr>
                 <button type="submit" class="btn btn-inscription"> Rechercher</button>
             </div>
+            {{form_end(searchForm)}}
         </div>
         <div class="col-md-9">
             <div class="container-fluid">

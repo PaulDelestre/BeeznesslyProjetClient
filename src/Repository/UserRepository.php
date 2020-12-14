@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Data\SearchExpertsData;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -49,32 +50,45 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $qb->getQuery()->getResult();
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function searchExperts(searchExpertsData $search): array
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this
+            ->createQueryBuilder('user')
+            ->from($this->_entityName, 'u')
+            // A finir pour n'afficher que les
+            // ->where('u.roles LIKE :roles')
+            // ->andwhere('u.isValidated =:isValidated')
+            // ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
+            // ->setParameter('isValidated', true)
+            ->innerJoin('user.provider', 'provider')
+            ->leftJoin('user.expertise', 'expertise');
+    
+        if (!empty($search->provider)) {
+            $query = $query
+                ->andWhere('provider.id IN (:provider)')
+                ->setParameter('provider', $search->provider);
+        }
 
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if (!empty($search->expertise)) {
+            $query = $query
+                ->andWhere('expertise.id IN (:expertise)')
+                ->setParameter('expertise', $search->expertise);
+        }
+
+        if (!empty($search->service)) {
+            $query = $query
+                ->andWhere('service.id IN (:service)')
+                ->setParameter('service', $search->service);
+        }
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->andWhere('user.companyName LIKE :q 
+                OR user.description LIKE :q 
+                OR user.firstname LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        return $query->getQuery()->getResult();
     }
-    */
 }

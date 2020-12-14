@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Data\SearchExpertsData;
+use App\Data\SearchEbooksData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Ebook;
-use App\Entity\User;
+use App\Form\SearchExpertsType;
+use App\Form\SearchEbooksType;
 use App\Repository\UserRepository;
 use App\Repository\EbookRepository;
 
@@ -24,23 +26,30 @@ class HomeController extends AbstractController
     /**
      * @Route("/experts", name="home_experts")
      */
-    public function allExperts(UserRepository $userRepository): Response
+    public function allExperts(UserRepository $userRepository, Request $request): Response
     {
+        $search = new SearchExpertsData();
+        $searchForm = $this->createForm(SearchExpertsType::class, $search);
+        $searchForm->handleRequest($request);
+        $experts = $userRepository->searchExperts($search);
         return $this->render('home/experts.html.twig', [
-            'experts' => $userRepository->findByExpert()
+            'experts' => $experts,
+            'searchForm' => $searchForm->createView()
         ]);
     }
 
     /**
      * @Route("/ebooks", name="home_ebooks")
      */
-    public function allEbooks(): Response
+    public function allEbooks(EbookRepository $ebookRepository, Request $request): Response
     {
-        $ebooks = $this->getDoctrine()
-             ->getRepository(Ebook::class)
-             ->findAll();
+        $search = new SearchEbooksData();
+        $searchForm = $this->createForm(SearchEbooksType::class, $search);
+        $searchForm->handleRequest($request);
+        $ebooks = $ebookRepository->searchEbooks($search);
         return $this->render('home/ebooks.html.twig', [
-            'ebooks' => $ebooks
+            'ebooks' => $ebooks,
+            'searchForm' => $searchForm->createView()
         ]);
     }
 

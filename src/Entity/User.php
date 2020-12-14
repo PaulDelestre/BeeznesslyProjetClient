@@ -132,6 +132,11 @@ class User implements UserInterface
         $this->images = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->firstname;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

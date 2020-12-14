@@ -31,10 +31,10 @@
                         <a class="nav-link" href="#">Pourquoi Beeznessly ?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Consulter les experts</a>
+                        <a class="nav-link" href="{{ path('home_experts')}}">Consulter les experts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Télécharger les Ebooks</a>
+                        <a class="nav-link" href="{{ path('home_ebooks')}}">Télécharger les Ebooks</a>
                     </li>
                     <li class="nav-item">
                         {% if app.user is null %}
