@@ -36,6 +36,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setTown($faker->city());
             $user->setZipcode($faker->randomNumber(5));
             $user->setAdress($faker->address());
+            $user->setTypeOfUser($this->getReference('typeOfUser_0'));
             $user->setProvider($this->getReference('provider_' . rand(0, 3)));
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
@@ -58,6 +59,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setPassword($this->encoder->encodePassword($user, 'password'));
             $user->setRoles(['ROLE_ENTREPRENEUR']);
             $user->setPhone($faker->randomNumber(9));
+            $user->setTypeOfUser($this->getReference('typeOfUser_1'));
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
         }
@@ -65,6 +67,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     }
     public function getDependencies()
     {
-        return [ProviderFixtures::class];
+        return array (
+            ProviderFixtures::class,
+            TypeOfUserFixtures::class
+        );
     }
 }
