@@ -36,6 +36,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function findByExpert()
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u')
+        ->from($this->_entityName, 'u')
+        ->where('u.roles LIKE :roles')
+        ->andwhere('u.isValidated =:isValidated')
+        ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
+        ->setParameter('isValidated', true);
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

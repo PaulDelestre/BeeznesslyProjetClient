@@ -3,40 +3,51 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container-fluid subnav-bg">
+    <div class="row justify-content-around align-items-center">
+        <div class="text-center col-10">
+            <h1 class="text-subnav m-3">Décourez tous nos ebooks</h1>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
     <div class="row">
         <div class="col-md-3 card-filter pt-3">
-            {# {{form_start(form, {attr: {class:'filter'}})}} #}
-            <h4><span class="color-letter">F</span>iltres</h4><hr>
-            {# {{form_row(form.q)}}<hr> #}
-            <div class="accordion-item">
-                <p class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                        aria-controls="flush-collapseOne">
-                        <span class="color-letter">E</span>xpertises
-                    </button>
-                </p>
-            </div>
-            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="form-check" class="accordion-body">
-                        {# {{ form_row(form.typeRecipe)}} #}
-                </div>           
-            </div>
+            <h2><span class="color-letter">F</span>iltres</h2>
             <hr>
-            <div class="accordion-item">
-                <p class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                        aria-controls="flush-collapseTwo">
-                        <span class="color-letter">D</span>ate de sortie
-                    </button>
-                </p>
+            <div class="accordion" id="accordionExample">
+                <div>
+                    <div id="headingOne">
+                        <button class="btn text-left" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="false" aria-controls="collapseOne">
+                            <h4><span class="color-letter">E</span>xpertises</h4>
+                        </button>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="headingTwo">
+                        <hr>
+                        <button class="btn text-left collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4><span class="color-letter">D</span>ate de sortie</h4>
+                        </button>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="text-center">
+            <div class="text-center pb-3 pt-3">
+                <hr>
                 <button type="submit" class="btn btn-inscription"> Rechercher</button>
-                {# {{form_end(form)}} #}
             </div>
         </div>
         <div class="col-md-9">

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Ebook;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Repository\EbookRepository;
 
@@ -26,7 +27,7 @@ class HomeController extends AbstractController
     public function allExperts(UserRepository $userRepository): Response
     {
         return $this->render('home/experts.html.twig', [
-            'users' => $userRepository->findAll(),
+            'experts' => $userRepository->findByExpert()
         ]);
     }
 
@@ -38,7 +39,6 @@ class HomeController extends AbstractController
         $ebooks = $this->getDoctrine()
              ->getRepository(Ebook::class)
              ->findAll();
-             
         return $this->render('home/ebooks.html.twig', [
             'ebooks' => $ebooks
         ]);
