@@ -19,7 +19,17 @@ class PrestataireController extends AbstractController
     public function index(): Response
     {
         return $this->render('prestataire/index.html.twig', [
-            'controller_name' => 'PrestataireController',
+            'user' => $this->getUser(),
+        ]);
+    }
+
+     /**
+     * @Route("/messagerie", name="prestataire_messagerie")
+     */
+    public function message(): Response
+    {
+        return $this->render('messagerie/index.html.twig', [
+            'message' => $this->getContacts(),
         ]);
     }
 }
