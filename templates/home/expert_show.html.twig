@@ -3,6 +3,138 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <img src="https://media.giphy.com/media/hS58Kb2OOCMPS/giphy.gif" alt="Dewey dancing">
+
+<div class="container-fluid subnav-bg">
+    <div class="row justify-content-around align-items-center">
+        <div class="text-center col-10">
+            <h1 class="text-subnav m-3">Décourez tous nos ebooks</h1>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-2 card-filter pt-3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ74iCm-S7O9ouJVYLDlXjdEKziiVAQOeiX6g&usqp=CAU"
+                class="img-fluid" alt="...">
+            <hr>
+            <h6><a href="#A PROPOS DE NOUS" class="color-letter"> A propos de nous</a></h6>
+            <hr>
+            <h6><a href="#NOS SERVICES" class="color-letter">Nos services</a></h6>
+            <hr>
+            <h6><a href="#E-BOOKS" class="color-letter">Nos E-BOOK</a></h6>
+            <hr>
+            <button type="submit" class="btn btn-warning btn-lg">Contactez cet expert</button>
+        </div>
+
+        <div class="col-md-10">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100"
+                                    src="https://ecobnb.fr/blog/app/uploads/sites/7/2020/07/cop-alpaca.jpg"
+                                    alt="First slide">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 ">
+                <h1> {{dump(expert)}} </h1>
+                <h6>user.compagny_name user.town compétence</h6>
+
+                <section id="A PROPOS DE NOUS">
+                    <h1>A PROPOS DE NOUS</h1>
+                    <div class="container-fluid wrapperPresta">
+                        <div class="picturePresta">
+                            <img id='profil'
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
+                        </div>
+                        <div class="card-deck">
+                            <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+                                <h3>user.description</h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr>
+
+                <section id="E-BOOKS">
+                    <h1>E-BOOKS</h1>
+                    <div class="container-fluid wrapperPresta">
+                        <div class="mt-5">
+                            <h3>ebook.titre</h3>
+                        </div>
+                        <div class="alert alert-light rounded-pill" role="alert">
+                            ebook.release_date
+                        </div>
+                        <div class="alert alert-light rounded-pill" role="alert">
+                            ebook.decription
+                        </div>
+                    </div>
+                    <a href="#">
+                        <button type="button" class="btn btn-inscription nav-link mt-5">Télécharger</button>
+                    </a>
+            </div>
+            </section>
+            <hr>
+            <section id="NOS SERVICES">
+                <h1>NOS SERVICES</h1>
+            </section>
+            <hr>
+        </div>
+        <div class="col-lg-12">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="well well-sm">
+                    <form class="form-horizontal" action="" method="post">
+                        <fieldset>
+                            <legend class="text-center">CONTACTEZ NOUS</legend>
+
+                            <!-- Name input-->
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="name">Votre nom</label>
+                                <div class="col-md-12">
+                                    <input id="name" name="name" type="text" placeholder="Votre nom"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Email input-->
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="email">Votre E-mail</label>
+                                <div class="col-md-12">
+                                    <input id="email" name="email" type="text" placeholder="Votre E-mail"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Message body -->
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="message">Votre message</label>
+                                <div class="col-md-12">
+                                    <textarea class="form-control" id="message" name="message"
+                                        placeholder="Entrez votre message ..." rows="5"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Form actions -->
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-warning btn-lg">Envoyer</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+</html>
 {% endblock %}
