@@ -10,6 +10,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Data\SearchExpertsData;
 use App\Entity\Expertise;
 use App\Entity\Provider;
+use App\Entity\TypeService;
+use App\Entity\User;
 
 class SearchExpertsType extends AbstractType
 {
@@ -20,7 +22,7 @@ class SearchExpertsType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Rechercher'
+                    'placeholder' => 'Recherche rapide'
                     ]
             ])
 

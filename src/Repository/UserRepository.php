@@ -44,6 +44,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->from($this->_entityName, 'u')
             ->innerJoin('user.provider', 'provider')
             ->leftJoin('user.expertise', 'expertise')
+            // ->leftJoin('user.typeService', 'typeService')
             ->where('u.roles LIKE :roles')
             ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%');
 
@@ -57,12 +58,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             $query = $query
                 ->andWhere('expertise.id IN (:expertise)')
                 ->setParameter('expertise', $search->expertise);
-        }
-
-        if (!empty($search->service)) {
-            $query = $query
-                ->andWhere('service.id IN (:service)')
-                ->setParameter('service', $search->service);
         }
 
         if (!empty($search->q)) {
