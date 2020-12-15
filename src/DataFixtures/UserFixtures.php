@@ -21,7 +21,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstName());
             $user->setLastname($faker->lastName());
@@ -36,12 +36,15 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setTown($faker->city());
             $user->setZipcode($faker->randomNumber(5));
             $user->setAdress($faker->address());
+            for ($j = 0; $j < 3; $j++) {
+                $user->addExpertise($this->getReference('expertise_' . rand(0, 5)));
+            }
             $user->setTypeOfUser($this->getReference('typeOfUser_0'));
             $user->setProvider($this->getReference('provider_' . rand(0, 3)));
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
         }
-        for ($i = 3; $i < 7; $i++) {
+        for ($i = 10; $i < 11; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstName());
             $user->setLastname($faker->lastName());
@@ -51,7 +54,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
         }
-        for ($i = 7; $i < 10; $i++) {
+        for ($i = 11; $i < 14; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstName());
             $user->setLastname($faker->lastName());
@@ -69,6 +72,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         return array (
             ProviderFixtures::class,
+            ExpertiseFixtures::class,
             TypeOfUserFixtures::class
         );
     }
