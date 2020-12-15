@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Ebook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Data\SearchEbooksData;
 
 /**
  * @method Ebook|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +20,39 @@ class EbookRepository extends ServiceEntityRepository
         parent::__construct($registry, Ebook::class);
     }
 
-    // /**
-    //  * @return Ebook[] Returns an array of Ebook objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function searchEbooks(searchEbooksData $search): array
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this
+            ->createQueryBuilder('ebook')
+            ->from($this->_entityName, 'e')
+            // A finir pour n'afficher que les
+            // ->where('u.roles LIKE :roles')
+            // ->andwhere('u.isValidated =:isValidated')
+            // ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
+            // ->setParameter('isValidated', true)
+            ->leftJoin('ebook.expertise', 'expertise');
 
-    /*
-    public function findOneBySomeField($value): ?Ebook
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if (!empty($search->expertise)) {
+            $query = $query
+                ->andWhere('expertise.id IN (:expertise)')
+                ->setParameter('expertise', $search->expertise);
+        }
+
+        if (!empty($search->service)) {
+            $query = $query
+                ->andWhere('service.id IN (:service)')
+                ->setParameter('service', $search->service);
+        }
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->andWhere('ebook.title LIKE :q 
+                OR ebook.description LIKE :q
+                OR ebook.editorName LIKE :q 
+                OR ebook.author LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        return $query->getQuery()->getResult();
     }
-    */
 }
