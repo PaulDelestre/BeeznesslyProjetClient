@@ -28,7 +28,7 @@ class ServiceFixtures extends Fixture implements DependentFixtureInterface
             $service->setAddress($faker->address());
             $service->setTrainer($faker->name());
             $service->setIsValidated($faker->boolean());
-            $service->setExpertise($this->getReference('expertise_' . rand(0, 29)));
+            $service->setExpertise($this->getReference('expertise_' . rand(0, 5)));
             $service->setUser($this->getReference('user_' . rand(0, 9)));
             $service->setTypeService($this->getReference('typeService_' . rand(0, 3)));
             $service->setFormatService($this->getReference('formatService_' . rand(0, 1)));
