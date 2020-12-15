@@ -73,7 +73,9 @@
             <div class="container-fluid">
                 <div class="row">
                     {% for expert in experts %}
+                    {% if expert.isValidated == true %} 
                     {% include 'home/experts_card.html.twig' with {expert: expert} only %}
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>

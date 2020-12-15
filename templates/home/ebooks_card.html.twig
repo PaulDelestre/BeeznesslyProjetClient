@@ -6,6 +6,11 @@
                 {{ebook.title}}
                 <div class="card-title">
                     <h5>{{ebook.editorName}}</h5>
+                    {% for expertise in ebook.expertise %}
+                    <h5 class="text-left">
+                    {{expertise.name}}
+                    </h5>
+                    {% endfor %}
                 </div>
             </h2>
             <p class="text text-muted">
