@@ -52,7 +52,7 @@ class DashboardController extends AbstractDashboardController
         ]);
         yield MenuItem::subMenu('Gestion', 'fas fa-pencil-ruler')->setSubItems([
             MenuItem::linkToCrud('Expertises', 'fas fa-briefcase', Expertise::class),
-            MenuItem::linkToCrud("Type d'acteurs", 'fas fa-city', Provider::class),
+            MenuItem::linkToCrud("Type de prestataire", 'fas fa-city', Provider::class),
             MenuItem::linkToCrud('Type de Service', 'fas fa-concierge-bell', TypeService::class)
         ]);
     }
