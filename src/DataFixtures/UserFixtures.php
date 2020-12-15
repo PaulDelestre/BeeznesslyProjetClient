@@ -36,6 +36,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setTown($faker->city());
             $user->setZipcode($faker->randomNumber(5));
             $user->setAdress($faker->address());
+            for ($j = 0; $j < 3; $j++) {
+                $user->addExpertise($this->getReference('expertise_' . rand(0, 5)));
+            }
             $user->setTypeOfUser($this->getReference('typeOfUser_0'));
             $user->setProvider($this->getReference('provider_' . rand(0, 3)));
             $manager->persist($user);
@@ -69,6 +72,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         return array (
             ProviderFixtures::class,
+            ExpertiseFixtures::class,
             TypeOfUserFixtures::class
         );
     }
