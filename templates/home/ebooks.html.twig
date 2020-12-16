@@ -10,8 +10,8 @@
         </div>
     </div>
 </div>
-<div class="container-fluid m-5 pl-5">
-    <div class="row">
+<div class="container-fluid pl-5">
+    <div class="row mt-5">
         <div class="col-md-3 col-sm-12 card-filter pt-3">
             {{form_start(searchForm, {attr: {class:'filter'}})}}
             <h2><span class="color-letter">F</span>iltres</h2>
@@ -39,10 +39,9 @@
                             <h4><span class="color-letter">D</span>ate de sortie</h4>
                         </button>
                     </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" 
-                        data-parent="#accordionExample">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -54,15 +53,15 @@
             {{form_end(searchForm)}}
         </div>
         <div class="col-md-9">
-            <div class="container-fluid">
-                <div class="row">
-                    {% for ebook in ebooks %}
-                    {% if ebook.isValidated == true %} 
-                    {% include 'home/ebooks_card.html.twig' with {ebook: ebook} only %}
-                    {% endif %}
-                    {% endfor %}
-                </div>
+
+            <div class="row">
+                {% for ebook in ebooks %}
+                {% if ebook.isValidated == true %}
+                {% include 'home/ebooks_card.html.twig' with {ebook: ebook} only %}
+                {% endif %}
+                {% endfor %}
             </div>
+
         </div>
     </div>
 </div>

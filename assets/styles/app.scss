@@ -21,8 +21,6 @@ h4 {
 .bg-navbar {
     background-color:white;
 }
-
-
 .btn-connexion {
     border: 1px solid $yellow;
     background-color: transparent;
@@ -161,12 +159,17 @@ p {
 .color-banner-home {
     color: white;
 }
-
 .sub-title-home {
     font-family: $raleway;
     font-weight: 100;
     font-size: 23px;
 }
 .color-number {
+    color: $yellow;
+}
+.bg-home-ebook {
+    background-color: $grey;
+}
+.color-hr {
     color: $yellow;
 }
