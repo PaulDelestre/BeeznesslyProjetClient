@@ -57,6 +57,18 @@
           <div class="card alert alert-light rounded-pill" role="alert">
             {{ user.siretNumber }}
           </div>
+          <div class="alert alert-light rounded-pill" role="alert">
+            {{ user.provider }}
+          </div>
+          <div class="alert alert-light rounded-pill" role="alert">
+            <ul>
+                {% for expertise in user.expertise %}
+                <ul>
+                  <li>{{ expertise.name }}</li>
+                </ul>
+                {% endfor %}
+              </ul>
+          </div>
         </div>
           <a href="#">
             <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>

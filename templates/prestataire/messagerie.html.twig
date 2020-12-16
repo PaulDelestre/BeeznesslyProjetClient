@@ -28,43 +28,17 @@
           <div class="card alert alert-light mb-3 rounded-pill" role="alert">
             Objet
           </div>
-          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            Date
-          </div>
+          
           <div class="card alert alert-light mb-3 rounded-pill" role="alert">
             Action
           </div>
     </div>
-        <div class="card-deck">
-          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            {{ user.contact_firstname }}
-          </div>
-          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-            {{ user.phone }}
-          </div>
-        </div>
-          <div class="alert alert-light rounded-pill" role="alert">
-            {{ user.adress }}
-          </div>
-          <div class="card-deck">
-          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-            {{ user.zipcode }}
-          </div>
-          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-            {{ user.town }}
-          </div>
-        </div>
-          <h3>Votre Expertise</h3>
-          <div class="card-deck">
-          <div class="card alert alert-light rounded-pill" role="alert">
-            {{ user.companyName }}
-          </div>
-          <div class="card alert alert-light rounded-pill" role="alert">
-            {{ user.siretNumber }}
-          </div>
-        </div>
-          <a href="#">
-            <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
-            </a>
+    {% for contact in contacts %}
+    <div class="alert alert-light rounded-pill" role="alert">
+    
+    {{contact.firstname}} // {{contact.lastname}} // {{contact.subject}} 
+  
+</div>
+{% endfor %}
 </div>
 {% endblock %}
