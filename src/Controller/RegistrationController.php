@@ -30,9 +30,11 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('typeOfUser')->getData()->getName() == 'Expert') {
                 $user->setRoles(['ROLE_EXPERT']);
+                $user->setIsValidated(false);
             }
             if ($form->get('typeOfUser')->getData()->getName() == 'Entrepreneur') {
                 $user->setRoles(['ROLE_ENTREPRENEUR']);
+                $user->setIsValidated(true);
             }
             $user->setPassword(
                 $passwordEncoder->encodePassword(
