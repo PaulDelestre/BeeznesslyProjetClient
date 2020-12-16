@@ -24,6 +24,7 @@ class TypeOfUser
      */
     private $name;
 
+
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="typeOfUser")
      */
@@ -37,6 +38,11 @@ class TypeOfUser
     public function __construct()
     {
         $this->users = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
