@@ -41,6 +41,40 @@ h4 {
     color: black;
 }
 
+// css for profil prestataire //
+
+.wrapperPresta{
+    background-color: $blue;
+    width:80%;
+    z-index: 1;
+    margin:0 auto;
+    margin-top : 5%;
+    position:relative;
+    padding : 7%;
+  }
+
+  .picturePresta{
+    width:200px;
+    height:200px;
+    border:1px solid $blue;
+    overflow:hidden;
+    text-align:center;
+    margin:0 auto;
+    border-radius:50%;
+    margin-left:-150px;
+    top:-150px;
+    position: absolute;
+  }
+
+  .btn-profil {
+    border: 1px solid $blue;
+    background-color: transparent;
+}
+
+.btn-profil:hover {
+    color: black;
+    background-color: $blue;
+}
 /* PAGES ALL EXPERTS / EBOOKS */
 .color-letter{
     color: $yellow;
