@@ -37,19 +37,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function findByExpert()
-    {
-        $qb = $this->_em->createQueryBuilder();
-        $qb->select('u')
-        ->from($this->_entityName, 'u')
-        ->where('u.roles LIKE :roles')
-        ->andwhere('u.isValidated =:isValidated')
-        ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
-        ->setParameter('isValidated', true);
-
-        return $qb->getQuery()->getResult();
-    }
-
     public function searchExperts(searchExpertsData $search): array
     {
         $query = $this
@@ -57,10 +44,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->from($this->_entityName, 'u')
             ->innerJoin('user.provider', 'provider')
             ->leftJoin('user.expertise', 'expertise')
+            // ->leftJoin('user.typeService', 'typeService')
             ->where('u.roles LIKE :roles')
-            ->andwhere('u.isValidated =:isValidated')
-            ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
-            ->setParameter('isValidated', true);
+            ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%');
 
         if (!empty($search->provider)) {
             $query = $query
@@ -74,16 +60,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->setParameter('expertise', $search->expertise);
         }
 
-        if (!empty($search->service)) {
-            $query = $query
-                ->andWhere('service.id IN (:service)')
-                ->setParameter('service', $search->service);
-        }
-
         if (!empty($search->q)) {
             $query = $query
                 ->andWhere('user.companyName LIKE :q 
-                OR user.description LIKE :q 
+                OR user.description LIKE :q
+                OR user.town LIKE :q
+                OR user.lastname LIKE :q
                 OR user.firstname LIKE :q')
                 ->setParameter('q', "%{$search->q}%");
         }

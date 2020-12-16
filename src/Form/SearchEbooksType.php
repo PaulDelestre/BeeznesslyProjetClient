@@ -21,7 +21,7 @@ class SearchEbooksType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Rechercher'
+                    'placeholder' => 'Recherche rapide'
                     ]
             ])
 

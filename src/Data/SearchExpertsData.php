@@ -3,7 +3,6 @@
 namespace App\Data;
 
 use App\Entity\Provider;
-use App\Entity\Service;
 use App\Entity\Expertise;
 
 class SearchExpertsData

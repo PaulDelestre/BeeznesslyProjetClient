@@ -38,7 +38,6 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('typeOfUser', EntityType::class, [
-                // looks for choices from this entity
                 'class' => TypeOfUser::class,
                 'label' => 'Je suis un.e ',
                 'choice_label' => 'name',
