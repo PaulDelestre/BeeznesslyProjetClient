@@ -24,10 +24,16 @@ class TypeOfUser
      */
     private $name;
 
+
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="typeOfUser")
      */
     private $users;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     public function __construct()
     {
