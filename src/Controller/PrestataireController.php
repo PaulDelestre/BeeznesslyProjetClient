@@ -38,6 +38,16 @@ class PrestataireController extends AbstractController
             ]);
     }
 
+    /**
+     * @Route("/messagerie/{id}", name="messagerie_show", methods={"GET"})
+     */
+    public function show(Contact $contact): Response
+    {
+        return $this->render('prestataire/show.html.twig', [
+            'contact' => $contact,
+        ]);
+    }
+
       /**
      * @Route("/ebook", methods={"GET"}, name="prestataire_ebook")
      */

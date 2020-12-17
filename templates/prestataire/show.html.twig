@@ -22,40 +22,45 @@
         <div class="card alert alert-light mb-3 rounded-pill" role="alert">
             Nom
           </div>
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{contact.lastname}} 
+          </div>
+        </div>
+        <div class="card-deck">
           <div class="card alert alert-light mb-3 rounded-pill" role="alert">
             Prénom
           </div>
-          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            Objet
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{contact.firstname}} 
           </div>
-          
+        </div>
+        <div class="card-deck">
           <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            Action
+            Sujet
           </div>
-    </div>
-    
-    {% for contact in contacts %}
-    <div class="card-deck">
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-      {{contact.lastname}} 
-    </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-      {{contact.firstname}} 
-    </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-    {{contact.subject}} 
-    </div>
-      <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-        <i class="fal fa-eye"></i>
-        <br>
-        <i class="fas fa-trash"></i>
-      </div>
-      
-      
-
- 
-  </div>
-   {% endfor %}
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+          {{contact.subject}} 
+          </div>
+        </div>
+        <div class="card-deck">
+          <div class="card alert alert-light mb-3 rounded" role="alert">
+            Message
+          </div>
+          <div class="card mb-3 alert alert-light rounded" role="alert">
+              {{contact.message}} 
+              </div>
+        </div>
+        <div class="card-deck">
+          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+            Email
+          </div>
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+              {{contact.email}} 
+              </div>
+        </div>    
+        <a href="#">
+            <button type="button" class="btn btn-inscription nav-link mt-5">Retour</button>
+            </a>
 </div>
 </div>
 {% endblock %}

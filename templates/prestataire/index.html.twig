@@ -20,7 +20,7 @@
         <img id='profil' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
     </div>
     <div class="mt-5">
-        <h3>Information personnelles</h3>
+        <h3 class="text-subnav"><span class="color-letter">I</span>nformation personnelles</h3>
     </div>
     <div class="card-deck">
         <div class="card alert alert-light mb-3 rounded-pill" role="alert">
@@ -49,17 +49,21 @@
             {{ user.town }}
           </div>
         </div>
-          <h3>Votre Expertise</h3>
-          <div class="card-deck">
-          <div class="card alert alert-light rounded-pill" role="alert">
-            {{ user.companyName }}
-          </div>
-          <div class="card alert alert-light rounded-pill" role="alert">
-            {{ user.siretNumber }}
-          </div>
+          <h3 class="text-subnav"><span class="color-letter">V</span>otre Expertise</h3>
           <div class="alert alert-light rounded-pill" role="alert">
             {{ user.provider }}
           </div>
+          <div class="card-deck">
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{ user.companyName }}
+          </div>
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{ user.siretNumber }}
+          </div>
+        </div>
+        <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+          {{ user.description }}
+        </div>
           <div class="alert alert-light rounded-pill" role="alert">
             <ul>
                 {% for expertise in user.expertise %}
@@ -69,9 +73,9 @@
                 {% endfor %}
               </ul>
           </div>
-        </div>
           <a href="#">
             <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
             </a>
+          
 </div>
 {% endblock %}
