@@ -60,6 +60,23 @@ class PrestataireController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/messagerie/{id}", name="messagerie_show", methods={"GET"})
+     */
+    public function show(Contact $contact): Response
+    {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+
+        return $this->render('prestataire/show.html.twig', [
+            'contact' => $contact,
+        ]);
+    }
+
       /**
      * @Route("/ebook", methods={"GET"}, name="ebook")
      */
@@ -95,7 +112,7 @@ class PrestataireController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('prestataire');
+            return $this->redirectToRoute('prestataire_index');
         }
 
         return $this->render('prestataire/edit.html.twig', [
