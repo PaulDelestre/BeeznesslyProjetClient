@@ -3,6 +3,155 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <img src="https://media.giphy.com/media/hS58Kb2OOCMPS/giphy.gif" alt="Dewey dancing">
+
+<div class="container-fluid subnav-bg">
+    <div class="row justify-content-around align-items-center">
+        <div class="text-center col-10">
+            <h1 class="text-subnav m-3"></h1>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-2 pt-3">
+            <div class="filter">
+            <img src="https://placehold.it/150x150"
+            class="img-fluid" alt="...">
+            <hr>
+            <h4><span class="color-letter"> A </span><a href="#A PROPOS DE NOUS" style="color:#000000;">propos de
+                nous</a></h4>
+                <hr>
+                <h4><span class="color-letter"> N</span><a href="#E-BOOKS" style="color:#000000;">os E-Book</a></h4>
+                <hr>
+                <h4><span class="color-letter"> N</span><a href="#NOS SERVICES" style="color:#000000;">os services</a></h4>
+                <hr>
+                <h4><span class="color-letter"> C</span><a href="#CONTACTEZ NOUS" style="color:#000000;">ontactez cet
+                    expert</a></h4>
+                    <hr>
+                </div>
+            </div>
+
+        <div class="col-md-10">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100"
+                                    src="https://placehold.it/2400x1000"
+                                    alt="First slide">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 ">
+                <br>
+                <h1> {{user.firstname }} {{user.lastname}}</h1>
+                <h6> {{user.companyName}} , {{user.town}}. </h6>
+                <br>
+                <br>
+
+                <section id="A PROPOS DE NOUS">
+                    <h1>A PROPOS DE NOUS</h1>
+                    <hr>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="mt-10 ">
+                        <div class="container-fluid wrapperExpertDescri">
+                            <div class="pictureExpert">
+                                <img id='profil'
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
+                            </div>
+                            <div class="card-deck">
+                                <p3> {{user.description}} </p3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <br>
+                <br>
+                <section id="E-BOOKS">
+                    <h1>E-BOOKS</h1>
+                    <hr>
+                    <div class="wrapperExpert">
+                        <div class="mt-12 class="text-center"">
+                            <h3>ebook.titre</h3>
+                        </div>
+                        <p> ebook.releaseDate</p>
+                        <br>
+                        <p> ebook.decription </p>
+
+                        <a href="#">
+                            <button type="button" class="btn btn-inscription nav-link mt-5">Télécharger</button>
+                        </a>
+                    </div>
+                </section>
+                <br>
+                <br>
+                <section id="NOS SERVICES">
+                    <h1>NOS SERVICES</h1>
+                </section>
+                <hr>
+                <br>
+                <br>
+                <section id="CONTACTEZ NOUS">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="well well-sm">
+                                <form class="form-horizontal" action="" method="post">
+                                    <fieldset>
+                                        <legend class="text-center"><h1>CONTACTEZ NOUS</h1></legend>
+
+                                        <!-- Name input-->
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="name">Votre nom</label>
+                                            <div class="col-md-12">
+                                                <input id="name" name="name" type="text" placeholder="Votre nom"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <!-- Email input-->
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="email">Votre E-mail</label>
+                                            <div class="col-md-12">
+                                                <input id="email" name="email" type="text" placeholder="Votre E-mail"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <!-- Message body -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="message">Votre message</label>
+                                            <div class="col-md-12">
+                                                <textarea class="form-control" id="message" name="message"
+                                                    placeholder="Entrez votre message ..." rows="5"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- Form actions -->
+                                        <div class="form-group">
+                                            <div class="col-md-12 text-center">
+                                                <button type="submit" class="btn btn-warning btn-lg">Envoyer</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</html>
 {% endblock %}
