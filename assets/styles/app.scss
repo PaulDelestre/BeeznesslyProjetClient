@@ -240,3 +240,24 @@ p3 {
 .form-bg-login {
     border-radius: 20px;
 }
+
+.user-icon {
+    color: $yellow;
+    font-size: 25px;
+}
+a {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.link-for-show:hover {
+    color: $yellow;
+}
+
+.link-for-show-img:hover {
+    filter: brightness(80%);
+-webkit-filter: brightness(80%);
+}
