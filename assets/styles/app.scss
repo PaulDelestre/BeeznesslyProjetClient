@@ -8,6 +8,8 @@ body {
 }
 h1 {
     font-family: $oswald;
+    font-size: 35px;
+    font-weight: 400;
 }
 h2 {
     font-family: $oswald;
@@ -98,12 +100,37 @@ p3 {
     font-size: 30px;
     font-weight: 100;
 }
+.filter {
+    display: block;
+    position:sticky;
+    top:20px;
+   }
+
+.border-pres {
+    border: 1px solid $grey;
+    border-radius: 16px 16px;
+}
+.color-editor {
+    color:$blue;
+    font-family: $raleway;
+    font-weight: 300;
+    font-size: 23px;
+}
+p {
+    font-family: $raleway;
+}
+.color-expertise {
+    color: $yellow;
+}
+.color-provider {
+    color: $blue;
+}
 /* FIN PAGES ALL EXPERTS / EBOOKS */
 
 
 // css for profil prestataire //
 .wrapperExpertDescri{
-    left: 05%;
+    left: 1%;
     background-color: $blue;
     width:80%;
     z-index: 1;
@@ -118,7 +145,6 @@ p3 {
 
 
 .wrapperExpert{
-    right: 8%;
     background-color: #FAFDFF;
     border:1px solid $blue;
     width:80%;
@@ -156,3 +182,33 @@ p3 {
 }
 
 // fin css for profil prestataire //
+/*PAGE VALIDATION PROVIDER*/
+.container-success {
+    margin-left: 20%;
+    margin-right:20% ;
+    margin-top: 5em;
+    background-color:$blue;
+    display: grid;
+    grid-gap: 300px;
+    height: 30em;
+    border-radius: 16px;
+  }
+  
+  .item-success {
+    text-align: center;
+    padding: 0.4em;
+    font-size: 40px;
+    color: #fff;
+  }
+
+.font-color{
+    margin-top: 1em;
+    font-size: 1.5em;
+}
+
+.font-color1{
+   padding: 1em;
+   font-size: 2rem; 
+}
+
+/*FIN PAGE PROVIDER*/
