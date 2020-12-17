@@ -12,15 +12,18 @@ use App\Form\SearchExpertsType;
 use App\Form\SearchEbooksType;
 use App\Repository\UserRepository;
 use App\Repository\EbookRepository;
+use App\Repository\ExpertiseRepository;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(ExpertiseRepository $expertiseRepository): Response
     {
-        return $this->render('home/index.html.twig');
+        return $this->render('home/index.html.twig', [
+            'expertises' => $expertiseRepository->findAll()
+        ]);
     }
 
     /**

@@ -3,6 +3,104 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <img src="https://media.giphy.com/media/hS58Kb2OOCMPS/giphy.gif" alt="Dewey dancing">
+<div class="container-fluid">
+    <div class="row color-bg-home justify-content-center align-items-center p-5">
+        <div class="col-lg-7 col-md-4 ml-3 color-banner-home">
+            <h1>Le meilleur du digital accessible <br>pour les entrepreneurs</h1>
+            <h2 class="sub-title-home pt-3">Trouvez toutes les ressources pour vous accompagner dans votre projet</h2>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <svg width="309" height="300" viewBox="0 0 309 348" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M191.507 29.3556L245.5 1.12841L299.493 29.3556V85.6444L245.5 113.872L191.507 85.6444V29.3556Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M84.5074 103.356L138.5 75.1284L192.493 103.356V159.644L138.5 187.872L84.5074 159.644V103.356Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M210.029 174.104L248 154.13L285.971 174.104V213.896L248 233.87L210.029 213.896V174.104Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M7.02886 202.104L45 182.13L82.9711 202.104V241.896L45 261.87L7.02886 241.896V202.104Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M108.971 263.09L159.5 235.143L210.029 263.09V318.91L159.5 346.857L108.971 318.91V263.09Z" stroke="#F9B419" stroke-width="2"/>
+            </svg>                
+        </div>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row pt-5">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
+            <img src="https://i.postimg.cc/9fG9JFmt/inscription.png" class="img-fluid">
+            <h2><span class="color-number">1.</span> Inscrivez-vous</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                of letters,</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
+            <img src="https://i.postimg.cc/1t73KLqr/undraw-people-search-wctu.png" class="img-fluid">
+            <h2><span class="color-number">2.</span> Trouvez les experts</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                of letters,</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pr-4">
+            <img src="https://i.postimg.cc/MHyK8XLd/undraw-Chatting-re-j55r.png" class="img-fluid">
+            <h2><span class="color-number">3.</span> Entrez en contact</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                of letters,</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-home-ebook p-5">
+    <div class="ml-5">
+        <h1>Les derniers ebooks</h1>
+        <div class="hr-expert"><hr></div>
+        <div class="row">
+            {% for i in range(0, 3) %}
+            <div class="col-lg-3 col-md-6 col-sm-12 my-3 pr-5 ">
+                <div>
+                    <div class="text-center">
+                    <img src="https://i.postimg.cc/nh9LpHW8/livre-blanc-l-1-1.png" class="card-img-top" style="width: 13rem;" alt="...">
+                    </div>
+                    <div class="text-center border-pres color-expertise">
+                        <h5>
+                            SEO
+                        </h5>
+                    </div>
+                    <div class="card-body text-center ">
+                        <h3>
+                           Le SEO, outil privilégié 
+                        </h3>
+                        <h5 class="color-editor">Corailla Editor</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center">
+            <a class="btn btn-inscription" href="{{path('home_experts')}}" role="button">Découvrir plus d'expertises</a>
+        </div>
+    </div>
+</div>
+<div class="container pt-5 pb-5">
+    <h2 class="text-center">Les expertises</h2>
+    <div class="text-center pt-2">
+        {% for expertise in expertises %}
+        <a class="btn btn-inscription" href="" role="button">{{expertise.name}}</a>
+        {% endfor %}
+    </div>
+</div>
+<div class="container-fluid pt-5">
+    <div class="row color-bg-home justify-content-center align-items-center p-5">
+        <div class="col-lg-6 col-md-4 ml-3 color-banner-home">
+            <h1>Vous êtes un professionnel du digital ? <br>Accompagnez des entrepreneurs dans leur projet</h1>
+            </i><h2 class="sub-title-home pt-3"><i class="fas fa-arrow-right color-arrow"></i> Sélectionnez vos catégories d’expertise</h2><br>
+            </i><h2 class="sub-title-home"><i class="fas fa-arrow-right color-arrow"></i> Proposez vos services, vos formations et vos workshops</h2><br>
+            <h2 class="sub-title-home"><i class="fas fa-arrow-right color-arrow"></i> Prenez contact directement avec les entrepreneurs</h2><br>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <svg width="309" height="300" viewBox="0 0 309 348" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M191.507 29.3556L245.5 1.12841L299.493 29.3556V85.6444L245.5 113.872L191.507 85.6444V29.3556Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M84.5074 103.356L138.5 75.1284L192.493 103.356V159.644L138.5 187.872L84.5074 159.644V103.356Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M210.029 174.104L248 154.13L285.971 174.104V213.896L248 233.87L210.029 213.896V174.104Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M7.02886 202.104L45 182.13L82.9711 202.104V241.896L45 261.87L7.02886 241.896V202.104Z" stroke="#F9B419" stroke-width="2"/>
+                <path d="M108.971 263.09L159.5 235.143L210.029 263.09V318.91L159.5 346.857L108.971 318.91V263.09Z" stroke="#F9B419" stroke-width="2"/>
+            </svg> 
+        </div>
+    </div>
+</div>
 {% endblock %}

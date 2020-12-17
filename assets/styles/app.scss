@@ -18,16 +18,9 @@ h4 {
     font-family: $oswald;
 }
 
-
-p3 {
-    color: #FAFDFF;
-}
-
 .bg-navbar {
     background-color:white;
 }
-
-
 .btn-connexion {
     border: 1px solid $yellow;
     background-color: transparent;
@@ -171,8 +164,8 @@ p {
     position: absolute;
   }
 
-hr{
-    height: 3px;
+.hr-expert{
+    height: 1px;
     background-color:$yellow;
     border: none;
   }
@@ -191,7 +184,7 @@ p3 {
     display: grid;
     grid-gap: 300px;
     height: 30em;
-    border-radius: 16px;
+    border-radius: 20px;
   }
   
   .item-success {
@@ -212,3 +205,38 @@ p3 {
 }
 
 /*FIN PAGE PROVIDER*/
+
+/* HOME PAGE */
+.color-bg-home {
+    background-color: $blue;
+}
+
+.color-banner-home {
+    color: white;
+}
+.sub-title-home {
+    font-family: $raleway;
+    font-weight: 100;
+    font-size: 23px;
+}
+.color-number {
+    color: $yellow;
+}
+.bg-home-ebook {
+    background-color: $grey;
+}
+.color-arrow {
+    color: $yellow;
+}
+/* FIN HOME Page */
+/* Login / Register */
+.color-inscription {
+    background-color: $blue;
+}
+.color-connexion {
+    color: white;
+}
+
+.form-bg-login {
+    border-radius: 20px;
+}
