@@ -37,16 +37,23 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::subMenu('Modération', 'fas fa-tools')->setSubItems([
+        yield MenuItem::linktoDashboard('Accueil', 'fa fa-home');
+        yield MenuItem::subMenu('Modération', 'fas fa-check-circle')->setSubItems([
             MenuItem::linkToCrud('Experts', 'fas fa-user-cog', User::class)
             ->setController(ModerationExpertController::class),
+            MenuItem::linkToCrud('Ebooks', 'fas fa-book', Ebook::class)
+            ->setController(ModerationEbookController::class),
         ]);
-        yield MenuItem::linkToCrud('Ebook', 'fas fa-list', Ebook::class);
-        yield MenuItem::linkToCrud('Expertise', 'fas fa-list', Expertise::class);
-        yield MenuItem::linkToCrud('Provider', 'fas fa-list', Provider::class);
-        yield MenuItem::linkToCrud('Service', 'fas fa-list', Service::class);
-        yield MenuItem::linkToCrud('Type Service', 'fas fa-list', TypeService::class);
-        yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+        yield MenuItem::subMenu('Infos', 'fas fa-info')->setSubItems([
+            MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class)
+            ->setController(UserCrudController::class),
+            MenuItem::linkToCrud('Ebook', 'fas fa-book', Ebook::class)
+            ->setController(EbookCrudController::class),
+        ]);
+        yield MenuItem::subMenu('Gestion', 'fas fa-pencil-ruler')->setSubItems([
+            MenuItem::linkToCrud('Expertises', 'fas fa-briefcase', Expertise::class),
+            MenuItem::linkToCrud("Type de prestataire", 'fas fa-city', Provider::class),
+            MenuItem::linkToCrud('Type de Service', 'fas fa-concierge-bell', TypeService::class)
+        ]);
     }
 }
