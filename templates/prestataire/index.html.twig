@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil {% endblock %}
+
+{% block body %}
+
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="{{ path('prestataire_index', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('prestataire_ebook', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('prestataire_messagerie', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Messagerie</a></button>
+    </li>
+  </ul>
+<div class="container-fluid wrapperPresta">
+    <div class="picturePresta">
+        <img id='profil' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
+    </div>
+    <div class="mt-5">
+        <h3 class="text-subnav"><span class="color-letter">I</span>nformation personnelles</h3>
+    </div>
+    <div class="card-deck">
+        <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+            {{ user.firstname }}
+          </div>
+          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+            {{ user.lastname }}
+          </div>
+        </div>
+        <div class="card-deck">
+          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+            {{ user.email }}
+          </div>
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{ user.phone }}
+          </div>
+        </div>
+          <div class="alert alert-light rounded-pill" role="alert">
+            {{ user.adress }}
+          </div>
+          <div class="card-deck">
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{ user.zipcode }}
+          </div>
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{ user.town }}
+          </div>
+        </div>
+          <h3 class="text-subnav"><span class="color-letter">V</span>otre Expertise</h3>
+          <div class="alert alert-light rounded-pill" role="alert">
+            {{ user.provider }}
+          </div>
+          <div class="card-deck">
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{ user.companyName }}
+          </div>
+          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+            {{ user.siretNumber }}
+          </div>
+        </div>
+        <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+          {{ user.description }}
+        </div>
+          <div class="alert alert-light rounded-pill" role="alert">
+            <ul>
+                {% for expertise in user.expertise %}
+                <ul>
+                  <li>{{ expertise.name }}</li>
+                </ul>
+                {% endfor %}
+              </ul>
+          </div>
+          <a href="{{ path('prestataire_edit', {'id': user.id}) }}">
+            <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
+            </a>
+          
+</div>
+{% endblock %}

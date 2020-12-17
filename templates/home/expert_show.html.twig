@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid subnav-bg">
+    <div class="row justify-content-around align-items-center">
+        <div class="text-center col-10">
+            <h1 class="text-subnav m-3"></h1>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-2 p-5">
+    <div class="row">
+        <div class="col-md-2 pt-3">
+            <div class="filter">
+            <img src="https://www.hicom.fr/wp-content/uploads/2017/09/Logo_TV_2015.png"
+            class="img-fluid" alt="...">
+           
+            <h4 class="mt-5"><span class="color-letter"> A </span><a href="#A PROPOS DE NOUS" style="color:#000000;">propos de
+                nous</a></h4>
+                <hr class="hr-expert">
+                <h4><span class="color-letter"> N</span><a href="#E-BOOKS" style="color:#000000;">os E-Book</a></h4>
+                <hr class="hr-expert">
+                <h4><span class="color-letter"> N</span><a href="#NOS SERVICES" style="color:#000000;">os services</a></h4>
+                <hr class="hr-expert">
+                <h4 class="mb-5"><span class="color-letter"> C</span><a href="#CONTACTEZ NOUS" style="color:#000000;">ontactez cet
+                    expert</a></h4>
+                    
+                    <svg width="119" height="236" viewBox="0 0 119 236" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.68911 139.112L35 124.123L64.3109 139.112V168.888L35 183.877L5.68911 168.888V139.112Z" stroke="#F9B419" stroke-width="2"/>
+                        <path d="M32.6891 15.8663L62 1.11943L91.3109 15.8663V45.1337L62 59.8806L32.6891 45.1337V15.8663Z" stroke="#F9B419" stroke-width="2"/>
+                        <path d="M74.2824 63.8517L94.5 53.1319L114.718 63.8517V85.1483L94.5 95.8681L74.2824 85.1483V63.8517Z" stroke="#F9B419" stroke-width="2"/>
+                        <path d="M49.2824 103.608L69.5 93.1264L89.7176 103.608V124.392L69.5 134.874L49.2824 124.392V103.608Z" stroke="#F9B419" stroke-width="2"/>
+                        <path d="M10.8183 68.8701L34.5 57.1164L58.1817 68.8701V92.1299L34.5 103.884L10.8183 92.1299V68.8701Z" stroke="#F9B419" stroke-width="2"/>
+                        <path d="M45.4881 190.854L73.5 176.13L101.512 190.854V220.146L73.5 234.87L45.4881 220.146V190.854Z" stroke="#F9B419" stroke-width="2"/>
+                        </svg>
+                </div>
+            </div>
+
+        <div class="col-md-10">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100"
+                                    src="https://placehold.it/2400x1000"
+                                    alt="First slide">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 ">
+                <br>
+                <h1> {{user.firstname }} {{user.lastname}}</h1>
+                <h6> {{user.companyName}} , {{user.town}}. </h6>
+                <br>
+                <br>
+
+                <section id="A PROPOS DE NOUS">
+                    <h1>A PROPOS DE NOUS</h1>
+                    <hr class="hr-expert">
+                    <br>
+                    <br>
+                    <br>
+                    <div class="mt-10 ">
+                        <div class="container-fluid wrapperExpertDescri">
+                            <div class="pictureExpert">
+                                <img id='profil'
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
+                            </div>
+                            <div class="card-deck">
+                                <p3> {{user.description}} </p3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <br>
+                <br>
+                <section id="E-BOOKS">
+                    <h1>E-BOOKS</h1>
+                    <hr class="hr-expert">
+                    <div class="wrapperExpert">
+                        <div class="mt-12 class="text-center"">
+                            <h3>ebook.titre</h3>
+                        </div>
+                        <p> ebook.releaseDate</p>
+                        <br>
+                        <p> ebook.decription </p>
+
+                        <a href="#">
+                            <button type="button" class="btn btn-inscription nav-link mt-5">Télécharger</button>
+                        </a>
+                    </div>
+                </section>
+                <br>
+                <br>
+                <section id="NOS SERVICES">
+                    <h1>NOS SERVICES</h1>
+                </section>
+                <hr class="hr-expert">
+                <br>
+                <br>
+                <section id="CONTACTEZ NOUS">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="well well-sm">
+                                <form class="form-horizontal" action="" method="post">
+                                    <fieldset>
+                                        <legend class="text-center"><h1>CONTACTEZ NOUS</h1></legend>
+
+                                        <!-- Name input-->
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="name">Votre nom</label>
+                                            <div class="col-md-12">
+                                                <input id="name" name="name" type="text" placeholder="Votre nom"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <!-- Email input-->
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="email">Votre E-mail</label>
+                                            <div class="col-md-12">
+                                                <input id="email" name="email" type="text" placeholder="Votre E-mail"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <!-- Message body -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="message">Votre message</label>
+                                            <div class="col-md-12">
+                                                <textarea class="form-control" id="message" name="message"
+                                                    placeholder="Entrez votre message ..." rows="5"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- Form actions -->
+                                        <div class="form-group">
+                                            <div class="col-md-12 text-center">
+                                                <button type="submit" class="btn btn-warning btn-lg">Envoyer</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div> <hr>
+
+{% endblock %}
