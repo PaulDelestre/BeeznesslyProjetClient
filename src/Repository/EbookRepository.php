@@ -25,11 +25,6 @@ class EbookRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('ebook')
             ->from($this->_entityName, 'e')
-            // A finir pour n'afficher que les
-            // ->where('u.roles LIKE :roles')
-            // ->andwhere('u.isValidated =:isValidated')
-            // ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
-            // ->setParameter('isValidated', true)
             ->leftJoin('ebook.expertise', 'expertise');
 
         if (!empty($search->expertise)) {
@@ -38,17 +33,17 @@ class EbookRepository extends ServiceEntityRepository
                 ->setParameter('expertise', $search->expertise);
         }
 
-        if (!empty($search->service)) {
+        if (!empty($search->user)) {
             $query = $query
-                ->andWhere('service.id IN (:service)')
-                ->setParameter('service', $search->service);
+                ->andWhere('user.id IN (:user)')
+                ->setParameter('user', $search->user);
         }
 
         if (!empty($search->q)) {
             $query = $query
                 ->andWhere('ebook.title LIKE :q 
                 OR ebook.description LIKE :q
-                OR ebook.editorName LIKE :q 
+                OR ebook.editorName LIKE :q
                 OR ebook.author LIKE :q')
                 ->setParameter('q', "%{$search->q}%");
         }

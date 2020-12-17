@@ -1,14 +1,24 @@
-<div class="col-lg-5 col-md-10 col-sm-12 my-3">
+<div class="col-lg-5 col-md-6 col-sm-12 my-3">
     <div class="card">
         <img src="..." class="card-img-top" alt="...">
+        <div class="text-center border-pres color-provider">
+            <h5>
+                {{expert.provider}}
+            </h5>
+        </div>
         <div class="card-body">
-            <h2 class="card-title">{{expert.provider}}</h2>
-            <h2 class="card-title">
+            {% if expert.companyName is not null %}
+            <h1>
                 {{expert.companyName}}
+            </h1>
+            {% else %}
+            <h1>
+                {{expert.firstname}} {{expert.lastname}}
+            </h1>
+            {% endif %}
                 <div class="text-right">
-                    <h5>{{expert.town}}</h5>
+                    <p>{{expert.town}}</p>
                 </div>
-            </h2>
             {% for expertise in expert.expertise %}
             <p class="text text-muted">
                 {{expertise.name}}

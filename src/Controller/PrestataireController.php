@@ -12,30 +12,52 @@ use App\Entity\Contact;
 use App\Form\UserType;
 
 /**
- * @Route("/prestataire")
+ * @Route("/prestataire", name="prestataire_")
  * @IsGranted("ROLE_EXPERT")
  */
 class PrestataireController extends AbstractController
 {
     /**
-     * @Route("/", name="prestataire")
+     * @Route("/", name="index")
      */
     public function index(): Response
     {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
         return $this->render('prestataire/index.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/mon-compte", name="en_attente")
+     */
+    public function moderation(): Response
+    {
+        return $this->render('prestataire/validation.html.twig', [
             'user' => $this->getUser(),
         ]);
     }
 
      /**
-     * @Route("/messagerie", methods={"GET"}, name="prestataire_messagerie")
+     * @Route("/messagerie", methods={"GET"}, name="messagerie")
      */
     public function message(): Response
     {
-
-            return $this->render('prestataire/messagerie.html.twig', [
-            'contacts' => $this->getUser()->getContacts()
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
             ]);
+        }
+
+        return $this->render('prestataire/messagerie.html.twig', [
+            'contacts' => $user->getContacts()
+        ]);
     }
 
     /**
@@ -49,22 +71,34 @@ class PrestataireController extends AbstractController
     }
 
       /**
-     * @Route("/ebook", methods={"GET"}, name="prestataire_ebook")
+     * @Route("/ebook", methods={"GET"}, name="ebook")
      */
     public function ebooks(): Response
     {
-
-            return $this->render('prestataire/ebook.html.twig', [
-            'ebooks' => $this->getUser()->getEbooks()
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
             ]);
+        }
+
+        return $this->render('prestataire/ebook.html.twig', [
+            'ebooks' => $user->getEbooks()
+        ]);
     }
 
     /**
-     * @IsGranted("ROLE_EXPERT")
-     * @Route("/edit/{id}", name="prestataire_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, User $user): Response
     {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -75,7 +109,7 @@ class PrestataireController extends AbstractController
         }
 
         return $this->render('prestataire/edit.html.twig', [
-            'user' => $this->getUser(),
+            'user' => $user,
             'form' => $form->createView(),
         ]);
     }
