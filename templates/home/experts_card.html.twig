@@ -10,13 +10,13 @@
         </div>
         <div class="card-body">
             {% if expert.companyName is not null %}
-            <a href="{{path ('home_expert_show', {'id': expert.id})}}" class="link-for-show"><h1>
+            <a href="{{path ('home_expert_show', {'id': expert.id})}}" class="link-for-show"><h2>
                 {{expert.companyName}}
-            </h1></a>
+            </h2></a>
             {% else %}
-            <a href="{{path ('home_expert_show', {'id': expert.id})}}" class="link-for-show"><h1>
+            <a href="{{path ('home_expert_show', {'id': expert.id})}}" class="link-for-show"><h2>
                 {{expert.firstname}} {{expert.lastname}}
-            </h1></a>
+            </h2></a>
             {% endif %}
                 <div class="text-right">
                     <p>{{expert.town}}</p>
