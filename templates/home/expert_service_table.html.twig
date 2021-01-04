@@ -1,0 +1,82 @@
+<div class="wrapperExpert">
+    <div>
+        <h2><i class="fas fa-cog color-icon-service"></i> {{service.typeService}}</h2>
+        <table class="table table-borderless table-responsive{-sm|-md|-lg|-xl}">
+            <tbody>
+                <tr>
+                    <td>
+                        <h3>{{service.title}}</h3>
+                        <h5 class="color-expertise"><i class="fas fa-check"></i> {{service.expertise}}</h5><br>
+                        <i class="far fa-calendar-alt"></i> {{service.startDate|date("D d M Y")}} -
+                        {{service.endDate|date("D d M Y")}}
+                    </td>
+                    <td>
+                        {{service.town}}<br>
+                        <p class="text-center places-left"><span class="places-style">{{service.placesNumber}}</span>
+                            places</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="d-none d-sm-block">{{service.description}}</p><br>
+                        <a href="#">
+                            <button type="button" class="btn btn-inscription mb-2">Réserver</button>
+                        </a>
+                        <button type="button" class="btn btn-connexion mb-2" data-toggle="modal"
+                            data-target="#modalService">
+                            En savoir plus <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalService" tabindex="-1" role="dialog" aria-labelledby="modalServiceTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalServiceTitle">{{service.typeService}}</h2><br>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                <h3>{{service.title}}</h3>
+                <p class="pr-4 color-expertise"><i class="fas fa-check"></i> {{service.expertise}}</p>
+                <i class="far fa-calendar-alt"></i> {{service.startDate|date("D d M Y")}} -
+                        {{service.endDate|date("D d M Y")}}
+                        <p>{{service.town}}</p>
+                        <p class="text-center places-left"><span class="places-style">{{service.placesNumber}}</span>
+                            places<br>
+                            Type {{service.formatService}}<br>
+                            Encadrant {{service.trainer}}
+                        </p>
+                <p>{{service.description}}</p>
+                </div>
+                <hr>
+                <div>
+                    {% if service.structureName is not null %}
+                    <p>Organisé par le centre de formation<span class="places-style"> {{service.structureName}}</span><br>
+                    {% endif %}
+                    {% if service.trainingCentreNumber is not null %}
+                        numéro d'identification {{service.trainingCentreNumber}}</p>
+                    {% endif %}
+                    <p><span class="places-style"> L'événement se déroulera au</span><br>
+                        {{service.address}},<br>{{service.zipcode}} {{service.town}}
+                    </p>
+                </div>
+                <h4 class="text-center places-style">{{service.price}}€</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-connexion" data-dismiss="modal">Close</button>
+                <a href="#">
+                    <button type="button" class="btn btn-inscription">Réserver</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

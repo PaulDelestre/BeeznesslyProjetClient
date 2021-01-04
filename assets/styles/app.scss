@@ -5,6 +5,8 @@
 body {
     margin: 0%;
     padding: 0%;
+    font-family: $raleway;
+    font-weight: 400;
 }
 h1 {
     font-family: $oswald;
@@ -16,6 +18,7 @@ h2 {
 }
 h4 {
     font-family: $oswald;
+    font-weight: 100;
 }
 
 .bg-navbar {
@@ -78,6 +81,7 @@ h4 {
 /* PAGES ALL EXPERTS / EBOOKS */
 .color-letter{
     color: $yellow;
+    font-weight: 100;
 }
 .card-filter {
     border: 1px solid whitesmoke;
@@ -121,7 +125,7 @@ p {
 /* FIN PAGES ALL EXPERTS / EBOOKS */
 
 
-// css for profil prestataire //
+// css for expert show //
 .wrapperExpertDescri{
     left: 1%;
     background-color: $blue;
@@ -140,7 +144,6 @@ p {
 .wrapperExpert{
     background-color: #FAFDFF;
     border:1px solid $blue;
-    width:90%;
     z-index: 1;
     margin:0 auto;
     margin-top : 5%;
@@ -260,4 +263,27 @@ a:hover {
 .link-for-show-img:hover {
     filter: brightness(80%);
 -webkit-filter: brightness(80%);
+}
+
+.color-icon-service {
+    color: $grey;
+}
+
+h3 {
+    font-family: $raleway;
+    font-size: 25px;
+}
+
+.name-expert-show {
+    font-family: $oswald;
+    font-weight: bold;
+    font-size: 45px;
+}
+.places-style {
+    font-weight: 500;
+    font-size : 18px;
+}
+.places-left {
+    border: 1px solid $yellow;
+    border-radius: 10px 100px / 120px;
 }
