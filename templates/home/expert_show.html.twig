@@ -82,32 +82,31 @@
                         </div>
                     </div>
                 </section>
-                <br>
-                <br>
-                <section id="E-BOOKS">
+                <section class="mt-5" id="E-BOOKS">
                     <h1>E-BOOKS</h1>
-                    <hr class="hr-expert">
+                    <hr class="hr-expert">           
+                    {% for ebook in user.ebooks %}
+                    {% include 'home/expert_table.html.twig'%}
+                    {% endfor %}
+                </section>
+                <section class="mt-5 mb-5" id="NOS SERVICES">
+                    <h1>NOS SERVICES</h1>
+                <hr class="hr-expert">
+                {% for service in user.services %}
                     <div class="wrapperExpert">
                         <div class="mt-12 class="text-center"">
-                            <h3>ebook.titre</h3>
+                            <h3>{{service.title}}</h3>
                         </div>
-                        <p> ebook.releaseDate</p>
+                        <p> {{service.startDate|date("d M Y")}} - {{service.endDate|date("d M Y")}}</p>
                         <br>
-                        <p> ebook.decription </p>
+                        <p> {{service.description}}</p>
 
                         <a href="#">
-                            <button type="button" class="btn btn-inscription nav-link mt-5">Télécharger</button>
+                            <button type="button" class="btn btn-inscription nav-link mt-5">Réserver</button>
                         </a>
                     </div>
-                </section>
-                <br>
-                <br>
-                <section id="NOS SERVICES">
-                    <h1>NOS SERVICES</h1>
-                </section>
-                <hr class="hr-expert">
-                <br>
-                <br>
+                {% endfor %}
+            </section>
                 <section id="CONTACTEZ NOUS">
                     <div class="container-fluid">
                         <div class="row-fluid">
@@ -115,8 +114,6 @@
                                 <form class="form-horizontal" action="" method="post">
                                     <fieldset>
                                         <legend class="text-center"><h1>CONTACTEZ NOUS</h1></legend>
-
-                                        <!-- Name input-->
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="name">Votre nom</label>
                                             <div class="col-md-12">
@@ -124,8 +121,6 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-
-                                        <!-- Email input-->
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="email">Votre E-mail</label>
                                             <div class="col-md-12">
@@ -133,8 +128,6 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-
-                                        <!-- Message body -->
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="message">Votre message</label>
                                             <div class="col-md-12">
@@ -142,8 +135,6 @@
                                                     placeholder="Entrez votre message ..." rows="5"></textarea>
                                             </div>
                                         </div>
-
-                                        <!-- Form actions -->
                                         <div class="form-group">
                                             <div class="col-md-12 text-center">
                                                 <button type="submit" class="btn btn-warning btn-lg">Envoyer</button>
