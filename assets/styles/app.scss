@@ -15,10 +15,12 @@ h1 {
 }
 h2 {
     font-family: $oswald;
+    font-weight: 400;
 }
 h4 {
     font-family: $oswald;
-    font-weight: 100;
+    font-weight: 200;
+    font-size: 28px;
 }
 
 .bg-navbar {
@@ -104,8 +106,11 @@ h4 {
    }
 
 .border-pres {
-    border: 1px solid $grey;
-    border-radius: 16px 16px;
+    border-radius: 15px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: $yellow;
+    background-color: white;
+    margin-top: -30px;
 }
 .color-editor {
     color:$blue;
@@ -173,10 +178,6 @@ p {
     border: none;
   }
 
-p3 {
-    color: #FAFDFF;
-}
-
 // fin css for profil prestataire //
 /*PAGE VALIDATION PROVIDER*/
 .container-success {
@@ -226,7 +227,7 @@ p3 {
     color: $yellow;
 }
 .bg-home-ebook {
-    background-color: $grey;
+    background-color: whitesmoke;
 }
 .color-arrow {
     color: $yellow;
@@ -278,6 +279,7 @@ h3 {
     font-family: $oswald;
     font-weight: bold;
     font-size: 45px;
+    text-transform: uppercase;
 }
 .places-style {
     font-weight: 500;
@@ -299,6 +301,10 @@ h3 {
     border: 1px solid $blue;
     color: black;
 }
+h5{
+    font-family: $raleway;
+    font-weight: 300;
+}
 @media screen and (min-width: 320px) and (max-width: 768px) {
     .wrapperExpertDescri {
         margin-top: 10%;
@@ -316,4 +322,13 @@ h3 {
     .wrapperExpertDescri {
         padding-top:15%;
     }
+}
+
+.card-border {
+    -webkit-box-shadow: 0px 0px 5px -2px #000000; 
+    box-shadow: 0px 0px 5px -2px #000000;
+    border-radius: 5px;
+}
+.text-color-white{
+    color: white;
 }

@@ -64,11 +64,11 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div>
+                <div class="pt-4 pb-3">
                     {% if user.companyName is not null %}
-                    <h1 class="pt-3 name-expert-show"> {{user.companyName}}</h1>
+                    <h1 class="name-expert-show"> {{user.companyName}}</h1>
                     {% else %}
-                    <h1 class="pt-3 name-expert-show"> {{user.firstname }} {{user.lastname}}</h1>
+                    <h1 class="name-expert-show"> {{user.firstname }} {{user.lastname}}</h1>
                     {% endif %}
                     <div class="row pb-3 pl-3">
                         <p class="pr-4"><i class="fas fa-map-marker-alt color-icon-blue"></i> {{user.town}}</p>
@@ -89,7 +89,7 @@
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
                             </div>
                             <div class="card-deck">
-                                <p3> {{user.description}} </p3>
+                                <p class="text-color-white"> {{user.description}} </p>
                             </div>
                         </div>
                     </div>

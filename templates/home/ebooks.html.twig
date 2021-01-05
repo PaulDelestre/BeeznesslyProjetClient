@@ -20,17 +20,20 @@
 </div>
 <div class="container-fluid pb-5">
     <div class="row mt-5 mx-auto">
-        <div class="col-md-3 col-sm-12 card-filter pt-3">
+        <div class="col-lg-3 col-md-4 col-sm-10 card-filter pt-3 mx-auto">
             {{form_start(searchForm, {attr: {class:'filter'}})}}
+            <div class="pl-2 pt-2">
             <h2><span class="color-letter">F</span>iltres</h2>
             {{form_row(searchForm.q)}}
+            </div>
             <div class="accordion" id="accordionExample">
                 <div>
                     <div id="headingOne">
+                        <hr>
                         <button class="btn text-left" type="button" data-toggle="collapse" data-target="#collapseOne"
                             aria-expanded="false" aria-controls="collapseOne">
                             <h4><span class="color-letter">E</span>xpertises</h4>
-                        </button>
+                        </button> <i class="fas fa-chevron-down"></i>
                     </div>
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
@@ -45,7 +48,7 @@
                         <button class="btn text-left collapsed" type="button" data-toggle="collapse"
                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <h4><span class="color-letter">D</span>ate de sortie</h4>
-                        </button>
+                        </button> <i class="fas fa-chevron-down"></i>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
@@ -60,8 +63,7 @@
             </div>
             {{form_end(searchForm)}}
         </div>
-        <div class="col-md-9">
-
+        <div class="col-lg-8 col-md-8">
             <div class="row">
                 {% for ebook in ebooks %}
                 {% if ebook.isValidated == true %}
