@@ -7,10 +7,15 @@
                     <td>
                         <h3>{{service.title}}</h3>
                         <h5 class="color-expertise"><i class="fas fa-check"></i> {{service.expertise}}</h5><br>
+                        <div class="d-lg-none d-md-none d-sm-none">
+                            {{service.town}}<br>
+                        <p class="text-center places-left"><span class="places-style">{{service.placesNumber}}</span>
+                            places</p>
+                        </div>
                         <i class="far fa-calendar-alt"></i> {{service.startDate|date("D d M Y")}} -
                         {{service.endDate|date("D d M Y")}}
                     </td>
-                    <td>
+                    <td class="d-none d-sm-block">
                         {{service.town}}<br>
                         <p class="text-center places-left"><span class="places-style">{{service.placesNumber}}</span>
                             places</p>
@@ -56,10 +61,11 @@
                             Encadrant {{service.trainer}}
                         </p>
                 <p>{{service.description}}</p>
+                <h4 class="text-center places-style">{{service.price}}€</h4>
                 </div>
+                {% if service.structureName is not null %}
                 <hr>
                 <div>
-                    {% if service.structureName is not null %}
                     <p>Organisé par le centre de formation<span class="places-style"> {{service.structureName}}</span><br>
                     {% endif %}
                     {% if service.trainingCentreNumber is not null %}
@@ -69,7 +75,6 @@
                         {{service.address}},<br>{{service.zipcode}} {{service.town}}
                     </p>
                 </div>
-                <h4 class="text-center places-style">{{service.price}}€</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-connexion" data-dismiss="modal">Close</button>
