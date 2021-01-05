@@ -94,7 +94,8 @@
                         </div>
                     </div>
                 </section>
-                {% if user.ebooks is not null %}
+                
+                {% if user.ebooks is not empty %}
                 <section class="mt-5" id="E-BOOKS">
                     <div>
                         <h1>E-BOOKS</h1>
@@ -105,7 +106,7 @@
                     {% endfor %}
                 </section>
                 {% endif %}
-                {% if user.services is not null %}
+                {% if user.services is not empty %}
                 <section class="mt-5 mb-5" id="NOS SERVICES">
                     <div>
                         <h1>NOS SERVICES</h1>
@@ -116,7 +117,7 @@
                     {% endfor %}
                 </section>
                 {% endif %}
-                <section id="CONTACTEZ NOUS">
+                <section id="CONTACTEZ NOUS" class="mt-5 pt-2">
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="well well-sm">
