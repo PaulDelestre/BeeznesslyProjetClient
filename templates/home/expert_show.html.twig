@@ -15,7 +15,6 @@
         <div class="col-md-2 pt-3">
             <div class="filter">
                 <img src="https://www.hicom.fr/wp-content/uploads/2017/09/Logo_TV_2015.png" class="img-fluid" alt="...">
-
                 <h4 class="mt-5"><span class="color-letter"> A </span><a href="#A PROPOS DE NOUS"
                         style="color:#000000;">propos de
                         nous</a></h4>
@@ -52,34 +51,34 @@
                 </svg>
             </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-9 mx-auto">
             <div class="container-fluid">
                 <div class="row">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="https://placehold.it/2400x1000" alt="First slide">
+                                <img class="img-fluid" src="https://placehold.it/2400x1000" alt="First slide">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="pl-4">
+                <div>
                     {% if user.companyName is not null %}
                     <h1 class="pt-3 name-expert-show"> {{user.companyName}}</h1>
                     {% else %}
                     <h1 class="pt-3 name-expert-show"> {{user.firstname }} {{user.lastname}}</h1>
                     {% endif %}
-                    <div class="row pb-3">
-                        <p class="pr-4"><i class="fas fa-map-marker-alt color-icon-service"></i> {{user.town}}</p>
+                    <div class="row pb-3 pl-3">
+                        <p class="pr-4"><i class="fas fa-map-marker-alt color-icon-blue"></i> {{user.town}}</p>
                         {% for expertise in user.expertise %}
-                        <p class="pr-4 "><i class="fas fa-check"></i> {{expertise.name}}</p>
+                        <p class="pr-4 "><i class="fas fa-check color-icon-blue"></i> {{expertise.name}}</p>
                         {% endfor %}
                     </div>
                 </div>
                 <section id="A PROPOS DE NOUS">
-                    <div class="pl-4">
+                    <div>
                         <h1>A PROPOS DE NOUS</h1>
                         <hr class="hr-expert"><br>
                     </div>
@@ -97,7 +96,7 @@
                 </section>
                 {% if user.ebooks is not null %}
                 <section class="mt-5" id="E-BOOKS">
-                    <div class="pl-4">
+                    <div>
                         <h1>E-BOOKS</h1>
                         <hr class="hr-expert">
                     </div>
@@ -108,7 +107,7 @@
                 {% endif %}
                 {% if user.services is not null %}
                 <section class="mt-5 mb-5" id="NOS SERVICES">
-                    <div class="pl-4">
+                    <div>
                         <h1>NOS SERVICES</h1>
                         <hr class="hr-expert">
                     </div>
@@ -163,5 +162,4 @@
     </div>
 </div>
 <hr>
-
 {% endblock %}
