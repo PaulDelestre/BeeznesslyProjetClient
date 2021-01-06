@@ -6,13 +6,16 @@ use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @Vich\Uploadable
  */
 class User implements UserInterface, \Serializable
 {
@@ -115,9 +118,23 @@ class User implements UserInterface, \Serializable
     private $ebooks;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="user", cascade={"persist"})
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $logo;
+
+
+    /**
+    * @Vich\UploadableField(mapping="logo_file", fileNameProperty="logo")
+    * @var File
+    */
+    private $logoFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var Datetime
      */
-    private $images;
+    private $updatedAt;
 
     public function __construct()
     {
@@ -125,7 +142,6 @@ class User implements UserInterface, \Serializable
         $this->contacts = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->ebooks = new ArrayCollection();
-        $this->images = new ArrayCollection();
     }
 
     public function __toString()
@@ -457,33 +473,39 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
+    public function setLogoFile(File $logo = null)
     {
-        return $this->images;
+        $this->logoFile = $logo;
+        if ($logo) {
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    public function addImage(Image $image): self
+    public function getLogoFile(): ?File
     {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setUser($this);
-        }
+        return $this->logoFile;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }
 
-    public function removeImage(Image $image): self
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getUser() === $this) {
-                $image->setUser(null);
-            }
-        }
+        return $this->updatedAt;
+    }
 
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 
