@@ -5,8 +5,8 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Provider;
 use App\Entity\Expertise;
-use App\Entity\TypeOfUser;
 use Symfony\Component\Form\AbstractType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -143,6 +143,12 @@ class RegistrationFormType extends AbstractType
                 'multiple' => true,
                 'by_reference' => true,
                 'label' => "Domaine(s) d'expertise(s) :",
+            ])
+            ->add('logoFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+                'label' => "Ajouter un logo",
             ])
         ;
     }
