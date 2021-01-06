@@ -34,6 +34,22 @@ class PrestataireController extends AbstractController
     }
 
     /**
+     * @Route("/profil", name="profil")
+     */
+    public function profil(): Response
+    {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+        return $this->render('prestataire/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * @Route("/mon-compte", name="en_attente")
      */
     public function moderation(): Response
