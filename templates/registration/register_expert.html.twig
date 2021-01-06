@@ -7,7 +7,6 @@
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
-
     <h1 class="color-connexion">Inscription</h1>
     <ul class="nav nav-tabs my-4">
         <li class="nav-item">
@@ -17,8 +16,9 @@
           <a class="nav-link" href="{{ path('app_register_entrepreneur')}}">Entrepreneur</a>
         </li>
     </ul>
-
+{{dump(registrationForm)}}
     {{ form_start(registrationForm) }}
+
     <h4 class="color-connexion mt-4"><span class ="color-letter">1.</span> Informations personnelles</h4>
   
         {{ form_row(registrationForm.firstname) }}
@@ -37,6 +37,7 @@
 
     <h4 class="color-connexion mt-4"><span class ="color-letter">3.</span> Dernière étape !</h4>
 
+        {{form_widget(registrationForm.images.vars.prototype.imageFile)}}
         {{ form_row(registrationForm.plainPassword) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
@@ -47,6 +48,4 @@
         {{ form_widget(registrationForm._token) }} 
 {{ form_end(registrationForm, {'render_rest': false}) }}
 </div>
-
-
 {% endblock %}

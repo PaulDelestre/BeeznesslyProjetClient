@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Image;
+use App\Form\ImageType;
 use App\Entity\Provider;
 use App\Entity\Expertise;
 use App\Entity\TypeOfUser;
@@ -21,6 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -144,6 +147,15 @@ class RegistrationFormType extends AbstractType
                 'by_reference' => true,
                 'label' => "Domaine(s) d'expertise(s) :",
             ])
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => true,
+                'required' => true,
+                'label' => 'images à ajouter',
+            ]);
         ;
     }
 

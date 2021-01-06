@@ -17,7 +17,6 @@ class ImageType extends AbstractType
                 'required' => false,
                 'download_uri' => true,
                 'image_uri' => true,
-                'asset_helper' => true,
             ]);
         ;
     }
