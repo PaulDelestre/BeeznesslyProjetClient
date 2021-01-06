@@ -154,7 +154,7 @@ class RegistrationFormType extends AbstractType
                 'prototype' => true,
                 'by_reference' => true,
                 'required' => true,
-                'label' => 'images à ajouter',
+                'label' => 'Ajouter des images',
             ]);
         ;
     }

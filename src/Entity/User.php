@@ -119,11 +119,6 @@ class User implements UserInterface, \Serializable
      */
     private $images;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=TypeOfUser::class, inversedBy="users")
-     */
-    private $typeOfUser;
-
     public function __construct()
     {
         $this->expertise = new ArrayCollection();
@@ -488,18 +483,6 @@ class User implements UserInterface, \Serializable
                 $image->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getTypeOfUser(): ?TypeOfUser
-    {
-        return $this->typeOfUser;
-    }
-
-    public function setTypeOfUser(?TypeOfUser $typeOfUser): self
-    {
-        $this->typeOfUser = $typeOfUser;
 
         return $this;
     }

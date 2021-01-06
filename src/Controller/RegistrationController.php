@@ -30,6 +30,12 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setRoles(['ROLE_EXPERT']);
             $user->setIsValidated(false);
+            $userImages = $user->getImages();
+            foreach ($userImages as $key => $userImage) {
+                $userImage->setUser($user);
+                $userImages->set($key, $userImage);
+            }
+
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
