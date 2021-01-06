@@ -3,6 +3,124 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <img src="https://media.giphy.com/media/hS58Kb2OOCMPS/giphy.gif" alt="Dewey dancing">
+
+<div class="container-fluid subnav-bg">
+    <div class="row justify-content-around align-items-center">
+        <div class="text-center col-10 p-4">
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-md-2 pt-3">
+            <div class="filter d-none d-md-block">
+                <h4 class="mt-5 text-center"><a href="{{path ('home_expert_show', {'id': ebook.user.id})}}">EN SAVOIR PLUS SUR L'EXPERT</a></h4>
+                <hr>
+                <svg  width="119" height="236" viewBox="0 0 119 236" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.68911 139.112L35 124.123L64.3109 139.112V168.888L35 183.877L5.68911 168.888V139.112Z"
+                        stroke="#F9B419" stroke-width="2" />
+                    <path d="M32.6891 15.8663L62 1.11943L91.3109 15.8663V45.1337L62 59.8806L32.6891 45.1337V15.8663Z"
+                        stroke="#F9B419" stroke-width="2" />
+                    <path
+                        d="M74.2824 63.8517L94.5 53.1319L114.718 63.8517V85.1483L94.5 95.8681L74.2824 85.1483V63.8517Z"
+                        stroke="#F9B419" stroke-width="2" />
+                    <path
+                        d="M49.2824 103.608L69.5 93.1264L89.7176 103.608V124.392L69.5 134.874L49.2824 124.392V103.608Z"
+                        stroke="#F9B419" stroke-width="2" />
+                    <path
+                        d="M10.8183 68.8701L34.5 57.1164L58.1817 68.8701V92.1299L34.5 103.884L10.8183 92.1299V68.8701Z"
+                        stroke="#F9B419" stroke-width="2" />
+                    <path d="M45.4881 190.854L73.5 176.13L101.512 190.854V220.146L73.5 234.87L45.4881 220.146V190.854Z"
+                        stroke="#F9B419" stroke-width="2" />
+                </svg>
+            </div>
+        </div>
+        <div class="col-md-9 mx-auto">
+            <div class="col-md-12">
+                <div>
+                    <h1 class="pt-3 name-expert-show"> {{ebook.title}}</h1>
+                    <hr class="hr-expert">
+                    <div class="row pl-2">
+                        <p class="pl-2 pr-4">
+                            {% if ebook.author is not null %}
+                            De {{ebook.author}}
+                            {% endif %}
+                        </p>
+                        <p class="pr-4"><i class="fas fa-check color-icon-blue"></i> {{ebook.expertise}}</p>
+                        <p><i class="far fa-user color-icon-blue"></i>
+                            Proposé par l'expert {{ebook.user}}</p>
+                    </div>
+                </div>
+                <section>
+                    <div>
+                        <div class="wrapperExpert">
+                            <div>
+                                <h2>Editeur {{ebook.editorName}}</h2>
+                                <p>
+                                    <i class="far fa-calendar-alt color-icon-blue"></i>
+                                    Date de publication : {{ebook.releaseDate|date("d M Y")}}
+                                </p>
+                                <table class="table table-borderless table-responsive{-sm|-md|-lg|-xl}">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <img src="https://i.postimg.cc/nh9LpHW8/livre-blanc-l-1-1.png"
+                                                    class="card-img-top" style="width: 8rem;" alt="...">
+                                                <button type="button"
+                                                    class="btn btn-connexion d-lg-none d-md-none d-sm-none"
+                                                    data-toggle="modal" data-target="#exampleModalCenter">
+                                                    En savoir plus <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                                <a href="#">
+                                                    <button type="button"
+                                                        class=" btn btn-inscription">Télécharger</button>
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <p class="d-none d-sm-block">{{ebook.description}}</p><br>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="text-center">
+                    <a href="{{path ('home_expert_show', {'id': ebook.user.id})}}">
+                        <button type="button" class="btn btn-blue-more m-5">En savoir plus sur l'expert</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<hr>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">{{ebook.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="color-expertise">{{ebook.expertise}}</h5>
+                <p>{{ebook.description}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-connexion" data-dismiss="modal">Close</button>
+                <a href="#">
+                    <button type="button" class="btn btn-inscription">Télécharger</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
