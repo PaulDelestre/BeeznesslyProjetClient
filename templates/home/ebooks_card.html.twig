@@ -1,15 +1,23 @@
-<div class="col-lg-4 col-md-8 col-sm-12 my-3">
-    <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+<div class="col-lg-5 col-md-12 col-sm-12 my-3 pr-5 ">
+    <div>
+        <div class="text-center">
+        <img src="https://i.postimg.cc/nh9LpHW8/livre-blanc-l-1-1.png" class="card-img-top" style="width: 13rem;" alt="...">
+        </div>
+        <div class="text-center border-pres color-expertise">
+            <h5>
+                {{ebook.expertise}}
+            </h5>
+        </div>
         <div class="card-body">
-            <h2 class="card-title">
+            <h3>
                 {{ebook.title}}
-                <div class="card-title">
-                    <h5>{{ebook.editorName}}</h5>
-                </div>
-            </h2>
-            <p class="text text-muted">
-                {{ebook.releaseDate|date('d-m-Y')}}
+            </h3>
+            <h5 class="text-center color-editor">Editeur {{ebook.editorName}}</h5>
+            {% if ebook.author is not null %}
+            <p class="pt-1">De {{ebook.author}}</p>
+            {% endif %}
+            <p class="text-left pt-0">
+                {{ebook.releaseDate|date('d M Y')}}
             </p>
         </div>
     </div>
