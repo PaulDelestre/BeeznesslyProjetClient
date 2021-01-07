@@ -155,6 +155,7 @@ class PrestataireController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $ebook->setUser($this->getUser());
+            $ebook->setIsValidated(false);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ebook);
             $entityManager->flush();
