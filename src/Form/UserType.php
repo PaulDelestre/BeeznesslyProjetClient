@@ -31,6 +31,12 @@ class UserType extends AbstractType
                 'download_uri' => true,
                 'label' => "Ajouter un logo",
             ])
+            ->add('bannerFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true,
+                'download_uri' => true,
+                'label' => "Ajouter une bannière",
+            ])
         ;
     }
 
