@@ -3,9 +3,17 @@
 {% block title %}New Ebook{% endblock %}
 
 {% block body %}
-    <h1>Create new Ebook</h1>
+<div class="container-fluid wrapperPresta text-center">
+   
+        <h1>Create new Ebook</h1>
+    <table class="table table-borderless">
 
     {{ include('prestataire/ebook_form.html.twig') }}
 
-    <a href="{{ path('prestataire_ebook') }}">back to list</a>
+    <a href="{{ path('prestataire_ebook') }}">
+        <button type="button" class="btn btn-inscription nav-link">back to list</button>
+    </a>
+    
+</table>
+</div>
 {% endblock %}
