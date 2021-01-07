@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Messages {% endblock %}
+
+{% block body %}
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="{{ path('prestataire_profil')}}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('prestataire_ebook')}}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('prestataire_messagerie')}}"><button type="button" class="btn btn-profil ml-5"> Messagerie</a></button>
+    </li>
+  </ul>
+<div class="container-fluid wrapperPresta text-center">
+    <div class="picturePresta">
+      <img id="profil" src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+    </div>
+
+      
+    <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+      {{contact.lastname}} 
+    </div>
+    <h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+      {{contact.firstname}} 
+    </div>
+    <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {{contact.subject}} 
+    </div>
+    <h3 class="text-subnav"><span class="color-letter">E</span>mail</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+      {{contact.email}} 
+      </div>
+
+
+    
+<h3 class="text-subnav"><span class="color-letter">M</span>essage</h3>
+<div class="card mb-3 alert alert-light rounded" role="alert">
+    {{contact.message}} 
+    </div>   
+        <a href="{{ path('prestataire_messagerie')}}">
+            <button type="button" class="btn btn-inscription nav-link mt-5">Retour</button>
+            </a>
+</div>
+</div>
+{% endblock %}

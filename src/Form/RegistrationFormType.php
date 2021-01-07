@@ -3,27 +3,48 @@
 namespace App\Form;
 
 use App\Entity\User;
-use App\Entity\TypeOfUser;
+use App\Entity\Provider;
+use App\Entity\Expertise;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+            ->add('email', EmailType::class, [
+                'label' => false,
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Email'
+                    ]
+            ])
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'The password fields must match.',
+                'first_options'  => [
+                    'attr' => ['placeholder' => 'Mot de passe'],
+                    'label' => false,
+                ],
+                'second_options'  => [
+                    'attr' => ['placeholder' => 'Confirmation mot de passe'],
+                    'label' => false,
+                ],
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -36,33 +57,98 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ->add('typeOfUser', EntityType::class, [
-                'class' => TypeOfUser::class,
-                'label' => 'Je suis un.e ',
-                'choice_label' => 'name',
+                'label' => false,
             ])
             ->add('firstname', TextType::class, [
                 'label' => false,
-                'required' => false,
+                'required' => true,
                 'attr' => [
-                    'placeholder' => 'Firstname'
+                    'placeholder' => 'Prénom'
                     ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => false,
-                'required' => false,
+                'required' => true,
                 'attr' => [
-                    'placeholder' => 'Lastname'
+                    'placeholder' => 'Nom'
                     ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => "J'accepte les CDG",
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+            ])
+            ->add('adress', TextareaType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Adresse'
+                    ]
+            ])
+            ->add('zipcode', IntegerType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Code Postal'
+                ],
+                'constraints' => [
+                    new Length([
+                        'min' => 5,
+                        'max' => 5
+                    ]),
+                ],
+            ])
+            ->add('town', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Ville'
+                    ]
+            ])
+            ->add('phone', TelType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Téléphone'
+                ]
+            ])
+            ->add('provider', EntityType::class, [
+                'class' => Provider::class,
+                'choice_label' => 'type',
+                'expanded' => false,
+                'multiple' => false,
+                'by_reference' => false,
+                'label' => "Je suis un/une ",
+            ])
+            ->add('companyName', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Nom de mon entreprise'
+                    ]
+            ])
+            ->add('siretNumber', IntegerType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Numéro de SIRET'
+                    ]
+            ])
+            ->add('expertise', EntityType::class, [
+                'class' => Expertise::class,
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true,
+                'by_reference' => true,
+                'label' => "Domaine(s) d'expertise(s) :",
+            ])
+            ->add('logoFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+                'label' => "Ajouter un logo",
             ])
         ;
     }

@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\EbookRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=EbookRepository::class)
+ * @Vich\Uploadable
  */
 class Ebook
 {
@@ -62,14 +63,34 @@ class Ebook
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="ebook")
-     */
-    private $images;
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $illustration;
 
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
+    /**
+    * @Vich\UploadableField(mapping="ebook_illustration", fileNameProperty="illustration")
+    * @var File
+    */
+    private $illustrationFile;
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $documentEbook;
+
+    /**
+    * @Vich\UploadableField(mapping="ebook_file", fileNameProperty="documentEbook")
+    * @var File
+    */
+    private $documentEbookFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var Datetime
+     */
+    private $updatedAt;
 
     public function __toString()
     {
@@ -177,33 +198,64 @@ class Ebook
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
+    public function setIllustrationFile(File $illustration = null)
     {
-        return $this->images;
+        $this->illustrationFile = $illustration;
+        if ($illustration) {
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    public function addImage(Image $image): self
+    public function getIllustrationFile(): ?File
     {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setEbook($this);
-        }
+        return $this->illustrationFile;
+    }
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(?string $illustration): self
+    {
+        $this->illustration = $illustration;
 
         return $this;
     }
 
-    public function removeImage(Image $image): self
+    public function setDocumentEbookFile(File $documentEbook = null)
     {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getEbook() === $this) {
-                $image->setEbook(null);
-            }
+        $this->documentEbookFile = $documentEbook;
+        if ($documentEbook) {
+            $this->updatedAt = new \DateTime('now');
         }
+    }
 
+    public function getDocumentEbookFile(): ?File
+    {
+        return $this->documentEbookFile;
+    }
+
+    public function getDocumentEbook(): ?string
+    {
+        return $this->documentEbook;
+    }
+
+    public function setDocumentEbook(?string $documentEbook): self
+    {
+        $this->documentEbook = $documentEbook;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 }

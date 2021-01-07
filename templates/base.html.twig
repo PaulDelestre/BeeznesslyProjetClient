@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -51,7 +53,7 @@
                             {% endif %}
                         <li class="nav-item">
                             {% if app.user is null %}
-                            <a href="{{path('app_register')}}">
+                            <a href="{{path('app_register_expert')}}">
                                 <button type="button" class="btn btn-inscription ml-5">S'inscrire</button>
                             </a>
                             {% else %}
@@ -61,7 +63,7 @@
                             </a>
                             {% endif %}
                             {% if app.user.roles[0] == "ROLE_ENTREPRENEUR" %}
-                            <a class="nav-link navbar-brand ml-5" href="{{path('entrepreneur')}}">
+                            <a class="nav-link navbar-brand ml-5" href="{{path('entrepreneur_index')}}">
                                 <i class="fas fa-user-alt user-icon"></i>
                             </a>
                             {% endif %}

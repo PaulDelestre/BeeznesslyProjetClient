@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Ebooks {% endblock %}
+
+{% block body %}
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="{{ path('entrepreneur_profil') }}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('entrepreneur_ebook') }}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('entrepreneur_messagerie') }}"><button type="button" class="btn btn-profil ml-5"> Messagerie</a></button>
+  </li>
+</ul>
+<div class="container-fluid wrapperPresta">
+  <div class="picturePresta">
+    <img id='profil'src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+  </div>
+    <div class="card-deck">
+        <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+            Titre
+          </div>
+          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+            Expertise
+          </div>
+          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+            Date de sortie 
+          </div>
+          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+           Actions
+          </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -2,18 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Serializable;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -114,14 +118,46 @@ class User implements UserInterface
     private $ebooks;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="user")
-     */
-    private $images;
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $logo;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TypeOfUser::class, inversedBy="users")
+    * @Vich\UploadableField(mapping="logo_file", fileNameProperty="logo")
+    * @var File
+    */
+    private $logoFile;
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $banner;
+
+    /**
+    * @Vich\UploadableField(mapping="banner_file", fileNameProperty="banner")
+    * @var File
+    */
+    private $bannerFile;
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $profilePicture;
+
+    /**
+    * @Vich\UploadableField(mapping="profile_picture_file", fileNameProperty="profile_picture")
+    * @var File
+    */
+    private $profilePictureFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var Datetime
      */
-    private $typeOfUser;
+    private $updatedAt;
 
     public function __construct()
     {
@@ -129,7 +165,6 @@ class User implements UserInterface
         $this->contacts = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->ebooks = new ArrayCollection();
-        $this->images = new ArrayCollection();
     }
 
     public function __toString()
@@ -461,45 +496,113 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
+    public function setLogoFile(File $logo = null)
     {
-        return $this->images;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setUser($this);
+        $this->logoFile = $logo;
+        if ($logo) {
+            $this->updatedAt = new \DateTime('now');
         }
+    }
+
+    public function getLogoFile(): ?File
+    {
+        return $this->logoFile;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }
 
-    public function removeImage(Image $image): self
+    public function setBannerFile(File $banner = null)
     {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getUser() === $this) {
-                $image->setUser(null);
-            }
+        $this->bannerFile = $banner;
+        if ($banner) {
+            $this->updatedAt = new \DateTime('now');
         }
+    }
+
+    public function getBannerFile(): ?File
+    {
+        return $this->bannerFile;
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(?string $banner): self
+    {
+        $this->banner = $banner;
 
         return $this;
     }
 
-    public function getTypeOfUser(): ?TypeOfUser
+    public function setProfilePictureFile(File $profilePicture = null)
     {
-        return $this->typeOfUser;
+        $this->profilePictureFile = $profilePicture;
+        if ($profilePicture) {
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    public function setTypeOfUser(?TypeOfUser $typeOfUser): self
+    public function getProfilePictureFile(): ?File
     {
-        $this->typeOfUser = $typeOfUser;
+        return $this->profilePictureFile;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
 
         return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 }
