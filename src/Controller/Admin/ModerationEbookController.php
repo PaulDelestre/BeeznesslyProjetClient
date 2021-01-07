@@ -41,7 +41,6 @@ class ModerationEbookController extends AbstractCrudController
             Field::new('releaseDate', "Date de sortie"),
             Field::new('editorName', "Nom de l'éditeur"),
             Field::new('author', "Auteur"),
-            AssociationField::new('user', "Expert"),
             AssociationField::new('expertise', "Catégorie"),
         ];
     }
