@@ -72,7 +72,8 @@ class EntrepreneurController extends AbstractController
         }
 
         return $this->render('entrepreneur/messagerie.html.twig', [
-            'contacts' => $user->getContacts()
+            'contacts' => $user->getContacts(),
+            'user' => $user = $this->getUser()
         ]);
     }
 
@@ -88,8 +89,9 @@ class EntrepreneurController extends AbstractController
             ]);
         }
 
-        return $this->render('entrepreneur/show.html.twig', [
+        return $this->render('entrepreneur/show_message.html.twig', [
             'contact' => $contact,
+            'user' => $user = $this->getUser()
         ]);
     }
 
@@ -106,7 +108,8 @@ class EntrepreneurController extends AbstractController
         }
 
         return $this->render('entrepreneur/ebook.html.twig', [
-            'ebooks' => $user->getEbooks()
+            'ebooks' => $user->getEbooks(),
+            'user' => $user = $this->getUser()
         ]);
     }
 
@@ -128,7 +131,7 @@ class EntrepreneurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('entrepreneur_index');
+            return $this->redirectToRoute('entrepreneur_profil');
         }
 
         return $this->render('entrepreneur/edit.html.twig', [
