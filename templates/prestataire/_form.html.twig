@@ -1,4 +1,12 @@
+<div class="mt-5">
+    <h3 class="text-subnav"><span class="color-letter">E</span>diter vos informations</h3>
+</div>
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-inscription nav-link mt-5">{{ button_label|default('Save') }}</button>
+{{ form_widget(form) }}
+<div class="text-center">
+<button class="btn btn-inscription nav-link mt-5 text-center">{{ button_label|default('Save') }}</button>
+<a href="{{ path('prestataire_profil')}}">
+    <button type="button" class="btn btn-inscription nav-link mt-5 text-center">Retour</button>
+    </a>
+</div>
 {{ form_end(form) }}

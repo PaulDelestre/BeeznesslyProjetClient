@@ -39,7 +39,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             for ($j = 0; $j < 3; $j++) {
                 $user->addExpertise($this->getReference('expertise_' . rand(0, 5)));
             }
-            $user->setTypeOfUser($this->getReference('typeOfUser_0'));
             $user->setProvider($this->getReference('provider_' . rand(0, 3)));
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
@@ -62,7 +61,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setPassword($this->encoder->encodePassword($user, 'password'));
             $user->setRoles(['ROLE_ENTREPRENEUR']);
             $user->setPhone($faker->randomNumber(9));
-            $user->setTypeOfUser($this->getReference('typeOfUser_1'));
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
         }
@@ -73,7 +71,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         return array (
             ProviderFixtures::class,
             ExpertiseFixtures::class,
-            TypeOfUserFixtures::class
         );
     }
 }

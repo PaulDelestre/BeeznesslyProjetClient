@@ -5,7 +5,7 @@
 {% block body %}
 <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" href="{{ path('prestataire_index')}}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
+      <a class="nav-link active" href="{{ path('prestataire_profil')}}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ path('prestataire_ebook')}}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
@@ -18,46 +18,31 @@
     <div class="picturePresta">
         <img id='profil' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
     </div>
-    <div class="card-deck">
-        <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            Nom
-          </div>
-          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-            {{contact.lastname}} 
-          </div>
-        </div>
-        <div class="card-deck">
-          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            Prénom
-          </div>
-          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-            {{contact.firstname}} 
-          </div>
-        </div>
-        <div class="card-deck">
-          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            Sujet
-          </div>
-          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-          {{contact.subject}} 
-          </div>
-        </div>
-        <div class="card-deck">
-          <div class="card alert alert-light mb-3 rounded" role="alert">
-            Message
-          </div>
-          <div class="card mb-3 alert alert-light rounded" role="alert">
-              {{contact.message}} 
-              </div>
-        </div>
-        <div class="card-deck">
-          <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-            Email
-          </div>
-          <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-              {{contact.email}} 
-              </div>
-        </div>    
+
+      
+    <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+      {{contact.lastname}} 
+    </div>
+    <h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+      {{contact.firstname}} 
+    </div>
+    <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {{contact.subject}} 
+    </div>
+    <h3 class="text-subnav"><span class="color-letter">E</span>mail</h3>
+    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+      {{contact.email}} 
+      </div>
+
+
+    
+<h3 class="text-subnav"><span class="color-letter">M</span>essage</h3>
+<div class="card mb-3 alert alert-light rounded" role="alert">
+    {{contact.message}} 
+    </div>   
         <a href="{{ path('prestataire_messagerie')}}">
             <button type="button" class="btn btn-inscription nav-link mt-5">Retour</button>
             </a>
