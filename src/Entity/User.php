@@ -142,6 +142,18 @@ class User implements UserInterface, \Serializable
     private $bannerFile;
 
     /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $profilePicture;
+
+    /**
+    * @Vich\UploadableField(mapping="profile_picture_file", fileNameProperty="profile_picture")
+    * @var File
+    */
+    private $profilePictureFile;
+
+    /**
      * @ORM\Column(type="datetime", nullable=true)
      * @var Datetime
      */
@@ -530,6 +542,31 @@ class User implements UserInterface, \Serializable
     public function setBanner(?string $banner): self
     {
         $this->banner = $banner;
+
+        return $this;
+    }
+
+    public function setProfilePictureFile(File $profilePicture = null)
+    {
+        $this->profilePictureFile = $profilePicture;
+        if ($profilePicture) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getProfilePictureFile(): ?File
+    {
+        return $this->profilePictureFile;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }
