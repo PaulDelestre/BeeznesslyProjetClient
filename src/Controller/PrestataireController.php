@@ -72,14 +72,15 @@ class PrestataireController extends AbstractController
         }
 
         return $this->render('prestataire/messagerie.html.twig', [
-            'contacts' => $user->getContacts()
+            'contacts' => $user->getContacts(),
+            'user' => $user = $this->getUser()
         ]);
     }
 
     /**
      * @Route("/messagerie/{id}", name="messagerie_show", methods={"GET"})
      */
-    public function show(Contact $contact): Response
+    public function showMessage(Contact $contact): Response
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
@@ -88,8 +89,9 @@ class PrestataireController extends AbstractController
             ]);
         }
 
-        return $this->render('prestataire/show.html.twig', [
+        return $this->render('prestataire/show_message.html.twig', [
             'contact' => $contact,
+            'user' => $user = $this->getUser()
         ]);
     }
 
@@ -106,7 +108,8 @@ class PrestataireController extends AbstractController
         }
 
         return $this->render('prestataire/ebook.html.twig', [
-            'ebooks' => $user->getEbooks()
+            'ebooks' => $user->getEbooks(),
+            'user' => $user = $this->getUser()
         ]);
     }
 
@@ -130,7 +133,7 @@ class PrestataireController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('prestataire_index');
+            return $this->redirectToRoute('prestataire_profil');
         }
 
         return $this->render('prestataire/edit.html.twig', [
