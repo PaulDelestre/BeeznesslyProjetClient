@@ -37,7 +37,6 @@ class ModerationExpertController extends AbstractCrudController
         }
 
         return [
-            AssociationField::new('typeOfUser', "Type de compte"),
             AssociationField::new('provider', "Type d'acteur"),
             BooleanField::new('isValidated', "Validation"),
             Field::new('firstname', "Prénom"),
