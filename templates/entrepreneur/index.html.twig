@@ -1,20 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EntrepreneurController!{% endblock %}
+{% block title %}Mon profil {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/oceanekl/WCS/projet_3/0920-paris-php-beeznessly/src/Controller/EntrepreneurController.php'|file_link(0) }}">src/Controller/EntrepreneurController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/oceanekl/WCS/projet_3/0920-paris-php-beeznessly/templates/entrepreneur/index.html.twig'|file_link(0) }}">templates/entrepreneur/index.html.twig</a></code></li>
-    </ul>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="{{ path('entrepreneur_profil', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('entrepreneur_ebook', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('entrepreneur_messagerie', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Messagerie</a></button>
+    </li>
+  </ul>
+<div class="container-fluid wrapperPresta">
+  <h1 class="text-subnav text-center"><span class="color-letter">B</span>ienvenue</h1>
+  <p class="text-center">Pour accéder à votre profil cliquer <a href="{{ path('entrepreneur_profil')}}"><span class="color-letter">ici</a></span></p>
+  <div class="col-lg-3 col-md-6">
+    <svg width="119" height="236" viewBox="0 0 119 236" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.68911 139.112L35 124.123L64.3109 139.112V168.888L35 183.877L5.68911 168.888V139.112Z" stroke="#F9B419" stroke-width="2"/>
+        <path d="M32.6891 15.8663L62 1.11943L91.3109 15.8663V45.1337L62 59.8806L32.6891 45.1337V15.8663Z" stroke="#F9B419" stroke-width="2"/>
+        <path d="M74.2824 63.8517L94.5 53.1319L114.718 63.8517V85.1483L94.5 95.8681L74.2824 85.1483V63.8517Z" stroke="#F9B419" stroke-width="2"/>
+        <path d="M49.2824 103.608L69.5 93.1264L89.7176 103.608V124.392L69.5 134.874L49.2824 124.392V103.608Z" stroke="#F9B419" stroke-width="2"/>
+        <path d="M10.8183 68.8701L34.5 57.1164L58.1817 68.8701V92.1299L34.5 103.884L10.8183 92.1299V68.8701Z" stroke="#F9B419" stroke-width="2"/>
+        <path d="M45.4881 190.854L73.5 176.13L101.512 190.854V220.146L73.5 234.87L45.4881 220.146V190.854Z" stroke="#F9B419" stroke-width="2"/>
+        </svg>
+  </div>
 </div>
+
 {% endblock %}
