@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.path.logo_file: /uploads/logo
+    app.path.ebook_file: /uploads/ebook
+    app.path.ebook_illustration: /uploads/illustrationEbook
 
 services:
     # default configuration for services in *this* file

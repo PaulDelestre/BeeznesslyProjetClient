@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ebook{% endblock %}
+
+{% block body %}
+    <h1>Ebook</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ebook.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ ebook.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ebook.description }}</td>
+            </tr>
+            <tr>
+                <th>ReleaseDate</th>
+                <td>{{ ebook.releaseDate ? ebook.releaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EditorName</th>
+                <td>{{ ebook.editorName }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ ebook.author }}</td>
+            </tr>
+            <tr>
+                <th>IsValidated</th>
+                <td>{{ ebook.isValidated ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Illustration</th>
+                <td>{{ ebook.illustration }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ ebook.updatedAt ? ebook.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('prestataire_ebook') }}">back to list</a>
+
+    <a href="{{ path('prestataire_ebook_edit', {'id': ebook.id}) }}">edit</a>
+
+    {{ include('prestataire/ebook_delete_form.html.twig') }}
+{% endblock %}
