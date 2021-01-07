@@ -33,6 +33,22 @@ class EntrepreneurController extends AbstractController
         ]);
     }
 
+      /**
+     * @Route("/profil", name="profil")
+     */
+    public function profil(): Response
+    {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('entrepreneur/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+        return $this->render('entrepreneur/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
     /**
      * @Route("/mon-compte", name="en_attente")
      */
@@ -72,7 +88,7 @@ class EntrepreneurController extends AbstractController
             ]);
         }
 
-        return $this->render('prestataire/show.html.twig', [
+        return $this->render('entrepreneur/show.html.twig', [
             'contact' => $contact,
         ]);
     }
