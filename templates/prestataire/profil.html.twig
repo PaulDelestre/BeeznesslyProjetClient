@@ -3,7 +3,6 @@
 {% block title %}Mon profil {% endblock %}
 
 {% block body %}
-<img class="align-self-start mr-3" src="/uploads/logo/{{ user.logo }}" alt="{{ user.logo }}">
   <ul class="nav justify-content-center">
     <li class="nav-item">
       <a class="nav-link active" href="{{ path('prestataire_profil', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>

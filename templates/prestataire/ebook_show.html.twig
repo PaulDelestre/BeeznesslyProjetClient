@@ -5,29 +5,38 @@
 {% block body %}
 <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" href="{{ path('prestataire_profil')}}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
+        <a class="nav-link active" href="{{ path('prestataire_profil')}}"><button type="button"
+                class="btn btn-profil ml-5"> Profil</a></button>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ path('prestataire_ebook')}}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
+        <a class="nav-link" href="{{ path('prestataire_ebook')}}"><button type="button" class="btn btn-profil ml-5">
+                Ebook</a></button>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ path('prestataire_messagerie')}}"><button type="button" class="btn btn-profil ml-5"> Messagerie</a></button>
+        <a class="nav-link" href="{{ path('prestataire_messagerie')}}"><button type="button"
+                class="btn btn-profil ml-5"> Messagerie</a></button>
     </li>
-  </ul>
+</ul>
 <div class="container-fluid wrapperPresta text-center">
     <div class="picturePresta">
-        <img id='profil' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
-    </div>  
+        <img id='profil'
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
+    </div>
     <table class="table table-borderless">
         <tbody>
             <tr>
-                <th></th>
-                <td><h1>{{ ebook.title }}</h1>
-                <p>Date de publication: {{ ebook.releaseDate ? ebook.releaseDate|date('Y-m-d') : '' }}</p>
-                <p>{% if ebook.author is not null %}
-                    De {{ebook.author}}
-                    {% endif %}
-                </p>
+                <th><img class="w-100" src="/uploads/illustrationEbook/{{ ebook.illustration }}"
+                        alt="{{ ebook.illustration }}"></th>
+                <td>
+                    <h1>{{ ebook.title }}</h1>
+                    <p><i class="far fa-calendar-alt"></i> Date de publication: {{ ebook.releaseDate ?
+                        ebook.releaseDate|date('d M Y') : '' }} <br>
+                        {% if ebook.author is not null %}
+                        De {{ebook.author}}
+                        {% endif %} <br>
+                    <h5 class="color-expertise"><i class="fas fa-check"></i> {{ebook.expertise}}</h5>
+                    </p>
+                    <p> Editeur {{ ebook.editorName }}</p>
                 </td>
             </tr>
             <tr>
@@ -35,29 +44,25 @@
                 <td>{{ ebook.description }}</td>
             </tr>
             <tr>
-                <th>EditorName</th>
-                <td>{{ ebook.editorName }}</td>
+                <th></th>
+                <td>
+                    {% if ebook.isValidated == true %}
+                    <p><i class="fas fa-check-square color-letter"></i> Ebook validé par l'administrateur</p>
+                    {% else %}
+                    <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
+                    {% endif %}
+                </td>
             </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ ebook.author }}</td>
-            </tr>
-            <tr>
-                <th>IsValidated</th>
-                <td>{{ ebook.isValidated ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Illustration</th>
-                <td>{{ ebook.illustration }}</td>
-            </tr>
-            
         </tbody>
     </table>
-
-    <a href="{{ path('prestataire_ebook') }}">back to list</a>
-
-    <a href="{{ path('prestataire_ebook_edit', {'id': ebook.id}) }}">edit</a>
-
-    {{ include('prestataire/ebook_delete_form.html.twig') }}
+    <div>
+        <a href="{{ path('prestataire_ebook_edit', {'id': ebook.id}) }}">
+            <button type="button" class="btn btn-inscription mb-3"><i class="far fa-edit"></i> edit</button>
+        </a>
+        {{ include('prestataire/ebook_delete_form.html.twig') }}
+        <a href="{{ path('prestataire_ebook') }}">
+            <button type="button" class="btn btn-inscription nav-link">back to list</button>
+        </a>
+    </div>
 </div>
 {% endblock %}
