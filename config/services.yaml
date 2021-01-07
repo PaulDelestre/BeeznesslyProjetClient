@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.path.logo_file: /uploads/logo
+    app.path.banner_file: /uploads/banner
+    app.path.profile_picture_file: /uploads/profile_picture
 
 services:
     # default configuration for services in *this* file

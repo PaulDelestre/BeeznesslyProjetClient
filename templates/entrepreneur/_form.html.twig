@@ -8,6 +8,10 @@
     {{ form_row(form.adress) }}
     {{ form_row(form.zipcode) }}
     {{ form_row(form.town) }}
+    <p>{{ form_label(form.profilePictureFile) }}</p>
+    {{form_widget(form.profilePictureFile)}}
+    {{ form_widget(form._token) }} 
+    
     <div class="text-center">
 <button class="btn btn-inscription nav-link mt-5 text-center">{{ button_label|default('Save') }}</button>
 <a href="{{ path('entrepreneur_profil')}}">

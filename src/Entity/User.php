@@ -123,12 +123,35 @@ class User implements UserInterface, \Serializable
     */
     private $logo;
 
-
     /**
     * @Vich\UploadableField(mapping="logo_file", fileNameProperty="logo")
     * @var File
     */
     private $logoFile;
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $banner;
+
+    /**
+    * @Vich\UploadableField(mapping="banner_file", fileNameProperty="banner")
+    * @var File
+    */
+    private $bannerFile;
+
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    * @var string
+    */
+    private $profilePicture;
+
+    /**
+    * @Vich\UploadableField(mapping="profile_picture_file", fileNameProperty="profile_picture")
+    * @var File
+    */
+    private $profilePictureFile;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -494,6 +517,56 @@ class User implements UserInterface, \Serializable
     public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function setBannerFile(File $banner = null)
+    {
+        $this->bannerFile = $banner;
+        if ($banner) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getBannerFile(): ?File
+    {
+        return $this->bannerFile;
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(?string $banner): self
+    {
+        $this->banner = $banner;
+
+        return $this;
+    }
+
+    public function setProfilePictureFile(File $profilePicture = null)
+    {
+        $this->profilePictureFile = $profilePicture;
+        if ($profilePicture) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getProfilePictureFile(): ?File
+    {
+        return $this->profilePictureFile;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }
