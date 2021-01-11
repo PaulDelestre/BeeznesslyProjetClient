@@ -48,7 +48,7 @@ class ExpertController extends AbstractController
                 'user' => $user,
             ]);
         }
-        return $this->render('expert/profil.html.twig', [
+        return $this->render('expert/profile/profil.html.twig', [
             'user' => $user,
         ]);
     }
@@ -75,7 +75,7 @@ class ExpertController extends AbstractController
             ]);
         }
 
-        return $this->render('expert/messagerie.html.twig', [
+        return $this->render('expert/message/messagerie.html.twig', [
             'contacts' => $user->getContacts(),
             'user' => $user = $this->getUser()
         ]);
@@ -93,7 +93,7 @@ class ExpertController extends AbstractController
             ]);
         }
 
-        return $this->render('expert/show_message.html.twig', [
+        return $this->render('expert/message/show_message.html.twig', [
             'contact' => $contact,
             'user' => $user = $this->getUser()
         ]);
@@ -111,7 +111,7 @@ class ExpertController extends AbstractController
             ]);
         }
 
-        return $this->render('expert/ebook.html.twig', [
+        return $this->render('expert/ebook/ebook.html.twig', [
             'ebooks' => $user->getEbooks(),
             'user' => $user = $this->getUser()
         ]);
@@ -140,7 +140,7 @@ class ExpertController extends AbstractController
             return $this->redirectToRoute('expert_profil');
         }
 
-        return $this->render('expert/edit.html.twig', [
+        return $this->render('expert/profile/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
@@ -165,7 +165,7 @@ class ExpertController extends AbstractController
             return $this->redirectToRoute('expert_ebook');
         }
 
-        return $this->render('expert/ebook_new.html.twig', [
+        return $this->render('expert/ebook/ebook_new.html.twig', [
             'ebook' => $ebook,
             'form' => $form->createView(),
         ]);
@@ -176,7 +176,7 @@ class ExpertController extends AbstractController
      */
     public function showEbook(Ebook $ebook): Response
     {
-        return $this->render('expert/ebook_show.html.twig', [
+        return $this->render('expert/ebook/ebook_show.html.twig', [
             'ebook' => $ebook,
             'user' => $this->getUser()
         ]);
@@ -197,7 +197,7 @@ class ExpertController extends AbstractController
             return $this->redirectToRoute('expert_ebook');
         }
 
-        return $this->render('expert/ebook_edit.html.twig', [
+        return $this->render('expert/ebook/ebook_edit.html.twig', [
             'ebook' => $ebook,
             'form' => $form->createView(),
         ]);
@@ -228,7 +228,7 @@ class ExpertController extends AbstractController
                 'user' => $user,
             ]);
         }
-        return $this->render('expert/expertPage.html.twig', [
+        return $this->render('expert/expert_page/expertPage.html.twig', [
             'user' => $user,
         ]);
     }
@@ -256,7 +256,7 @@ class ExpertController extends AbstractController
             return $this->redirectToRoute('expert_expertPage');
         }
 
-        return $this->render('expert/edit_expertPage.html.twig', [
+        return $this->render('expert/expert_page/edit_expertPage.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);

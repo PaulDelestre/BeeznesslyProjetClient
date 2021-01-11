@@ -5,8 +5,8 @@
 {% block body %}
 <div class="container-fluid wrapperPresta text-center">
     <h1>Edit Ebook</h1>
-    {{ include('expert/ebook_form.html.twig', {'button_label': 'Update'}) }}
-    {{ include('expert/ebook_delete_form.html.twig') }}
+    {{ include('expert/ebook/ebook_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('expert/ebook/ebook_delete_form.html.twig') }}
 
     <a href="{{ path('expert_ebook') }}">
         <button type="button" class="btn btn-inscription nav-link">back to list</button>
