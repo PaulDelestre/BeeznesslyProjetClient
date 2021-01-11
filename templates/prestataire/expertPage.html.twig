@@ -9,7 +9,7 @@
         <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
     </div>
     <div class="mt-5">
-        <h3 class="text-subnav"><span class="color-letter">P</span>résentez-vous</h3>
+        <h2 class="color-text-white"><span class="color-letter">P</span>résentez-vous</h2>
     </div>
     <div class="card mb-3 rounded">
         <p class="p-3">{{ user.description }}</p>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="mt-5">
-        <h3 class="text-subnav"><span class="color-letter">G</span>estion des images</h3>
+        <h2 class="color-text-white"><span class="color-letter">S</span>électionnez des images</h2>
     </div>
     <div class="card-deck mt-4">
         <div class="card mb-3">
@@ -30,12 +30,12 @@
                 <img class="w-100" src="/uploads/logo/{{ user.logo }}" alt="{{ user.logo }}">
         </div>
         <div class="card mb-3">
-            <h3 class="text-center">Votre bannière</h3>
+            <h4 class="text-center">Votre bannière</h4>
             <img class="w-100" src="/uploads/banner/{{ user.banner }}" alt="{{ user.banner }}">
         </div>
     </div>
     <a href="{{ path('prestataire_expertPage_edit', {'id': user.id}) }}">
-        <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
+        <button type="button" class="btn btn-inscription nav-link mt-5"><i class="far fa-edit"></i> Editer mon profil</button>
     </a>
 </div>
 {% endblock %}

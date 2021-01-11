@@ -8,62 +8,52 @@
   <div class="picturePresta">
     <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
   </div>
-  <div class="mt-5">
-    <h3 class="text-subnav"><span class="color-letter">I</span>nformation personnelles</h3>
+  <div class="mt-3">
+    <h2 class="color-text-white"><span class="color-letter">I</span>nformation personnelles</h2>
   </div>
   <div class="card-deck">
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+    <div class="card alert mb-3 rounded-pill">
       {{ user.firstname }}
     </div>
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+    <div class="card alert mb-3 rounded-pill" >
       {{ user.lastname }}
     </div>
   </div>
   <div class="card-deck">
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+    <div class="card alert mb-3 rounded-pill">
       {{ user.email }}
     </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    <div class="card alert  mb-3 rounded-pill">
       {{ user.phone }}
     </div>
   </div>
-  <div class="alert alert-light rounded-pill" role="alert">
+  <div class="card alert rounded-pill">
     {{ user.adress }}
   </div>
   <div class="card-deck">
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    <div class="card alert  mb-3 rounded-pill">
       {{ user.zipcode }}
     </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    <div class="alert card mb-3 rounded-pill">
       {{ user.town }}
     </div>
   </div>
-  <h3 class="text-subnav"><span class="color-letter">V</span>otre Expertise</h3>
-  <div class="alert alert-light rounded-pill" role="alert">
+  <h2 class="color-text-white mt-4"><span class="color-letter">V</span>otre Expertise</h2>
+  <div class="card alert rounded-pill">
     {{ user.provider }}
   </div>
   <div class="card-deck">
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {% if user.companyName is not empty %}
+    <div class="card mb-3 alert rounded-pill">
       {{ user.companyName }}
     </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {% endif %}
+    <div class="card mb-3 alert rounded-pill">
       {{ user.siretNumber }}
     </div>
   </div>
-  <div class="card mb-3 alert alert-light rounded" role="alert">
-    {{ user.description }}
-  </div>
-  <div class="alert alert-light rounded" role="alert">
-    <ul>
-      {% for expertise in user.expertise %}
-      <ul>
-        <li>{{ expertise.name }}</li>
-      </ul>
-      {% endfor %}
-    </ul>
-  </div>
   <a href="{{ path('prestataire_edit', {'id': user.id}) }}">
-    <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
+    <button type="button" class="btn btn-inscription nav-link mt-3">Editer mon profil</button>
   </a>
 </div>
 {% endblock %}

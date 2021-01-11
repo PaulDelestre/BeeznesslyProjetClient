@@ -9,13 +9,17 @@ use Symfony\Component\Form\AbstractType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ExpertType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'required' => true,
+            ])
             ->add('expertise', EntityType::class, [
                 'class' => Expertise::class,
                 'choice_label' => 'name',
