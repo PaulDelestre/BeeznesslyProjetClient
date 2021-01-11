@@ -17,7 +17,6 @@ class UserType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('email')
-            ->add('description')
             ->add('phone')
             ->add('companyName')
             ->add('siretNumber')
@@ -25,19 +24,6 @@ class UserType extends AbstractType
             ->add('zipcode')
             ->add('adress')
             ->add('provider')
-            ->add('expertise')
-            ->add('logoFile', VichFileType::class, [
-                'required'      => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
-                'label' => "Ajouter un logo",
-            ])
-            ->add('bannerFile', VichFileType::class, [
-                'required'      => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
-                'label' => "Ajouter une bannière",
-            ])
             ->add('profilePictureFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true,

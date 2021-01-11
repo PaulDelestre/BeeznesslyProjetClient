@@ -3,41 +3,37 @@
 {% block title %}Mes Messages {% endblock %}
 
 {% block body %}
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" href="{{ path('prestataire_profil') }}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ path('prestataire_ebook') }}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ path('prestataire_messagerie') }}"><button type="button" class="btn btn-profil ml-5"> Messagerie</a></button>
-  </li>
-</ul>
+{{ include('prestataire/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta text-center">
   <div class="picturePresta">
-    <img id='profil'src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+    <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
   </div>
-  
-    <table class="table table-hover table-borderless table-responsive{-sm|-md|-lg|-xl}">
-      <tbody>
-        <tr>
-          <th><h3 class="text-subnav"><span class="color-letter">N</span>om</h3></th>
-          <th><h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3></th>
-          <th><h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3></th>
-          <th><h3 class="text-subnav"><span class="color-letter">A</span>ction</h3></th>
-        </tr>
-        {% for contact in contacts %}
-        <tr>
-            <td>{{contact.lastname}}</td>
-              <td>{{contact.firstname}} </td>
-              <td>{{contact.subject}} </td>
-              <td><a href="{{ path('prestataire_messagerie_show', {'id': contact.id}) }}"> <i class="fal fa-eye color-letter"></i></a></td>
-          </tr>
-          {% endfor %}
-      </tbody>
+  <table class="table table-hover table-borderless table-responsive{-sm|-md|-lg|-xl}">
+    <tbody>
+      <tr>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">A</span>ction</h3>
+        </th>
+      </tr>
+      {% for contact in contacts %}
+      <tr>
+        <td>{{contact.lastname}}</td>
+        <td>{{contact.firstname}} </td>
+        <td>{{contact.subject}} </td>
+        <td><a href="{{ path('prestataire_messagerie_show', {'id': contact.id}) }}"> <i
+              class="fal fa-eye color-letter"></i></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
-
-</div>
 </div>
 {% endblock %}

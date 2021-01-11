@@ -12,6 +12,7 @@ use App\Entity\Contact;
 use App\Entity\Ebook;
 use App\Form\UserType;
 use App\Form\EbookType;
+use App\Form\ExpertType;
 
 /**
  * @Route("/prestataire", name="prestataire_")
@@ -211,5 +212,50 @@ class PrestataireController extends AbstractController
         }
 
         return $this->redirectToRoute('prestataire_ebook');
+    }
+
+    /**
+     * @Route("/page-expert", name="expertPage")
+     */
+    public function expertPage(): Response
+    {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+        return $this->render('prestataire/expertPage.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/page-expert/edit/{id}", name="expertPage_edit", methods={"GET","POST"})
+     */
+    public function editExpertPage(Request $request, User $user): Response
+    {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('prestataire/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+
+        $form = $this->createForm(ExpertType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('prestataire_expertPage');
+        }
+
+        return $this->render('prestataire/edit_expertPage.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 }

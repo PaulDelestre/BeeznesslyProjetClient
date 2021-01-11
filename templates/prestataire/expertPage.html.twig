@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma Page Expert {% endblock %}
+
+{% block body %}
+{{ include('prestataire/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+    <div class="picturePresta">
+        <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+    </div>
+    <div class="mt-5">
+        <h3 class="text-subnav"><span class="color-letter">P</span>résentez-vous</h3>
+    </div>
+    <div class="card mb-3 rounded">
+        <p class="p-3">{{ user.description }}</p>
+    </div>
+    <div class="card rounded">
+        <div class="row pl-5">
+            {% for expertise in user.expertise %}
+                <p class="mr-4 mt-2 p-1 expertise-list"><i class="fas fa-check color-icon-blue"></i> {{expertise.name}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="mt-5">
+        <h3 class="text-subnav"><span class="color-letter">G</span>estion des images</h3>
+    </div>
+    <div class="card-deck mt-4">
+        <div class="card mb-3">
+                <h4 class="text-center">Votre logo</h4>
+                <img class="w-100" src="/uploads/logo/{{ user.logo }}" alt="{{ user.logo }}">
+        </div>
+        <div class="card mb-3">
+            <h3 class="text-center">Votre bannière</h3>
+            <img class="w-100" src="/uploads/banner/{{ user.banner }}" alt="{{ user.banner }}">
+        </div>
+    </div>
+    <a href="{{ path('prestataire_expertPage_edit', {'id': user.id}) }}">
+        <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
+    </a>
+</div>
+{% endblock %}
