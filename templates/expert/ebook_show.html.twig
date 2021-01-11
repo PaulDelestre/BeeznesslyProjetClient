@@ -3,7 +3,7 @@
 {% block title %}Ebook{% endblock %}
 
 {% block body %}
-{{ include('prestataire/navExpert.html.twig') }}
+{{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta text-center">
     <div class="picturePresta">
         <img id='profil'
@@ -43,11 +43,11 @@
         </tbody>
     </table>
     <div>
-        <a href="{{ path('prestataire_ebook_edit', {'id': ebook.id}) }}">
+        <a href="{{ path('expert_ebook_edit', {'id': ebook.id}) }}">
             <button type="button" class="btn btn-inscription mb-3"><i class="far fa-edit"></i> edit</button>
         </a>
-        {{ include('prestataire/ebook_delete_form.html.twig') }}
-        <a href="{{ path('prestataire_ebook') }}">
+        {{ include('expert/ebook_delete_form.html.twig') }}
+        <a href="{{ path('expert_ebook') }}">
             <button type="button" class="btn btn-inscription nav-link">back to list</button>
         </a>
     </div>

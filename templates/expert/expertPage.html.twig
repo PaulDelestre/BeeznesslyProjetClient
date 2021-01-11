@@ -3,7 +3,7 @@
 {% block title %}Ma Page Expert {% endblock %}
 
 {% block body %}
-{{ include('prestataire/navExpert.html.twig') }}
+{{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta">
     <div class="picturePresta">
         <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
@@ -34,7 +34,7 @@
             <img class="w-100" src="/uploads/banner/{{ user.banner }}" alt="{{ user.banner }}">
         </div>
     </div>
-    <a href="{{ path('prestataire_expertPage_edit', {'id': user.id}) }}">
+    <a href="{{ path('expert_expertPage_edit', {'id': user.id}) }}">
         <button type="button" class="btn btn-inscription nav-link mt-5"><i class="far fa-edit"></i> Editer mon profil</button>
     </a>
 </div>

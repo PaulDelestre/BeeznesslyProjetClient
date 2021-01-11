@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-2 pt-3">
             <div class="filter">
-                <img src="https://www.hicom.fr/wp-content/uploads/2017/09/Logo_TV_2015.png" class="img-fluid" alt="...">
+                <img id='logo'src="/uploads/logo/{{ user.logo }}" alt="logo de l'entreprise">
                 <h4 class="mt-5"><span class="color-letter"> A </span><a href="#A PROPOS DE NOUS"
                         style="color:#000000;">propos de
                         nous</a></h4>
@@ -57,7 +57,7 @@
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="img-fluid" src="https://placehold.it/2400x1000" alt="First slide">
+                                <img id="banner_picture" class="img-fluid" src="/uploads/banner/{{ user.banner }}" alt="Banner picture">
                             </div>
                         </div>
                     </div>
@@ -85,8 +85,7 @@
                     <div class="pt-5 mt-4">
                         <div class="container-fluid wrapperExpertDescri">
                             <div class="pictureExpert">
-                                <img id='profil'
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RWoFDN0xBYQ4-ihcpE9jCteDuyxaHctblw&usqp=CAU">
+                                <img id='profil'src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
                             </div>
                             <div class="card-deck">
                                 <p class="text-color-white"> {{user.description}} </p>

@@ -130,7 +130,8 @@ p {
 }
 
 #profil {
-    width: 300px;
+    object-fit: cover;
+    width: 200px;
 }
 /* FIN PAGES ALL EXPERTS / EBOOKS */
 
@@ -181,6 +182,18 @@ p {
     background-color:$yellow;
     border: none;
   }
+
+#banner_picture {
+    object-fit: cover;
+    width: 1548px;
+    height: 396px;
+
+}
+
+#logo {
+    object-fit: cover;
+    width: 200px;
+}
 
 // fin css for profil prestataire //
 /*PAGE VALIDATION PROVIDER*/
