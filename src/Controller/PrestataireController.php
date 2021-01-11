@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\User;
-use App\Entity\Contact;
 use App\Entity\Ebook;
 use App\Form\UserType;
+use App\Entity\Contact;
 use App\Form\EbookType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Vich\UploaderBundle\Handler\DownloadHandler;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/prestataire", name="prestataire_")
@@ -188,6 +189,7 @@ class PrestataireController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ebook->setIsValidated(false);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('prestataire_ebook');

@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
-use App\Data\SearchExpertsData;
+use App\Entity\Ebook;
 use App\Data\SearchEbooksData;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Form\SearchExpertsType;
 use App\Form\SearchEbooksType;
+use App\Data\SearchExpertsData;
+use App\Form\SearchExpertsType;
 use App\Repository\UserRepository;
 use App\Repository\EbookRepository;
 use App\Repository\ExpertiseRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Vich\UploaderBundle\Handler\DownloadHandler;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -78,5 +80,21 @@ class HomeController extends AbstractController
         return $this->render('home/ebook_show.html.twig', [
             'ebook' => $ebook,
         ]);
+    }
+
+    /**
+     * @Route("/ebook/{id}/download", name="ebook_download")
+     */
+    public function downloadEbook(Ebook $ebook, DownloadHandler $downloadHandler): Response
+    {
+        $user = $this->getUser();
+        if ($user) {
+            if ($user->getIsValidated() == true) {
+                $fileName = 'ebook.pdf';
+                return $downloadHandler->downloadObject($ebook, 'documentEbookFile', null, $fileName);
+            }
+        }
+        
+        return $this->redirectToRoute('app_login');
     }
 }
