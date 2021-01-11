@@ -214,14 +214,4 @@ class PrestataireController extends AbstractController
 
         return $this->redirectToRoute('prestataire_ebook');
     }
-
-    /**
-     * @Route("/ebook/{id}/download", name="ebook_download")
-     */
-    public function downloadEbook(Ebook $ebook, DownloadHandler $downloadHandler): Response
-    {
-        $fileName = 'ebook.pdf';
-
-        return $downloadHandler->downloadObject($ebook, 'documentEbookFile', null, $fileName);
-    }
 }
