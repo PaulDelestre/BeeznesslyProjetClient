@@ -188,6 +188,7 @@ class PrestataireController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ebook->setIsValidated(false);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('prestataire_ebook');
