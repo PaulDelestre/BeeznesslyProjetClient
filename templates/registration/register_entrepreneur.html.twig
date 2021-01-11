@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container-fluid">
   <div class="row align-items-center">
-    <div class="col-8">
+    <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
       <div class="jumbotron m-5 color-inscription form-bg-login">
         {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
@@ -44,7 +44,7 @@
         {{ form_end(registrationForm, {'render_rest': false}) }}
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 d-none d-md-block">
       <img src="https://i.postimg.cc/L5ydgXTB/undraw-Hire-re-gn5j-2.png" class="img-fluid">
     </div>
   </div>

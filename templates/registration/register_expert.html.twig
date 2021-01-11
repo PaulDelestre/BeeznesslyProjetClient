@@ -6,7 +6,7 @@
 
 <div class="container-fluid color-text-white">
     <div class="row align-items-center">
-        <div class="col-8">
+        <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
             <div class="jumbotron m-5 color-inscription form-bg-login">
                 {% for flashError in app.flashes('verify_email_error') %}
                 <div class="alert alert-danger" role="alert">{{ flashError }}</div>
@@ -49,13 +49,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-4 d-none d-md-block">
             <img src="https://i.postimg.cc/L5ydgXTB/undraw-Hire-re-gn5j-2.png" class="img-fluid">
         </div>
     </div>
     <div class="jumbotron ml-5 mr-5  color-inscription form-bg-login">
         <div class="row align-items-center justify-content-around">
-            <div class="col-8">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
                 <h4 class="color-connexion"><span class="color-letter">2.</span> A propos de votre expertise
                 </h4>
                 <div class="row">
@@ -69,7 +69,7 @@
             <p>Domaine(s) d'expertise(s) </p>
             {{ form_row(registrationForm.expertise) }}
             </div>
-            <div class="col-4">
+            <div class="col-4 d-none d-md-block text-center">
                 <svg width="119" height="236" viewBox="0 0 119 236" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.68911 139.112L35 124.123L64.3109 139.112V168.888L35 183.877L5.68911 168.888V139.112Z"
                         stroke="#F9B419" stroke-width="2" />
@@ -92,8 +92,12 @@
     </div>
     <div class="jumbotron m-5 color-inscription form-bg-login">
             <h4 class="color-connexion mt-2"><span class="color-letter">3.</span> Dernière étape !</h4>
-            {{ form_row(registrationForm.plainPassword) }}
-            {{ form_row(registrationForm.agreeTerms) }}
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-inscription">S'inscrire</button>
             </div>
