@@ -72,10 +72,12 @@
                                                     data-toggle="modal" data-target="#exampleModalCenter">
                                                     En savoir plus <i class="fas fa-arrow-right"></i>
                                                 </button>
+                                                {% if ebook.documentEbook is not empty %}
                                                 <a href="{{path ('ebook_download', {'id': ebook.id})}}">
                                                     <button type="button"
                                                         class=" btn btn-inscription">Télécharger</button>
                                                 </a>
+                                                {% endif %}
                                             </th>
                                             <td>
                                                 <p class="d-none d-sm-block">{{ebook.description}}</p><br>
@@ -115,9 +117,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-connexion" data-dismiss="modal">Close</button>
-                <a href="#">
+                {% if ebook.documentEbook is not empty %}
+                <a href="{{path ('ebook_download', {'id': ebook.id})}}">
                     <button type="button" class="btn btn-inscription">Télécharger</button>
                 </a>
+                {% endif %}
             </div>
         </div>
     </div>

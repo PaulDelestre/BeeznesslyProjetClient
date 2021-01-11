@@ -94,7 +94,7 @@ class HomeController extends AbstractController
                 return $downloadHandler->downloadObject($ebook, 'documentEbookFile', null, $fileName);
             }
         }
-        
+
         return $this->redirectToRoute('app_login');
     }
 }
