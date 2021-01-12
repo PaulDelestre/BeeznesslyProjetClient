@@ -119,10 +119,13 @@ class RegistrationFormType extends AbstractType
             ->add('provider', EntityType::class, [
                 'class' => Provider::class,
                 'choice_label' => 'type',
+                'label' => false,
                 'expanded' => false,
                 'multiple' => false,
                 'by_reference' => false,
-                'label' => "Je suis un/une ",
+                'attr' => [
+                    'placeholder' => 'Je suis un/une'
+                    ]
             ])
             ->add('companyName', TextType::class, [
                 'label' => false,
@@ -142,13 +145,7 @@ class RegistrationFormType extends AbstractType
                 'expanded' => false,
                 'multiple' => true,
                 'by_reference' => true,
-                'label' => "Domaine(s) d'expertise(s) :",
-            ])
-            ->add('logoFile', VichFileType::class, [
-                'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true, // not mandatory, default is true
-                'label' => "Ajouter un logo",
+                'label' => false,
             ])
         ;
     }
