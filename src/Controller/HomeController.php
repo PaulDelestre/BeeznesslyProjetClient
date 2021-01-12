@@ -112,8 +112,7 @@ class HomeController extends AbstractController
         $user = $this->getUser();
         if ($user) {
             if ($user->getIsValidated() == true) {
-                $fileName = 'ebook.pdf';
-                return $downloadHandler->downloadObject($ebook, 'documentEbookFile', null, $fileName);
+                return $downloadHandler->downloadObject($ebook, 'documentEbookFile');
             }
         }
 
