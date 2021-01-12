@@ -12,7 +12,7 @@
         rel="stylesheet">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <title>{% block title %}Beeznessly | {% endblock %}</title>
+    <title>Beeznessly | {% block title %}{% endblock %}</title>
     {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -58,7 +58,7 @@
                             </a>
                             {% else %}
                             {% if app.user.roles[0] == "ROLE_EXPERT" %}
-                            <a class="nav-link navbar-brand ml-5" href="{{path('prestataire_index')}}">
+                            <a class="nav-link navbar-brand ml-5" href="{{path('expert_index')}}">
                                 <i class="fas fa-user-alt user-icon"></i>
                             </a>
                             {% endif %}

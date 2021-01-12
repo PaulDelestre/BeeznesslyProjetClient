@@ -2,22 +2,24 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\User;
-use App\Entity\Contact;
 use App\Entity\Ebook;
 use App\Form\UserType;
+use App\Entity\Contact;
 use App\Form\EbookType;
+use App\Form\ExpertType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Vich\UploaderBundle\Handler\DownloadHandler;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/prestataire", name="prestataire_")
+ * @Route("/prestataire", name="expert_")
  * @IsGranted("ROLE_EXPERT")
  */
-class PrestataireController extends AbstractController
+class ExpertController extends AbstractController
 {
     /**
      * @Route("/", name="index")
@@ -26,12 +28,16 @@ class PrestataireController extends AbstractController
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
-            return $this->render('prestataire/validation.html.twig', [
+            return $this->render('expert/validation.html.twig', [
                 'user' => $user,
             ]);
         }
-        return $this->render('prestataire/index.html.twig', [
+
+        $nbEbooksUser = count($user->getEbooks());
+       
+        return $this->render('expert/index.html.twig', [
             'user' => $user,
+            'nbEbooks' => $nbEbooksUser
         ]);
     }
 
@@ -42,11 +48,11 @@ class PrestataireController extends AbstractController
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
-            return $this->render('prestataire/validation.html.twig', [
+            return $this->render('expert/validation.html.twig', [
                 'user' => $user,
             ]);
         }
-        return $this->render('prestataire/profil.html.twig', [
+        return $this->render('expert/profile/profil.html.twig', [
             'user' => $user,
         ]);
     }
@@ -56,7 +62,7 @@ class PrestataireController extends AbstractController
      */
     public function moderation(): Response
     {
-        return $this->render('prestataire/validation.html.twig', [
+        return $this->render('expert/validation.html.twig', [
             'user' => $this->getUser(),
         ]);
     }
@@ -68,12 +74,12 @@ class PrestataireController extends AbstractController
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
-            return $this->render('prestataire/validation.html.twig', [
+            return $this->render('expert/validation.html.twig', [
                 'user' => $user,
             ]);
         }
 
-        return $this->render('prestataire/messagerie.html.twig', [
+        return $this->render('expert/message/messagerie.html.twig', [
             'contacts' => $user->getContacts(),
             'user' => $user = $this->getUser()
         ]);
@@ -86,12 +92,12 @@ class PrestataireController extends AbstractController
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
-            return $this->render('prestataire/validation.html.twig', [
+            return $this->render('expert/validation.html.twig', [
                 'user' => $user,
             ]);
         }
 
-        return $this->render('prestataire/show_message.html.twig', [
+        return $this->render('expert/message/show_message.html.twig', [
             'contact' => $contact,
             'user' => $user = $this->getUser()
         ]);
@@ -104,12 +110,12 @@ class PrestataireController extends AbstractController
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
-            return $this->render('prestataire/validation.html.twig', [
+            return $this->render('expert/validation.html.twig', [
                 'user' => $user,
             ]);
         }
 
-        return $this->render('prestataire/ebook.html.twig', [
+        return $this->render('expert/ebook/ebook.html.twig', [
             'ebooks' => $user->getEbooks(),
             'user' => $user = $this->getUser()
         ]);
@@ -122,7 +128,7 @@ class PrestataireController extends AbstractController
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
-            return $this->render('prestataire/validation.html.twig', [
+            return $this->render('expert/validation.html.twig', [
                 'user' => $user,
             ]);
         }
@@ -135,10 +141,10 @@ class PrestataireController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('prestataire_profil');
+            return $this->redirectToRoute('expert_profil');
         }
 
-        return $this->render('prestataire/edit.html.twig', [
+        return $this->render('expert/profile/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
@@ -160,10 +166,10 @@ class PrestataireController extends AbstractController
             $entityManager->persist($ebook);
             $entityManager->flush();
 
-            return $this->redirectToRoute('prestataire_ebook');
+            return $this->redirectToRoute('expert_ebook');
         }
 
-        return $this->render('prestataire/ebook_new.html.twig', [
+        return $this->render('expert/ebook/ebook_new.html.twig', [
             'ebook' => $ebook,
             'form' => $form->createView(),
         ]);
@@ -174,8 +180,9 @@ class PrestataireController extends AbstractController
      */
     public function showEbook(Ebook $ebook): Response
     {
-        return $this->render('prestataire/ebook_show.html.twig', [
+        return $this->render('expert/ebook/ebook_show.html.twig', [
             'ebook' => $ebook,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -188,12 +195,13 @@ class PrestataireController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ebook->setIsValidated(false);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('prestataire_ebook');
+            return $this->redirectToRoute('expert_ebook');
         }
 
-        return $this->render('prestataire/ebook_edit.html.twig', [
+        return $this->render('expert/ebook/ebook_edit.html.twig', [
             'ebook' => $ebook,
             'form' => $form->createView(),
         ]);
@@ -210,6 +218,51 @@ class PrestataireController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('prestataire_ebook');
+        return $this->redirectToRoute('expert_ebook');
+    }
+
+    /**
+     * @Route("/page-expert", name="expertPage")
+     */
+    public function expertPage(): Response
+    {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('expert/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+        return $this->render('expert/expert_page/expertPage.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/page-expert/edit/{id}", name="expertPage_edit", methods={"GET","POST"})
+     */
+    public function editExpertPage(Request $request, User $user): Response
+    {
+        $user = $this->getUser();
+        if ($user->getIsValidated() == false) {
+            return $this->render('expert/validation.html.twig', [
+                'user' => $user,
+            ]);
+        }
+
+        $form = $this->createForm(ExpertType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('expert_expertPage');
+        }
+
+        return $this->render('expert/expert_page/edit_expertPage.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 }

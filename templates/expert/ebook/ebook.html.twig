@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Ebooks {% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+  <div class="picturePresta">
+    <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+  </div>
+  <table class="table color-text-white">
+    <tbody>
+      <tr>
+        <th>
+          <h2><span class="color-letter">I</span>llustration</h2>
+        </th>
+        <th>
+          <h2><span class="color-letter">T</span>itre</h2>
+        </th>
+        <th>
+          <h2><span class="color-letter">E</span>xpertise</h2>
+        </th>
+        <th>
+          <h2><span class="color-letter">E</span>diteur</h2>
+        </th>
+        <th>
+          <h2><span class="color-letter">M</span>odération</h2>
+        </th>
+      </tr>
+      {% for ebook in ebooks %}
+      <tr>
+        <td>
+          <img class="w-50" src="/uploads/illustrationEbook/{{ ebook.illustration }}" alt="{{ ebook.illustration }}">
+        </td>
+        <td>
+          <h3>{{ebook.title}}</h3>
+        </td>
+        <td>
+          <p>{{ebook.expertise}}</p>
+        </td>
+        <td>
+          <p>{{ebook.editorName}}</p>
+        </td>
+        <td>
+          {% if ebook.isValidated == true %}
+          <p><i class="fas fa-check-square color-letter"></i> Ebook validé par l'administrateur</p>
+          {% else %}
+          <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
+          {% endif %}
+        </td>
+        <td>
+          <a href="{{ path('expert_ebook_show', {'id': ebook.id}) }}"> 
+              <button class="btn btn-inscription mb-3"><i class="fal fa-eye"></i></button>
+          <a href="{{ path('expert_ebook_edit', {'id': ebook.id}) }}"> 
+              <button class="btn btn-inscription"><i class="far fa-edit"></i></button>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('expert_ebook_new')}}">
+    <button type="button" class="btn btn-inscription nav-link mt-5"><i class="fas fa-plus"></i> Ajouter un nouveau ebook</button>
+  </a>
+</div>
+{% endblock %}

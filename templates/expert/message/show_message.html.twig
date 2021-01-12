@@ -3,10 +3,23 @@
 {% block title %}Mes Messages {% endblock %}
 
 {% block body %}
-{{ include('entrepreneur/_navEntrepreneur.html.twig') }}
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="{{ path('expert_profil')}}"><button type="button" class="btn btn-profil ml-5">
+        Profil</a></button>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('expert_ebook')}}"><button type="button" class="btn btn-profil ml-5">
+        Ebook</a></button>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('expert_messagerie')}}"><button type="button" class="btn btn-profil ml-5">
+        Messagerie</a></button>
+  </li>
+</ul>
 <div class="container-fluid wrapperPresta text-center">
   <div class="picturePresta">
-    <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+    <img id="profil" src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
   </div>
   <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
   <div class="card mb-3 alert alert-light rounded-pill" role="alert">
@@ -28,7 +41,7 @@
   <div class="card mb-3 alert alert-light rounded" role="alert">
     {{contact.message}}
   </div>
-  <a href="{{ path('entrepreneur_messagerie')}}">
+  <a href="{{ path('expert_messagerie')}}">
     <button type="button" class="btn btn-inscription nav-link mt-5">Retour</button>
   </a>
 </div>

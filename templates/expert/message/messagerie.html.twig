@@ -3,7 +3,7 @@
 {% block title %}Mes Messages {% endblock %}
 
 {% block body %}
-{{ include('entrepreneur/_navEntrepreneur.html.twig') }}
+{{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta text-center">
   <div class="picturePresta">
     <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
@@ -29,7 +29,7 @@
         <td>{{contact.lastname}}</td>
         <td>{{contact.firstname}} </td>
         <td>{{contact.subject}} </td>
-        <td><a href="{{ path('entrepreneur_messagerie_show', {'id': contact.id}) }}"> <i
+        <td><a href="{{ path('expert_messagerie_show', {'id': contact.id}) }}"> <i
               class="fal fa-eye color-letter"></i></a></td>
       </tr>
       {% endfor %}
