@@ -3,17 +3,7 @@
 {% block title %}Mon profil {% endblock %}
 
 {% block body %}
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link active" href="{{ path('entrepreneur_profil', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Profil</a></button>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ path('entrepreneur_ebook', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Ebook</a></button>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ path('entrepreneur_messagerie', {'id': user.id}) }}"><button type="button" class="btn btn-profil ml-5"> Messagerie</a></button>
-    </li>
-  </ul>
+{{ include('entrepreneur/_navEntrepreneur.html.twig') }}
 <div class="container-fluid wrapperPresta d-flex justify-content-center">
   <div class="media">
     <svg class="mr-5" width="119" height="236" viewBox="0 0 119 236" fill="none" xmlns="http://www.w3.org/2000/svg">
