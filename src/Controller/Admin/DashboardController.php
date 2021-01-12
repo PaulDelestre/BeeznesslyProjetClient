@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Contact;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -38,6 +39,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Accueil', 'fa fa-home');
+        yield MenuItem::linkToCrud('Messages', 'fas fa-envelope', Contact::class);
         yield MenuItem::subMenu('Modération', 'fas fa-check-circle')->setSubItems([
             MenuItem::linkToCrud('Experts', 'fas fa-user-cog', User::class)
             ->setController(ModerationExpertController::class),

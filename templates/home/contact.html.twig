@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+<div class="container pt-5">
+    <div class="jumbotron m-5 color-contact-card">
+        <div id="flash_message" class="alert alert-danger d-none"></div>
+        <h1 class="text-center">Contactez l'équipe Beeznessly</h1>
+        <div class="row d-flex align-items-center justify-content-around">
+            <div class="col-8 text-center">
+                {{ form_start(contactForm) }}
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.firstname) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.lastname) }}
+                    </div>
+                </div>
+                <div class="col-12 pb-3">
+                    {{ form_row(contactForm.email) }}
+                </div>
+                <div class="col-12 pb-3">
+                    {{ form_row(contactForm.subject) }}
+                </div>
+                <div class="col-12 pb-3">
+                    {{ form_row(contactForm.message) }}
+                </div>
+                <div class="text-center my-4">
+                    <button class="btn btn-inscription" type="submit" id="submit-contact"
+                        data-sitekey="6LfJMCQaAAAAAJfXuLTH8XpIyUbYJiFE52pMX4hO"><i class="far fa-paper-plane"></i> {{
+                        button_label|default('Envoyer') }}</button>
+                </div>
+            </div>
+            {{ form_end(contactForm) }}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <img src="https://i.postimg.cc/4NvZFydw/contact-4x.png" class="img-fluid"
+                    alt="Illustration Portfolio Océane Kolau">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

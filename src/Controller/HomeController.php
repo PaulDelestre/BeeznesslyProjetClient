@@ -6,6 +6,8 @@ use App\Entity\Ebook;
 use App\Data\SearchEbooksData;
 use App\Form\SearchEbooksType;
 use App\Data\SearchExpertsData;
+use App\Entity\Contact;
+use App\Form\ContactFormType;
 use App\Form\SearchExpertsType;
 use App\Repository\UserRepository;
 use App\Repository\EbookRepository;
@@ -15,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Handler\DownloadHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\MailerService;
 
 class HomeController extends AbstractController
 {
@@ -59,14 +62,33 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/experts/{id}", methods={"GET"}, requirements={"id"="\d+"}, name="home_expert_show")
+     * @Route("/experts/{id}", methods={"GET", "POST"}, requirements={"id"="\d+"}, name="home_expert_show")
      */
-    public function showExpert(int $id, UserRepository $userRepository): Response
-    {
+    public function showExpert(
+        int $id,
+        UserRepository $userRepository,
+        Request $request,
+        MailerService $mailerService
+    ): Response {
         $user = $userRepository->find($id);
+        $contact = new Contact();
+        $contactForm = $this->createForm(ContactFormType::class, $contact);
+        $contactForm->handleRequest($request);
+
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $contact->setUser($user);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+            $mailerService->sendEmailAfterContactExpert($contact);
+            $this->addFlash('success', 'Thank you, your message has been sent!');
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('home/expert_show.html.twig', [
             'user' => $user,
+            'contact' => $contact,
+            'contactForm' => $contactForm->createView(),
         ]);
     }
 
@@ -96,5 +118,28 @@ class HomeController extends AbstractController
         }
 
         return $this->redirectToRoute('app_login');
+    }
+
+    /**
+     * @Route("contact", name="contact", methods={"GET", "POST"})
+     */
+    public function contact(Request $request, MailerService $mailerService): Response
+    {
+        $contact = new Contact();
+        $contactForm = $this->createForm(ContactFormType::class, $contact);
+        $contactForm->handleRequest($request);
+
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+            $mailerService->sendEmailAfterContactBeeznessly($contact);
+            $this->addFlash('success', 'Thank you, your message has been sent!');
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('home/contact.html.twig', [
+            'contact' => $contact,
+            'contactForm' => $contactForm->createView(),
+        ]);
     }
 }
