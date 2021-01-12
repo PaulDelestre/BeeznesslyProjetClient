@@ -31,13 +31,17 @@
         stroke="#F9B419" stroke-width="2" />
     </svg>
     <div class="media-body">
-      <h1 class="mt-0 text-subnav"><span class="color-letter">B</span>ienvenue dans votre compte {{user.firstname}} !</h1>
-      <p>Dans cet espace, vous pouvez : 
-        <ul>
-          <li>Modifier vos <a href="{{ path('entrepreneur_profil')}}"><span class="color-letter">informations personnelles</span></a>,</li>
-          <li>Accéder aux <a href="{{ path('entrepreneur_ebook')}}"><span class="color-letter">ebooks</span></a> que vous avez téléchargés,</li>
-          <li>Consulter vos <a href="{{ path('entrepreneur_messagerie')}}"><span class="color-letter">messages</span></a>. </li>
-        </ul>  
+      <h1 class="mt-0 text-subnav"><span class="color-letter">B</span>ienvenue dans votre compte {{user.firstname}} !
+      </h1>
+      <p>Dans cet espace, vous pouvez :
+      <ul>
+        <li>Modifier vos <a href="{{ path('entrepreneur_profil')}}"><span class="color-letter">informations
+              personnelles</span></a>,</li>
+        <li>Accéder aux <a href="{{ path('entrepreneur_ebook')}}"><span class="color-letter">ebooks</span></a> que vous
+          avez téléchargés,</li>
+        <li>Consulter vos <a href="{{ path('entrepreneur_messagerie')}}"><span class="color-letter">messages</span></a>.
+        </li>
+      </ul>
       </p>
       <a href="{{path ('home_ebooks')}}">
         <button type="button" class=" btn btn-inscription">Télécharger un ebook</button>
@@ -47,9 +51,6 @@
       </a>
     </div>
   </div>
-</div>
-
-
 </div>
 
 {% endblock %}

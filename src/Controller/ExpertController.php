@@ -32,8 +32,12 @@ class ExpertController extends AbstractController
                 'user' => $user,
             ]);
         }
+
+        $nbEbooksUser = count($user->getEbooks());
+       
         return $this->render('expert/index.html.twig', [
             'user' => $user,
+            'nbEbooks' => $nbEbooksUser
         ]);
     }
 
