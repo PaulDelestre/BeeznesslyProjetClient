@@ -20,7 +20,7 @@ class MailerService
         $email = (new TemplatedEmail())
             ->from($contact->getEmail())
             //TODO: Change ->to('beeznessly')
-            ->to('oceane.kolau@hotmail.fr')
+            ->to('beeznessly@gmail.com')
             ->subject('Nouveau message de Beeznessly')
             ->html(
                 '<p>' . $contact->getFirstname() . '</h4> vous a envoyé un message:</p>' .
@@ -36,7 +36,7 @@ class MailerService
     {
         $email = (new TemplatedEmail())
             ->from($contact->getEmail())
-            ->to($contact->getUser())
+            ->to($contact->getUser()->getEmail())
             ->subject('Nouveau message sur la plateforme Beeznessly')
             ->html(
                 '<p>' . $contact->getFirstname() . '</h4> vous a envoyé un message:</p>' .

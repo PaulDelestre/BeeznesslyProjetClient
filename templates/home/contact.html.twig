@@ -6,10 +6,10 @@
 <div class="container pt-5">
     <div class="jumbotron m-5 color-contact-card">
         <div id="flash_message" class="alert alert-danger d-none"></div>
-        <h1 class="text-center">Contactez l'équipe Beeznessly</h1>
-        <div class="row d-flex align-items-center justify-content-around">
-            <div class="col-8 text-center">
-                {{ form_start(contactForm) }}
+        {{ form_start(contactForm) }}
+        <h1 class="pb-4 pl-3"><span class="color-letter">C</span>ontactez l'équipe Beeznessly</h1>
+        <div class="row align-items-center justify-content-around">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
                 <div class="row">
                     <div class="col-md-6 col-sm-12 pb-3">
                         {{ form_row(contactForm.firstname) }}
@@ -18,14 +18,20 @@
                         {{ form_row(contactForm.lastname) }}
                     </div>
                 </div>
-                <div class="col-12 pb-3">
-                    {{ form_row(contactForm.email) }}
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_row(contactForm.email) }}
+                    </div>
                 </div>
-                <div class="col-12 pb-3">
-                    {{ form_row(contactForm.subject) }}
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_row(contactForm.subject) }}
+                    </div>
                 </div>
-                <div class="col-12 pb-3">
-                    {{ form_row(contactForm.message) }}
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_row(contactForm.message) }}
+                    </div>
                 </div>
                 <div class="text-center my-4">
                     <button class="btn btn-inscription" type="submit" id="submit-contact"

@@ -117,17 +117,16 @@
                     {% endfor %}
                 </section>
                 {% endif %}
-                <section id="CONTACTEZ NOUS" class="mt-5 pt-2">
-                    <div class="container-fluid">
+                <section id="CONTACTEZ NOUS" class="m-5 p-5">
+                    <div class="container">
                         <div class="row-fluid">
                             <div class="well well-sm">
-                                <form class="form-horizontal" action="" method="post">
+                                <div class="form-horizontal">
                                     <fieldset>
                                         <legend class="text-center">
                                             <h1>CONTACTEZ NOUS</h1>
                                         </legend>
                                         {{ form_start(contactForm) }}
-                                        <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     {{ form_row(contactForm.firstname) }}
@@ -136,18 +135,17 @@
                                                     {{ form_row(contactForm.lastname) }}
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 {{ form_row(contactForm.email) }}
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 {{ form_row(contactForm.subject) }}
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12 ">
                                                 {{ form_row(contactForm.message) }}
                                             </div>
@@ -160,7 +158,7 @@
                                         </div>
                                         {{ form_end(contactForm) }}
                                     </fieldset>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
