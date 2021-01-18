@@ -26,6 +26,7 @@
       </tr>
       {% for contact in contacts|reverse %}
       <tr>
+        <td>{{contact.createdAt|date('d D M Y')}} </td>
         <td>{{contact.lastname}}</td>
         <td>{{contact.firstname}} </td>
         <td>{{contact.subject}} </td>
