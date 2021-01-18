@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Ebook;
+use App\Entity\Contact;
+use App\Form\RgpdFormType;
+use App\Form\ContactFormType;
 use App\Data\SearchEbooksData;
 use App\Form\SearchEbooksType;
+use App\Service\MailerService;
 use App\Data\SearchExpertsData;
-use App\Entity\Contact;
-use App\Form\ContactFormType;
 use App\Form\SearchExpertsType;
 use App\Repository\UserRepository;
 use App\Repository\EbookRepository;
@@ -17,7 +19,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Handler\DownloadHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Service\MailerService;
 
 class HomeController extends AbstractController
 {
@@ -93,14 +94,21 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/ebooks/{id}", methods={"GET"}, requirements={"id"="\d+"}, name="home_ebook_show")
+     * @Route("/ebooks/{id}", methods={"GET", "POST"}, requirements={"id"="\d+"}, name="home_ebook_show")
      */
-    public function showEbook(int $id, EbookRepository $ebookRepository): Response
+    public function showEbook(int $id, EbookRepository $ebookRepository, Request $request): Response
     {
         $ebook = $ebookRepository->find($id);
+        $rgpdForm = $this->createForm(RgpdFormType::class);
+        $rgpdForm->handleRequest($request);
+
+        if ($rgpdForm->isSubmitted() && $rgpdForm->isValid()) {
+            return $this->redirectToRoute('ebook_download', ['id' => $ebook->getId()]);
+        }
 
         return $this->render('home/ebook_show.html.twig', [
             'ebook' => $ebook,
+            'rgpdForm' => $rgpdForm->createView(),
         ]);
     }
 
