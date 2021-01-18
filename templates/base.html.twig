@@ -42,6 +42,9 @@
                             <a class="nav-link" href="{{ path('home_ebooks')}}">Télécharger les Ebooks</a>
                         </li>
                         <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('contact')}}">Contacter Beeznessly</a>
+                        </li>
+                        <li class="nav-item active">
                             {% if app.user is null %}
                             <a href="{{path('app_login')}}">
                                 <button type="button" class="btn btn-connexion ml-5">Connexion</button>
