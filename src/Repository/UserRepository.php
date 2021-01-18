@@ -65,6 +65,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->andWhere('user.companyName LIKE :q 
                 OR user.description LIKE :q
                 OR user.town LIKE :q
+                OR expertise.name LIKE :q
+                OR provider.type LIKE :q
                 OR user.lastname LIKE :q
                 OR user.firstname LIKE :q')
                 ->setParameter('q', "%{$search->q}%");
