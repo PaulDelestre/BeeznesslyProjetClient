@@ -81,8 +81,7 @@ class HomeController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
             $mailerService->sendEmailAfterContactExpert($contact);
-            $this->addFlash('success', 'Thank you, your message has been sent!');
-            return $this->redirectToRoute('home');
+            return $this->render('home/confirmation_message.html.twig');
         }
 
         return $this->render('home/expert_show.html.twig', [
@@ -133,8 +132,7 @@ class HomeController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
             $mailerService->sendEmailAfterContactBeeznessly($contact);
-            $this->addFlash('success', 'Thank you, your message has been sent!');
-            return $this->redirectToRoute('home');
+            return $this->render('home/confirmation_message.html.twig');
         }
         return $this->render('home/contact.html.twig', [
             'contact' => $contact,
