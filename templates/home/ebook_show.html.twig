@@ -117,21 +117,11 @@
                 <p>{{ebook.description}}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-connexion" data-dismiss="modal">Close</button>
-                {% if ebook.documentEbook is not empty %}
-                <a href="{{path ('ebook_download', {'id': ebook.id})}}">
-                    <button type="button" class="btn btn-inscription">Télécharger</button>
-                </a>
-                {% endif %}
+                <button type="button" class="btn btn-connexion" data-dismiss="modal">Fermer</button>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRGPD">
-    Télécharger
-</button>
 
 <!-- Modal pour les CGU / RGPD -->
 <div class="modal fade" id="modalRGPD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -152,7 +142,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                 <a href="{{path ('ebook_download', {'id': ebook.id})}}">
-                    <button class="btn btn-inscription" id="btnSave">{{ button_label|default('Télécharger') }}</button>
+                    <button class="btn btn-inscription">{{ button_label|default('Télécharger') }}</button>
                     {{ form_end(rgpdForm) }}
                 </a>
             </div>
