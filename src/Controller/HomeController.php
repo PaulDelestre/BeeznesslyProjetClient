@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Ebook;
 use App\Entity\Contact;
+use App\Entity\Download;
 use App\Form\RgpdFormType;
 use App\Form\ContactFormType;
 use App\Data\SearchEbooksData;
@@ -102,8 +104,17 @@ class HomeController extends AbstractController
         $rgpdForm = $this->createForm(RgpdFormType::class);
         $rgpdForm->handleRequest($request);
 
-        if ($rgpdForm->isSubmitted() && $rgpdForm->isValid()) {
-            return $this->redirectToRoute('ebook_download', ['id' => $ebook->getId()]);
+        $user = $this->getUser();
+        if ($user) {
+            if ($rgpdForm->isSubmitted() && $rgpdForm->isValid()) {
+                $download = new Download();
+                $download->setUser($user);
+                $download->setEbook($ebook);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($download);
+                $entityManager->flush();
+                return $this->redirectToRoute('ebook_download', ['id' => $ebook->getId()]);
+            }
         }
 
         return $this->render('home/ebook_show.html.twig', [
