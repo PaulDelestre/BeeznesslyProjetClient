@@ -24,7 +24,7 @@
           <h3 class="text-subnav"><span class="color-letter">A</span>ction</h3>
         </th>
       </tr>
-      {% for contact in contacts %}
+      {% for contact in contacts|reverse %}
       <tr>
         <td>{{contact.lastname}}</td>
         <td>{{contact.firstname}} </td>
