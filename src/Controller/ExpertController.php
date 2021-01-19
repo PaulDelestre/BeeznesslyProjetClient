@@ -116,7 +116,11 @@ class ExpertController extends AbstractController
             ]);
         }
 
-        $ebooksDownloaded = $donwloadRepository->findByExpert($user->getId());
+        $downloads = $donwloadRepository->findByExpert($user->getId());
+        $ebooksDownloaded = [];
+        foreach ($downloads as $download) {
+            $ebooksDownloaded[] = $download->getEbook();
+        }
 
         return $this->render('expert/ebook/ebook.html.twig', [
             'ebooks' => $user->getEbooks(),
