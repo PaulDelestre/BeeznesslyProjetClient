@@ -36,14 +36,18 @@ class HomeController extends AbstractController
     /**
      * @Route("/experts", name="home_experts")
      */
-    public function allExperts(PaginatorInterface $paginator, UserRepository $userRepository, Request $request): Response
-    {
+    public function allExperts(
+        PaginatorInterface $paginator,
+        UserRepository $userRepository,
+        Request $request
+    ): Response {
+
         $search = new SearchExpertsData();
         $searchForm = $this->createForm(SearchExpertsType::class, $search);
         $searchForm->handleRequest($request);
         $experts = $userRepository->searchExperts($search);
-        
-        $donnees = $this->getDoctrine()->getRepository(User::class)->findBy([],['id' => 'desc']);
+
+        $donnees = $this->getDoctrine()->getRepository(User::class)->findBy([], ['id' => 'desc']);
 
 
         // Paginate the results of the query
@@ -55,7 +59,7 @@ class HomeController extends AbstractController
             // Items per page
             12
         );
-        
+
         return $this->render('home/experts.html.twig', [
             'experts' => $experts,
             'searchForm' => $searchForm->createView()
@@ -65,12 +69,30 @@ class HomeController extends AbstractController
     /**
      * @Route("/ebooks", name="home_ebooks")
      */
-    public function allEbooks(EbookRepository $ebookRepository, Request $request): Response
-    {
+    public function allEbooks(
+        PaginatorInterface $paginator,
+        EbookRepository $ebookRepository,
+        Request $request
+    ): Response {
+
         $search = new SearchEbooksData();
         $searchForm = $this->createForm(SearchEbooksType::class, $search);
         $searchForm->handleRequest($request);
         $ebooks = $ebookRepository->searchEbooks($search);
+
+        $donnees = $this->getDoctrine()->getRepository(Ebook::class)->findBy([], ['id' => 'desc']);
+
+
+        // Paginate the results of the query
+        $ebooks = $paginator->paginate(
+            // Doctrine Query, not results
+            $donnees,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            12
+        );
+
         return $this->render('home/ebooks.html.twig', [
             'ebooks' => $ebooks,
             'searchForm' => $searchForm->createView()
