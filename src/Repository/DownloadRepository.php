@@ -23,21 +23,6 @@ class DownloadRepository extends ServiceEntityRepository
      * @return Download[] Returns an array of Download objects
      */
 
-    public function findByExpert($expert)
-    {
-        return $this->createQueryBuilder('d')
-            ->join('d.ebook', 'e')
-            ->where('e.user = :expert')
-            ->setParameter('expert', $expert)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
-     * @return Download[] Returns an array of Download objects
-     */
-
     public function findByEbook($ebookId)
     {
         return $this->createQueryBuilder('d')
@@ -48,16 +33,4 @@ class DownloadRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
-    /*
-    public function findOneBySomeField($value): ?Download
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
