@@ -24,14 +24,17 @@
           <h3 class="text-subnav"><span class="color-letter">A</span>ction</h3>
         </th>
       </tr>
-      {% for contact in contacts %}
+      {% for contact in contacts|reverse %}
+      
       <tr>
+        <td>{{contact.createdAt|date('d D M Y')}} </td>
         <td>{{contact.lastname}}</td>
         <td>{{contact.firstname}} </td>
         <td>{{contact.subject}} </td>
         <td><a href="{{ path('entrepreneur_messagerie_show', {'id': contact.id}) }}"> <i
               class="fal fa-eye color-letter"></i></a></td>
       </tr>
+      
       {% endfor %}
     </tbody>
   </table>
