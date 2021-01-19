@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Home{% endblock %}
-
 {% block body %}
 <div class="container-fluid subnav-bg">
     <div class="row justify-content-around align-items-center p-2">
@@ -52,7 +51,10 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-
+                            <div>
+                                {{ form_row(searchForm.from)}}
+                                {{ form_row(searchForm.to)}}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Data\SearchEbooksData;
 use App\Entity\Ebook;
@@ -31,6 +31,23 @@ class SearchEbooksType extends AbstractType
                 'class' => Expertise::class,
                 'expanded' => true,
                 'multiple' => true
+            ])
+
+            ->add('from', DateType::class, [
+                'widget' => 'choice',
+                'label' => false,
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Entre le'
+                    ]
+            ])
+            ->add('to', DateType::class, [
+                'widget' => 'choice',
+                'label' => false,
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'et le'
+                    ]
             ])
         ;
     }
