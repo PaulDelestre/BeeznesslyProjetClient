@@ -19,22 +19,21 @@ class DownloadRepository extends ServiceEntityRepository
         parent::__construct($registry, Download::class);
     }
 
-    // /**
-    //  * @return Download[] Returns an array of Download objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Download[] Returns an array of Download objects
+     */
+
+    public function findByExpert($expert)
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('d.ebook', 'e')
+            ->where('e.user = :expert')
+            ->setParameter('expert', $expert)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Download

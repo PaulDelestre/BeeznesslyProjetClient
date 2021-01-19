@@ -8,6 +8,7 @@ use App\Form\UserType;
 use App\Entity\Contact;
 use App\Form\EbookType;
 use App\Form\ExpertType;
+use App\Repository\DownloadRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +35,7 @@ class ExpertController extends AbstractController
         }
 
         $nbEbooksUser = count($user->getEbooks());
-       
+
         return $this->render('expert/index.html.twig', [
             'user' => $user,
             'nbEbooks' => $nbEbooksUser
@@ -106,7 +107,7 @@ class ExpertController extends AbstractController
       /**
      * @Route("/ebook", methods={"GET"}, name="ebook")
      */
-    public function ebooks(): Response
+    public function ebooks(DownloadRepository $donwloadRepository): Response
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
@@ -114,6 +115,8 @@ class ExpertController extends AbstractController
                 'user' => $user,
             ]);
         }
+
+        $ebooksDownloaded = $donwloadRepository->findByExpert($user->getId());
 
         return $this->render('expert/ebook/ebook.html.twig', [
             'ebooks' => $user->getEbooks(),
