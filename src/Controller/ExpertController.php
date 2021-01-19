@@ -116,12 +116,6 @@ class ExpertController extends AbstractController
             ]);
         }
 
-        $downloads = $donwloadRepository->findByExpert($user->getId());
-        $ebooksDownloaded = [];
-        foreach ($downloads as $download) {
-            $ebooksDownloaded[] = $download->getEbook();
-        }
-
         return $this->render('expert/ebook/ebook.html.twig', [
             'ebooks' => $user->getEbooks(),
             'user' => $user = $this->getUser()
@@ -185,10 +179,14 @@ class ExpertController extends AbstractController
     /**
      * @Route("/ebook/{id}", name="ebook_show", methods={"GET"})
      */
-    public function showEbook(Ebook $ebook): Response
+    public function showEbook(Ebook $ebook, DownloadRepository $donwloadRepository): Response
     {
+        $downloads = $donwloadRepository->findByEbook($ebook->getId());
+        $nbDownloads = count($downloads);
+
         return $this->render('expert/ebook/ebook_show.html.twig', [
             'ebook' => $ebook,
+            'nbDownloads' => $nbDownloads,
             'user' => $this->getUser()
         ]);
     }
