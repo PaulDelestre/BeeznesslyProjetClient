@@ -42,13 +42,13 @@ class EbookRepository extends ServiceEntityRepository
         if (!empty($search->from)) {
             $query = $query
             ->andWhere('ebook.releaseDate >= :from')
-            ->setParameter(':from', $search->from->format('Y-m-d'));
+            ->setParameter(':from', $search->from);
         }
 
         if (!empty($search->to)) {
             $query = $query
                 ->andWhere('ebook.releaseDate <= :to')
-                ->setParameter(':to', $search->to->format('Y-m-d'));
+                ->setParameter(':to', $search->to);
         }
 
         if (!empty($search->q)) {
