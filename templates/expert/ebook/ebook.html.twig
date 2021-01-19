@@ -51,7 +51,9 @@
           <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
           {% endif %}
         </td>
-        <td>{{nbDownloadByEbook[ebook.id]}}</td>
+        <td>{{nbDownloadByEbook[ebook.id]}} <a href="{{ path('expert_ebook_download_show', {'id': ebook.id}) }}"> 
+          <button class="btn btn-inscription mb-3"><i class="fal fa-eye">voir plus</i></button>
+       </td>
         <td>
           <a href="{{ path('expert_ebook_show', {'id': ebook.id}) }}"> 
               <button class="btn btn-inscription mb-3"><i class="fal fa-eye"></i></button>

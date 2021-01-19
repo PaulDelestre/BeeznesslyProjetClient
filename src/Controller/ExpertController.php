@@ -125,9 +125,9 @@ class ExpertController extends AbstractController
         }
 
         return $this->render('expert/ebook/ebook.html.twig', [
-            'ebooks' => $user->getEbooks(),
+            'ebooks' => $ebooks,
             'nbDownloadByEbook' => $nbDownloadByEbook,
-            'user' => $user = $this->getUser()
+            'user' => $user
         ]);
     }
 
@@ -142,6 +142,27 @@ class ExpertController extends AbstractController
         return $this->render('expert/ebook/ebook_show.html.twig', [
             'ebook' => $ebook,
             'nbDownloads' => $nbDownloads,
+            'user' => $this->getUser()
+        ]);
+    }
+
+    /**
+     * @Route("/ebook/{id}/telechargements", name="ebook_download_show", methods={"GET"})
+     */
+    public function showEbookDownloads(Ebook $ebook, DownloadRepository $donwloadRepository): Response
+    {
+        $downloads = $donwloadRepository->findByEbook($ebook->getId());
+        $entrepreneurs = [];
+        $downloadedAt = [];
+        foreach ($downloads as $download) {
+            $entrepreneurs[] = $download->getUser();
+            $downloadedAt[$download->getUser()->getId()] = $download->getDownloadedAt();
+        }
+
+        return $this->render('expert/ebook/ebook_download_show.html.twig', [
+            'ebook' => $ebook,
+            'entrepreneurs' => $entrepreneurs,
+            'downloadedAt' => $downloadedAt,
             'user' => $this->getUser()
         ]);
     }
