@@ -160,6 +160,11 @@ class User implements UserInterface, \Serializable
     private $updatedAt;
 
     /**
+     * @ORM\OneToMany(targetEntity=Download::class, mappedBy="user")
+     */
+    private $downloads;
+
+    /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $rgpdAccepted;
@@ -170,6 +175,7 @@ class User implements UserInterface, \Serializable
         $this->contacts = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->ebooks = new ArrayCollection();
+        $this->downloads = new ArrayCollection();
     }
 
     public function __toString()
@@ -609,6 +615,36 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
+    }
+
+    /**
+     * @return Collection|Download[]
+     */
+    public function getDownloads(): Collection
+    {
+        return $this->downloads;
+    }
+
+    public function addDownload(Download $download): self
+    {
+        if (!$this->downloads->contains($download)) {
+            $this->downloads[] = $download;
+            $download->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDownload(Download $download): self
+    {
+        if ($this->downloads->removeElement($download)) {
+            // set the owning side to null (unless already changed)
+            if ($download->getUser() === $this) {
+                $download->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
     public function getRgpdAccepted(): ?bool
