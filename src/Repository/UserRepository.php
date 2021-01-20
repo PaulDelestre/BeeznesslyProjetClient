@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Data\SearchExpertsData;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,9 +20,10 @@ use App\Data\SearchExpertsData;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, User::class);
+        $this->paginator = $paginator;
     }
 
     /**
@@ -37,7 +40,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function searchExperts(searchExpertsData $search): array
+    /**
+     * @return PaginationInterface
+     */
+    public function searchExperts(searchExpertsData $search): PaginationInterface
     {
         $query = $this
             ->createQueryBuilder('user')
@@ -65,11 +71,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->andWhere('user.companyName LIKE :q 
                 OR user.description LIKE :q
                 OR user.town LIKE :q
+                OR expertise.name LIKE :q
+                OR provider.type LIKE :q
                 OR user.lastname LIKE :q
                 OR user.firstname LIKE :q')
                 ->setParameter('q', "%{$search->q}%");
         }
 
-        return $query->getQuery()->getResult();
+        $query = $query->getQuery()->getResult();
+        return $this->paginator->paginate(
+            $query,
+            1,
+            12
+        );
     }
 }

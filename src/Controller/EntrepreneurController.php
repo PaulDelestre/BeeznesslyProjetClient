@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\User;
 use App\Entity\Contact;
 use App\Form\UserType;
+use App\Repository\ContactRepository;
 
 /**
  * @Route("/entrepreneur", name="entrepreneur_")
@@ -62,7 +63,7 @@ class EntrepreneurController extends AbstractController
      /**
      * @Route("/messagerie", methods={"GET"}, name="messagerie")
      */
-    public function message(): Response
+    public function message(ContactRepository $contactRepository): Response
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
@@ -70,9 +71,11 @@ class EntrepreneurController extends AbstractController
                 'user' => $user,
             ]);
         }
+        $email = $user->getEmail();
+        $contacts = $contactRepository->findByEntrepreuneurEmail($email);
 
         return $this->render('entrepreneur/messagerie.html.twig', [
-            'contacts' => $user->getContacts(),
+            'contacts' => $contacts,
             'user' => $user = $this->getUser()
         ]);
     }
