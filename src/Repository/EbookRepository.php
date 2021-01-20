@@ -6,6 +6,8 @@ use App\Entity\Ebook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Data\SearchEbooksData;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
  * @method Ebook|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,12 +17,16 @@ use App\Data\SearchEbooksData;
  */
 class EbookRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Ebook::class);
+        $this->paginator = $paginator;
     }
 
-    public function searchEbooks(searchEbooksData $search): array
+     /**
+     * @return PaginationInterface
+     */
+    public function searchEbooks(searchEbooksData $search): PaginationInterface
     {
         $query = $this
             ->createQueryBuilder('ebook')
@@ -61,6 +67,11 @@ class EbookRepository extends ServiceEntityRepository
                 ->setParameter('q', "%{$search->q}%");
         }
 
-        return $query->getQuery()->getResult();
+        $query = $query->getQuery()->getResult();
+        return $this->paginator->paginate(
+            $query,
+            1,
+            12
+        );
     }
 }
