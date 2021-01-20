@@ -18,19 +18,4 @@ class DownloadRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Download::class);
     }
-
-    /**
-     * @return Download[] Returns an array of Download objects
-     */
-
-    public function findByEbook($ebookId)
-    {
-        return $this->createQueryBuilder('d')
-            ->join('d.ebook', 'e')
-            ->where('e.id = :ebookId')
-            ->setParameter('ebookId', $ebookId)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
 }

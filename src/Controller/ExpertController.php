@@ -119,7 +119,7 @@ class ExpertController extends AbstractController
         $ebooks = $user->getEbooks();
         $nbDownloadByEbook = [];
         foreach ($ebooks as $ebook) {
-            $downloads = $donwloadRepository->findByEbook($ebook->getId());
+            $downloads = $donwloadRepository->findBy(['ebook' => $ebook]);
             $nbDownloads = count($downloads);
             $nbDownloadByEbook[$ebook->getId()] = $nbDownloads;
         }
@@ -136,7 +136,7 @@ class ExpertController extends AbstractController
      */
     public function showEbook(Ebook $ebook, DownloadRepository $donwloadRepository): Response
     {
-        $downloads = $donwloadRepository->findByEbook($ebook->getId());
+        $downloads = $donwloadRepository->findBy(['ebook' => $ebook]);
         $nbDownloads = count($downloads);
 
         return $this->render('expert/ebook/ebook_show.html.twig', [
@@ -151,7 +151,7 @@ class ExpertController extends AbstractController
      */
     public function showEbookDownloads(Ebook $ebook, DownloadRepository $donwloadRepository): Response
     {
-        $downloads = $donwloadRepository->findByEbook($ebook->getId());
+        $downloads = $donwloadRepository->findBy(['ebook' => $ebook]);
         $entrepreneurs = [];
         $downloadedAt = [];
         foreach ($downloads as $download) {
