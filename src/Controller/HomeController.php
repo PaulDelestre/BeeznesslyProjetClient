@@ -2,12 +2,17 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Ebook;
+use App\Entity\Contact;
+use App\Entity\Download;
+use App\Form\RgpdFormType;
+use App\Form\ContactFormType;
+use App\Entity\User;
 use App\Data\SearchEbooksData;
 use App\Form\SearchEbooksType;
+use App\Service\MailerService;
 use App\Data\SearchExpertsData;
-use App\Entity\Contact;
-use App\Form\ContactFormType;
 use App\Form\SearchExpertsType;
 use App\Repository\UserRepository;
 use App\Repository\EbookRepository;
@@ -17,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Handler\DownloadHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Service\MailerService;
+use Knp\Component\Pager\PaginatorInterface;
 
 class HomeController extends AbstractController
 {
@@ -34,12 +39,30 @@ class HomeController extends AbstractController
     /**
      * @Route("/experts", name="home_experts")
      */
-    public function allExperts(UserRepository $userRepository, Request $request): Response
-    {
+    public function allExperts(
+        PaginatorInterface $paginator,
+        UserRepository $userRepository,
+        Request $request
+    ): Response {
+
         $search = new SearchExpertsData();
         $searchForm = $this->createForm(SearchExpertsType::class, $search);
         $searchForm->handleRequest($request);
         $experts = $userRepository->searchExperts($search);
+
+        $donnees = $this->getDoctrine()->getRepository(User::class)->findBy([], ['id' => 'desc']);
+
+
+        // Paginate the results of the query
+        $experts = $paginator->paginate(
+            // Doctrine Query, not results
+            $donnees,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            12
+        );
+
         return $this->render('home/experts.html.twig', [
             'experts' => $experts,
             'searchForm' => $searchForm->createView()
@@ -49,12 +72,30 @@ class HomeController extends AbstractController
     /**
      * @Route("/ebooks", name="home_ebooks")
      */
-    public function allEbooks(EbookRepository $ebookRepository, Request $request): Response
-    {
+    public function allEbooks(
+        PaginatorInterface $paginator,
+        EbookRepository $ebookRepository,
+        Request $request
+    ): Response {
+
         $search = new SearchEbooksData();
         $searchForm = $this->createForm(SearchEbooksType::class, $search);
         $searchForm->handleRequest($request);
         $ebooks = $ebookRepository->searchEbooks($search);
+
+        $donnees = $this->getDoctrine()->getRepository(Ebook::class)->findBy([], ['id' => 'desc']);
+
+
+        // Paginate the results of the query
+        $ebooks = $paginator->paginate(
+            // Doctrine Query, not results
+            $donnees,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            12
+        );
+
         return $this->render('home/ebooks.html.twig', [
             'ebooks' => $ebooks,
             'searchForm' => $searchForm->createView()
@@ -92,14 +133,30 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/ebooks/{id}", methods={"GET"}, requirements={"id"="\d+"}, name="home_ebook_show")
+     * @Route("/ebooks/{id}", methods={"GET", "POST"}, requirements={"id"="\d+"}, name="home_ebook_show")
      */
-    public function showEbook(int $id, EbookRepository $ebookRepository): Response
+    public function showEbook(int $id, EbookRepository $ebookRepository, Request $request): Response
     {
         $ebook = $ebookRepository->find($id);
+        $rgpdForm = $this->createForm(RgpdFormType::class);
+        $rgpdForm->handleRequest($request);
+
+        $user = $this->getUser();
+        if ($user) {
+            if ($rgpdForm->isSubmitted() && $rgpdForm->isValid()) {
+                $download = new Download();
+                $download->setUser($user);
+                $download->setEbook($ebook);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($download);
+                $entityManager->flush();
+                return $this->redirectToRoute('ebook_download', ['id' => $ebook->getId()]);
+            }
+        }
 
         return $this->render('home/ebook_show.html.twig', [
             'ebook' => $ebook,
+            'rgpdForm' => $rgpdForm->createView(),
         ]);
     }
 

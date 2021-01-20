@@ -49,7 +49,7 @@ h4 {
 // css for profil prestataire //
 
 .wrapperPresta{
-    background-color: $blue;
+    background-color: $yellow;
     width:80%;
     z-index: 1;
     margin:0 auto;
@@ -61,7 +61,7 @@ h4 {
   .picturePresta{
     width:200px;
     height:200px;
-    border:1px solid $blue;
+    border:1px solid $yellow;
     overflow:hidden;
     text-align:center;
     margin:0 auto;
@@ -72,13 +72,14 @@ h4 {
   }
 
   .btn-profil {
-    border: 1px solid $blue;
+    border: 1px solid $yellow;
     background-color: transparent;
+    color: black;
 }
 
 .btn-profil:hover {
-    color: white;
-    background-color: $blue;
+    color: black;
+    background-color: $yellow;
 }
 /* PAGES ALL EXPERTS / EBOOKS */
 .color-letter{
@@ -252,10 +253,10 @@ p {
 /* FIN HOME Page */
 /* Login / Register */
 .color-inscription {
-    background-color: $blue;
+    background-color: $grey;
 }
 .color-connexion {
-    color: white;
+    color: black;
 }
 
 .form-bg-login {
@@ -372,6 +373,9 @@ h5{
     background-color: transparent;
     border: 1px solid $blue;
     color: black;
+}
+.clickable {
+    cursor: pointer;
 }
 
 /* SUCCESS MESSAGE */
