@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Infos ebook{% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+    <div class="picturePresta">
+        <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+    </div>
+    <h1>Entrepreneurs qui ont téléchargé cet ebook</h1>
+    <table class="table color-text-white">
+        <thead>
+          <tr>
+            <th>
+              <h2><span class="color-letter">P</span>rénom</h2>
+            </th>
+            <th>
+              <h2><span class="color-letter">N</span>om</h2>
+            </th>
+            <th>
+              <h2><span class="color-letter">E</span>mail</h2>
+            </th>
+            <th>
+              <h2><span class="color-letter">D</span>ate du téléchargement</h2>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entrepreneur in entrepreneurs %}
+          <tr>
+            <td>
+              <p>{{entrepreneur.firstname}}</p>
+            </td>
+            <td>
+              <p>{{entrepreneur.lastname}}</p>
+            </td>
+            <td>
+              <p>{{entrepreneur.email}}</p>
+            </td>
+            <td>
+              <p>{{downloadedAt[entrepreneur.id]|date('d D M Y')}}</p>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>    
+{% endblock %}

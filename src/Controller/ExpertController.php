@@ -8,6 +8,7 @@ use App\Form\UserType;
 use App\Entity\Contact;
 use App\Form\EbookType;
 use App\Form\ExpertType;
+use App\Repository\DownloadRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +35,7 @@ class ExpertController extends AbstractController
         }
 
         $nbEbooksUser = count($user->getEbooks());
-       
+
         return $this->render('expert/index.html.twig', [
             'user' => $user,
             'nbEbooks' => $nbEbooksUser
@@ -106,7 +107,7 @@ class ExpertController extends AbstractController
       /**
      * @Route("/ebook", methods={"GET"}, name="ebook")
      */
-    public function ebooks(): Response
+    public function ebooks(DownloadRepository $donwloadRepository): Response
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
@@ -115,9 +116,54 @@ class ExpertController extends AbstractController
             ]);
         }
 
+        $ebooks = $user->getEbooks();
+        $nbDownloadByEbook = [];
+        foreach ($ebooks as $ebook) {
+            $downloads = $donwloadRepository->findBy(['ebook' => $ebook]);
+            $nbDownloads = count($downloads);
+            $nbDownloadByEbook[$ebook->getId()] = $nbDownloads;
+        }
+
         return $this->render('expert/ebook/ebook.html.twig', [
-            'ebooks' => $user->getEbooks(),
-            'user' => $user = $this->getUser()
+            'ebooks' => $ebooks,
+            'nbDownloadByEbook' => $nbDownloadByEbook,
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/ebook/{id}", name="ebook_show", methods={"GET"})
+     */
+    public function showEbook(Ebook $ebook, DownloadRepository $donwloadRepository): Response
+    {
+        $downloads = $donwloadRepository->findBy(['ebook' => $ebook]);
+        $nbDownloads = count($downloads);
+
+        return $this->render('expert/ebook/ebook_show.html.twig', [
+            'ebook' => $ebook,
+            'nbDownloads' => $nbDownloads,
+            'user' => $this->getUser()
+        ]);
+    }
+
+    /**
+     * @Route("/ebook/{id}/telechargements", name="ebook_download_show", methods={"GET"})
+     */
+    public function showEbookDownloads(Ebook $ebook, DownloadRepository $donwloadRepository): Response
+    {
+        $downloads = $donwloadRepository->findBy(['ebook' => $ebook]);
+        $entrepreneurs = [];
+        $downloadedAt = [];
+        foreach ($downloads as $download) {
+            $entrepreneurs[] = $download->getUser();
+            $downloadedAt[$download->getUser()->getId()] = $download->getDownloadedAt();
+        }
+
+        return $this->render('expert/ebook/ebook_download_show.html.twig', [
+            'ebook' => $ebook,
+            'entrepreneurs' => $entrepreneurs,
+            'downloadedAt' => $downloadedAt,
+            'user' => $this->getUser()
         ]);
     }
 
@@ -175,16 +221,6 @@ class ExpertController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/ebook/{id}", name="ebook_show", methods={"GET"})
-     */
-    public function showEbook(Ebook $ebook): Response
-    {
-        return $this->render('expert/ebook/ebook_show.html.twig', [
-            'ebook' => $ebook,
-            'user' => $this->getUser()
-        ]);
-    }
 
     /**
      * @Route("/ebook/{id}/edit", name="ebook_edit", methods={"GET","POST"})
