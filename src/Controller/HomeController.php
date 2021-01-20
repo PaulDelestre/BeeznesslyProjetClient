@@ -126,26 +126,32 @@ class HomeController extends AbstractController
         return $this->render('home/expert_show.html.twig', [
             'user' => $user,
             'contact' => $contact,
-            'contactForm' => $contactForm->createView(),
+            'contactForm' => $contactForm->createView()
         ]);
     }
 
     /**
      * @Route("/ebooks/{id}", methods={"GET", "POST"}, requirements={"id"="\d+"}, name="home_ebook_show")
      */
-    public function showEbook(int $id, EbookRepository $ebookRepository, Request $request): Response
+    public function showEbook(int $id, EbookRepository $ebookRepository, Request $request, UserRepository $userRepository): Response
     {
         $ebook = $ebookRepository->find($id);
         $rgpdForm = $this->createForm(RgpdFormType::class);
         $rgpdForm->handleRequest($request);
+        $user = $this->getUser();
 
         if ($rgpdForm->isSubmitted() && $rgpdForm->isValid()) {
+            $user->setRgpdAccepted(true);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
             return $this->redirectToRoute('ebook_download', ['id' => $ebook->getId()]);
         }
 
         return $this->render('home/ebook_show.html.twig', [
             'ebook' => $ebook,
             'rgpdForm' => $rgpdForm->createView(),
+            'user' => $user
         ]);
     }
 

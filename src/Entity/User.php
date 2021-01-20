@@ -159,6 +159,11 @@ class User implements UserInterface, \Serializable
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $rgpdAccepted;
+
     public function __construct()
     {
         $this->expertise = new ArrayCollection();
@@ -604,5 +609,17 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
+    }
+
+    public function getRgpdAccepted(): ?bool
+    {
+        return $this->rgpdAccepted;
+    }
+
+    public function setRgpdAccepted(?bool $rgpdAccepted): self
+    {
+        $this->rgpdAccepted = $rgpdAccepted;
+
+        return $this;
     }
 }
