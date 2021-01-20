@@ -152,7 +152,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/ebook/{id}/download", name="ebook_download")
      */
-    public function downloadEbook(Ebook $ebook, DownloadHandler $downloadHandler): Response
+    public function downloadEbook(Ebook $ebook, DownloadHandler $downloadHandler, Request $request): Response
     {
         $user = $this->getUser();
         if ($user) {

@@ -19,9 +19,8 @@
                             En savoir plus <i class="fas fa-arrow-right"></i>
                         </button>
                         {% if ebook.documentEbook is not empty %}
-                        <a href="{{path ('ebook_download', {'id': ebook.id})}}">
-                            <button type="button" class=" btn btn-inscription">Télécharger</button>
-                        </a>
+                            <button type="button" class=" btn btn-inscription" data-toggle="modal"
+                            data-target="#modalRGPD">Télécharger</button>
                         {% endif %}
                     </th>
                     <td>
@@ -49,11 +48,55 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-connexion" data-dismiss="modal">Fermer</button>
-                {% if ebook.documentEbook is not empty %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal pour les CGU / RGPD -->
+{% if app.user %}
+<div class="modal fade" id="modalRGPD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Conditions de téléchargement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>En cliquant sur le bouton télécharger,
+                    vous acceptez que vos coordonnées soient communiquées à l'expert qui a publié cet ebook</p>       
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                 <a href="{{path ('ebook_download', {'id': ebook.id})}}">
-                    <button type="button" class="btn btn-inscription">Télécharger</button>
+                    <button class="btn btn-inscription">{{ button_label|default('Télécharger') }}</button>
                 </a>
-                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="modal fade" id="modalRGPD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Connectez-vous</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Vous êtes intéressé par cet ebook ? </br>
+                    Inscrivez-vous ou connectez-vous pour pouvoir le télécharger </p>      
+            </div>
+            <div class="modal-footer">
+                <a href="{{path('app_login')}}">
+                    <button type="button" class="btn btn-connexion ml-5">Connexion</button>
+                </a>
+                <a href="{{path('app_register_entrepreneur')}}">
+                    <button type="button" class="btn btn-inscription ml-5">S'inscrire</button>
+                </a>
             </div>
         </div>
     </div>
