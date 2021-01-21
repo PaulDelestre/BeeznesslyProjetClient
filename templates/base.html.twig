@@ -18,94 +18,12 @@
     {% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
-        <div class="container mt-2 mb-1">
-            <div class="row justify-content-between mx-auto">
-                <a class="navbar-brand" href="/">
-                    <img src="{{ asset('build/images/logo-beeznessly.png') }}" alt="" width="100"
-                        class="d-inline-block align-top">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Pourquoi Beeznessly ?</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('home_experts')}}">Consulter les experts</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('home_ebooks')}}">Télécharger les Ebooks</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('contact')}}">Contacter Beeznessly</a>
-                        </li>
-                        <li class="nav-item active">
-                            {% if app.user is null %}
-                            <a href="{{path('app_login')}}">
-                                <button type="button" class="btn btn-connexion ml-5">Connexion</button>
-                            </a>
-                            {% else %}
-                            <a href="{{path('app_logout')}}">
-                                <button type="button" class="btn btn-connexion ml-5">Déconnexion</button>
-                            </a>
-                            {% endif %}
-                        <li class="nav-item">
-                            {% if app.user is null %}
-                            <a href="{{path('app_register_expert')}}">
-                                <button type="button" class="btn btn-inscription ml-5">S'inscrire</button>
-                            </a>
-                            {% else %}
-                            {% if app.user.roles[0] == "ROLE_EXPERT" %}
-                            <a class="nav-link navbar-brand ml-5" href="{{path('expert_index')}}">
-                                <i class="fas fa-user-alt user-icon"></i>
-                            </a>
-                            {% endif %}
-                            {% if app.user.roles[0] == "ROLE_ENTREPRENEUR" %}
-                            <a class="nav-link navbar-brand ml-5" href="{{path('entrepreneur_index')}}">
-                                <i class="fas fa-user-alt user-icon"></i>
-                            </a>
-                            {% endif %}
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+   {% include "navbar.html.twig" %}
     {% block body %}{% endblock %}
-    <footer>
-        <div class="container pb-3">
-            <div class="row pt-5">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
-                    <h2>BEEZNESS<span class="color-number">LY</span></h2>
-                    <p>FAQ</p>
-                    <p>A propos de nous</p>
-                    <p>Mentions légales</p>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
-                    <h2>Nous rencontrer</h2>
-                    <p>Beeznessly</p>
-                    <p>26 rue de la Madeleine</p>
-                    <p>75020</p>
-                    <img src="https://i.postimg.cc/NF3Gfk4w/Capture-d-e-cran-2020-12-03-a-09-54-11.png"
-                        class="img-fluid" width="200">
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pr-4">
-                    <h2>Entrepreneur</h2>
-                    <p>Découvrir tous les Beez experts</p>
-                    <p>Créer mon profil pour télécharger les e-book</p>
-                    <h2>Experts</h2>
-                </div>
-            </div>
-        </div>
-    </footer>
+    {% include "footer.html.twig" %}
     {{ encore_entry_script_tags('app') }}
-    {% block javascripts %}{% endblock %}   
+    {% block javascripts %}
+    {% endblock %}   
 </body>
 
 </html>
