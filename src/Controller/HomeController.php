@@ -23,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Handler\DownloadHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class HomeController extends AbstractController
 {
@@ -103,15 +104,13 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/experts/{id}", methods={"GET", "POST"}, requirements={"id"="\d+"}, name="home_expert_show")
+     * @Route("/experts/{slug}", methods={"GET", "POST"}, name="home_expert_show")
      */
     public function showExpert(
-        int $id,
-        UserRepository $userRepository,
+        User $user,
         Request $request,
         MailerService $mailerService
     ): Response {
-        $user = $userRepository->find($id);
         $contact = new Contact();
         $contactForm = $this->createForm(ContactFormType::class, $contact);
         $contactForm->handleRequest($request);
@@ -133,11 +132,10 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/ebooks/{id}", methods={"GET", "POST"}, requirements={"id"="\d+"}, name="home_ebook_show")
+     * @Route("/ebooks/{slug}", methods={"GET", "POST"}, name="home_ebook_show")
      */
-    public function showEbook(int $id, EbookRepository $ebookRepository, Request $request, UserRepository $userRepository): Response
+    public function showEbook(Ebook $ebook, Request $request, UserRepository $userRepository): Response
     {
-        $ebook = $ebookRepository->find($id);
         $rgpdForm = $this->createForm(RgpdFormType::class);
         $rgpdForm->handleRequest($request);
         $user = $this->getUser();

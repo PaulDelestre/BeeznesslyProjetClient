@@ -1,7 +1,7 @@
 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-3 pr-5">
     <div>
         <div class="text-center">
-            <a href="{{path ('home_ebook_show', {'id': ebook.id})}}" class="link-for-show-img">
+            <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show-img">
                 <img src="/uploads/illustrationEbook/{{ ebook.illustration }}" style="width: 13rem;" alt="{{ ebook.illustration }}">
         </div>
         <div class="text-center">
@@ -13,7 +13,7 @@
         </div>
         </a>
         <div class="card-body ml-2">
-            <a href="{{path ('home_ebook_show', {'id': ebook.id})}}" class="link-for-show">
+            <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show">
                 <h2>
                     {{ebook.title}}
                 </h2>

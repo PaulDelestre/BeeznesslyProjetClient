@@ -8,11 +8,12 @@ use App\Form\UserType;
 use App\Entity\Contact;
 use App\Form\EbookType;
 use App\Form\ExpertType;
-use App\Repository\DownloadRepository;
+use App\Service\SlugifyService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Handler\DownloadHandler;
+use App\Repository\DownloadRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -197,9 +198,9 @@ class ExpertController extends AbstractController
     }
 
     /**
-     * @Route("/ebook/new", name="ebook_new", methods={"GET","POST"})
+     * @Route("/ebook/new/add", name="ebook_new", methods={"GET","POST"})
      */
-    public function newEbook(Request $request): Response
+    public function newEbook(Request $request, SlugifyService $slugifyService): Response
     {
         $ebook = new Ebook();
         $form = $this->createForm(EbookType::class, $ebook);
@@ -208,6 +209,8 @@ class ExpertController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $ebook->setUser($this->getUser());
             $ebook->setIsValidated(false);
+            $slug = $slugifyService->generate($ebook->getTitle());
+            $ebook->setSlug($slug);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ebook);
             $entityManager->flush();

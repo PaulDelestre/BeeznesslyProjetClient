@@ -129,12 +129,14 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('companyName', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Nom de mon entreprise'
                     ]
             ])
             ->add('siretNumber', IntegerType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Numéro de SIRET'
                     ]
