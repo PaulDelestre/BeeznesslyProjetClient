@@ -220,7 +220,7 @@ class ExpertController extends AbstractController
 
         return $this->render('expert/ebook/ebook_new.html.twig', [
             'ebook' => $ebook,
-            'form' => $form->createView(),
+            'ebookForm' => $form->createView(),
         ]);
     }
 
