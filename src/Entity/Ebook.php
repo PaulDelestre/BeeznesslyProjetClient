@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EbookRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -91,6 +93,22 @@ class Ebook
      * @var Datetime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Download::class, mappedBy="ebook")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $downloads;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    public function __construct()
+    {
+        $this->downloads = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -256,6 +274,48 @@ class Ebook
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Download[]
+     */
+    public function getDownloads(): Collection
+    {
+        return $this->downloads;
+    }
+
+    public function addDownload(Download $download): self
+    {
+        if (!$this->downloads->contains($download)) {
+            $this->downloads[] = $download;
+            $download->setEbook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDownload(Download $download): self
+    {
+        if ($this->downloads->removeElement($download)) {
+            // set the owning side to null (unless already changed)
+            if ($download->getEbook() === $this) {
+                $download->setEbook(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
         return $this;
     }
 }

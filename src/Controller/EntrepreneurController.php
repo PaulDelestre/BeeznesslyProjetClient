@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use App\Entity\User;
+use App\Form\UserType;
+use App\Entity\Contact;
+use App\Repository\DownloadRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use App\Entity\User;
-use App\Entity\Contact;
-use App\Form\UserType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ContactRepository;
 
 /**
  * @Route("/entrepreneur", name="entrepreneur_")
@@ -62,7 +64,7 @@ class EntrepreneurController extends AbstractController
      /**
      * @Route("/messagerie", methods={"GET"}, name="messagerie")
      */
-    public function message(): Response
+    public function message(ContactRepository $contactRepository): Response
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
@@ -70,9 +72,11 @@ class EntrepreneurController extends AbstractController
                 'user' => $user,
             ]);
         }
+        $email = $user->getEmail();
+        $contacts = $contactRepository->findByEntrepreuneurEmail($email);
 
         return $this->render('entrepreneur/messagerie.html.twig', [
-            'contacts' => $user->getContacts(),
+            'contacts' => $contacts,
             'user' => $user = $this->getUser()
         ]);
     }
@@ -98,7 +102,7 @@ class EntrepreneurController extends AbstractController
       /**
      * @Route("/ebook", methods={"GET"}, name="ebook")
      */
-    public function ebooks(): Response
+    public function ebooks(DownloadRepository $donwloadRepository): Response
     {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
@@ -107,8 +111,10 @@ class EntrepreneurController extends AbstractController
             ]);
         }
 
+        $downloads = $donwloadRepository->findBy(['user' => $user]);
+
         return $this->render('entrepreneur/ebook.html.twig', [
-            'ebooks' => $user->getEbooks(),
+            'downloads' => $downloads,
             'user' => $user = $this->getUser()
         ]);
     }

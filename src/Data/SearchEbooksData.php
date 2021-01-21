@@ -21,4 +21,14 @@ class SearchEbooksData
      * @var Ebook[]
      */
     public $ebook = [];
+
+        /**
+     * @var null|date
+     */
+    public $to;
+
+    /**
+     * @var null|date
+     */
+    public $from;
 }

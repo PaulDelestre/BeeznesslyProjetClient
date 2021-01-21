@@ -1,6 +1,6 @@
 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-4">
     <div class="card-border">
-        <a href="{{path ('home_expert_show', {'id': expert.id})}}" class="link-for-show-img">
+        <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show-img">
             <img src="/uploads/banner/{{ expert.banner }}"
                 class="card-img-top" alt="...">
             <div class="text-right color-provider mr-3">
@@ -13,13 +13,14 @@
         </a>
         <div class="card-body">
             {% if expert.companyName is not null %}
-            <a href="{{path ('home_expert_show', {'id': expert.id})}}" class="link-for-show">
+            <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show">
                 <h2>
                     {{expert.companyName}}
                 </h2>
             </a>
+            
             {% else %}
-            <a href="{{path ('home_expert_show', {'id': expert.id})}}" class="link-for-show">
+            <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show">
                 <h2>
                     {{expert.firstname}} {{expert.lastname}}
                 </h2>

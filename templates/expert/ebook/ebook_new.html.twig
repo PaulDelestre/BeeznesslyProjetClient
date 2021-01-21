@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Ebook{% endblock %}
+{% block title %}Nouveau Ebook{% endblock %}
 
 {% block body %}
 <div class="container-fluid wrapperPresta text-center">
-    <h1>Create new Ebook</h1>
+    <h1>Ajouter un nouveau Ebook</h1>
     <table class="table table-borderless">
         {{ include('expert/ebook/ebook_form.html.twig') }}
         <a href="{{ path('expert_ebook') }}">
-            <button type="button" class="btn btn-inscription nav-link">back to list</button>
+            <button type="button" class="btn btn-inscription nav-link">Retour à la liste</button>
         </a>
     </table>
 </div>

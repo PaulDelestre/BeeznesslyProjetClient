@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\User;
 
 /**
  * @method Contact|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +20,16 @@ class ContactRepository extends ServiceEntityRepository
         parent::__construct($registry, Contact::class);
     }
 
-    // /**
-    //  * @return Contact[] Returns an array of Contact objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+    /**
+    * @return Contact[] Returns an array of Contact objects
     */
-
-    /*
-    public function findOneBySomeField($value): ?Contact
+    public function findByEntrepreuneurEmail($email)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $this
+            ->createQueryBuilder('contact')
+            ->from($this->_entityName, 'c')
+            ->where('c.email = :email')
+            ->setParameter('email', $email);
+        return $query->getQuery()->getResult();
     }
-    */
 }
