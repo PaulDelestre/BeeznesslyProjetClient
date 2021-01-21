@@ -49,7 +49,7 @@ h4 {
 // css for profil prestataire //
 
 .wrapperPresta{
-    background-color: $yellow;
+    background-color: $grey;
     width:80%;
     z-index: 1;
     margin:0 auto;
@@ -61,7 +61,7 @@ h4 {
   .picturePresta{
     width:200px;
     height:200px;
-    border:1px solid $yellow;
+    border:2px solid $yellow;
     overflow:hidden;
     text-align:center;
     margin:0 auto;
@@ -381,4 +381,16 @@ h5{
 /* SUCCESS MESSAGE */
 .color-success {
     background-color: white;
+}
+/* PROFILE */
+.btn-grey {
+    background-color: $grey;
+}
+.btn-grey:hover {
+    background-color: transparent;
+    border: 1px solid $grey;
+}
+/* navbar */
+.text-color-black .nav-link {
+    color: black;
 }
