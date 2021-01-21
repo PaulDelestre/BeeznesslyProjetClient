@@ -169,6 +169,11 @@ class User implements UserInterface, \Serializable
      */
     private $rgpdAccepted;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->expertise = new ArrayCollection();
@@ -655,6 +660,18 @@ class User implements UserInterface, \Serializable
     public function setRgpdAccepted(?bool $rgpdAccepted): self
     {
         $this->rgpdAccepted = $rgpdAccepted;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

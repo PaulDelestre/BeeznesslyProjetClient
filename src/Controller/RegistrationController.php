@@ -17,6 +17,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Mime\Address;
+use App\Service\SlugifyService;
 
 class RegistrationController extends AbstractController
 {
@@ -32,6 +33,7 @@ class RegistrationController extends AbstractController
      */
     public function registerExpert(
         Request $request,
+        SlugifyService $slugifyService,
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
         AppLoginAuthenticator $authenticator
@@ -49,6 +51,13 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            if (!empty($user->getCompanyName())) {
+                $slug = $slugifyService->generate($user->getCompanyName());
+                $user->setSlug($slug);
+            } else {
+                $slug = $slugifyService->generate($user->getLastname());
+                $user->setSlug($slug);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

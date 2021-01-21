@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-2 pt-3">
             <div class="filter d-none d-md-block">
-                <h4 class="mt-5 text-center"><a href="{{path ('home_expert_show', {'id': ebook.user.id})}}">EN SAVOIR
+                <h4 class="mt-5 text-center"><a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">EN SAVOIR
                         PLUS SUR L'EXPERT</a></h4>
                 <hr>
                 <svg width="119" height="236" viewBox="0 0 119 236" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,7 @@
                     </div>
                 </section>
                 <div class="text-center">
-                    <a href="{{path ('home_expert_show', {'id': ebook.user.id})}}">
+                    <a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">
                         <button type="button" class="btn btn-blue-more m-5">En savoir plus sur l'expert</button>
                     </a>
                 </div>
@@ -142,7 +142,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                <a href="{{path ('ebook_download', {'id': ebook.id})}}">
+                <a href="{{path ('ebook_download', {'slug': ebook.slug})}}">
                     <button class="btn btn-inscription">{{ button_label|default('Télécharger') }}</button>
                     {{ form_end(rgpdForm) }}
                 </a>

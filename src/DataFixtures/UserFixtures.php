@@ -8,14 +8,17 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use Faker;
+use App\Service\SlugifyService;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     private $encoder;
+    private $slugifyService;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
+    public function __construct(UserPasswordEncoderInterface $encoder, SlugifyService $slugifyService)
     {
         $this->encoder = $encoder;
+        $this->slugifyService = $slugifyService;
     }
 
     public function load(ObjectManager $manager)
@@ -36,6 +39,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setTown($faker->city());
             $user->setZipcode($faker->randomNumber(5));
             $user->setAdress($faker->address());
+            $user->setSlug($this->slugifyService->generate($user->getCompanyName()));
             for ($j = 0; $j < 3; $j++) {
                 $user->addExpertise($this->getReference('expertise_' . rand(0, 5)));
             }
