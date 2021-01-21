@@ -1,5 +1,38 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
+{{ form_start(ebookForm) }}
+<div>
+    {{ form_row(ebookForm.title) }}
+</div>
+<div>
+    {{ form_row(ebookForm.description) }}
+</div>
+<div>
+    {{ form_row(ebookForm.releaseDate) }}
+</div>
+<div>
+    {{ form_row(ebookForm.editorName) }}
+</div>
+<div>
+    {{ form_row(ebookForm.author) }}
+</div>
+<div>
+    {{ form_row(ebookForm.expertise, {
+        "attr": {
+            'class': 'selectpicker',
+            'data-live-search': true,
+            'data-count-selected-text': '{0} sélectionnés',
+            'data-actions-box': true,
+            'title': 'Sélectionner'
+        }
+    })  }}
+</div>
+<div>
+    {{ form_row(ebookForm.illustrationFile) }}
+</div>
+<div>
+    {{ form_row(ebookForm.documentEbookFile) }}
+</div>
+
 <button type="submit" class="btn btn-inscription mb-3"><i class="far fa-arrow-alt-circle-right"></i> {{
     button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    {{ form_widget(ebookForm._token) }}
+    {{ form_end(ebookForm, {'render_rest': false}) }}
