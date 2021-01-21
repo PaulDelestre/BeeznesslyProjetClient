@@ -164,6 +164,11 @@ class User implements UserInterface, \Serializable
      */
     private $downloads;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $rgpdAccepted;
+
     public function __construct()
     {
         $this->expertise = new ArrayCollection();
@@ -638,6 +643,18 @@ class User implements UserInterface, \Serializable
                 $download->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRgpdAccepted(): ?bool
+    {
+        return $this->rgpdAccepted;
+    }
+
+    public function setRgpdAccepted(?bool $rgpdAccepted): self
+    {
+        $this->rgpdAccepted = $rgpdAccepted;
 
         return $this;
     }
