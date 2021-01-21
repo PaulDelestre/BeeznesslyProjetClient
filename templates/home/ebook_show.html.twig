@@ -125,7 +125,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                <a href="{{path ('ebook_download', {'slug': ebook.slug})}}">
+                <a href="{{path ('ebook_download', {'id': ebook.id})}}">
                     <button class="btn btn-inscription">{{ button_label|default('Télécharger') }}</button>
                     {{ form_end(rgpdForm) }}
                 </a>
