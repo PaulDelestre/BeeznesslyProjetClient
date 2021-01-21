@@ -242,7 +242,7 @@ class ExpertController extends AbstractController
 
         return $this->render('expert/ebook/ebook_edit.html.twig', [
             'ebook' => $ebook,
-            'form' => $form->createView(),
+            'ebookForm' => $form->createView(),
         ]);
     }
 
@@ -301,7 +301,7 @@ class ExpertController extends AbstractController
 
         return $this->render('expert/expert_page/edit_expertPage.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
+            'expertForm' => $form->createView(),
         ]);
     }
 }
