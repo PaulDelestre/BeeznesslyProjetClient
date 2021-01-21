@@ -369,11 +369,6 @@ h5{
     color: white;
 }
 
-.btn-blue:hover {
-    background-color: transparent;
-    border: 1px solid $blue;
-    color: black;
-}
 .clickable {
     cursor: pointer;
 }
@@ -391,6 +386,6 @@ h5{
     border: 1px solid $grey;
 }
 /* navbar */
-.text-color-black .nav-link {
+.navbar-light .navbar-nav .nav-link {
     color: black;
 }
