@@ -40,19 +40,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    /**
-     * @return PaginationInterface
-     */
-    public function searchExperts(searchExpertsData $search): PaginationInterface
+
+    public function searchExperts(searchExpertsData $search)
     {
         $query = $this
             ->createQueryBuilder('user')
-            ->from($this->_entityName, 'u')
             ->innerJoin('user.provider', 'provider')
             ->leftJoin('user.expertise', 'expertise')
             // ->leftJoin('user.typeService', 'typeService')
-            ->where('u.roles LIKE :roles')
-            ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%');
+            ->where('user.roles LIKE :roles')
+            ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
+            ->andWhere('user.isValidated = 1');
 
         if (!empty($search->provider)) {
             $query = $query
@@ -78,11 +76,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->setParameter('q', "%{$search->q}%");
         }
 
-        $query = $query->getQuery()->getResult();
-        return $this->paginator->paginate(
-            $query,
-            1,
-            12
-        );
+        return $query->getQuery()->getResult();
     }
 }
