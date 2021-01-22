@@ -49,15 +49,12 @@ class HomeController extends AbstractController
         $search = new SearchExpertsData();
         $searchForm = $this->createForm(SearchExpertsType::class, $search);
         $searchForm->handleRequest($request);
-        $experts = $userRepository->searchExperts($search);
-
-        $donnees = $this->getDoctrine()->getRepository(User::class)->findBy([], ['id' => 'desc']);
-
+        $allExperts = $userRepository->searchExperts($search);
 
         // Paginate the results of the query
         $experts = $paginator->paginate(
             // Doctrine Query, not results
-            $donnees,
+            $allExperts,
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page
