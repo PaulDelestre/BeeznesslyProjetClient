@@ -37,7 +37,7 @@ class ModerationExpertController extends AbstractCrudController
         }
 
         return [
-            AssociationField::new('provider', "Type d'acteur"),
+            AssociationField::new('provider', "Type d'acteur")->hideOnIndex(),
             BooleanField::new('isValidated', "Validation"),
             Field::new('firstname', "Prénom"),
             Field::new('lastname', "Nom"),
@@ -47,7 +47,7 @@ class ModerationExpertController extends AbstractCrudController
             Field::new('zipcode', "Code postal")->hideOnIndex(),
             Field::new('town', "Ville")->hideOnIndex(),
             Field::new('description', "Description")->hideOnIndex(),
-            Field::new('companyName', "Nom de l'entreprise")->hideOnIndex(),
+            Field::new('companyName', "Nom de l'entreprise"),
             Field::new('siretNumber', "Numéro de SIRET")->hideOnIndex(),
             $expertiseField,
         ];
@@ -69,7 +69,17 @@ class ModerationExpertController extends AbstractCrudController
         FilterCollection $filters
     ): QueryBuilder {
         $response = $this->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        $response->where("entity.isValidated = 0");
+        $search = $searchDto->getQuery();
+        $response->andwhere('entity.isValidated = 0');
+        if (isset($search) && !empty($search)) {
+            $response->andWhere("entity.lastname LIKE :search 
+            OR entity.firstname LIKE :search 
+            OR entity.email LIKE :search
+            OR entity.companyName LIKE :search
+            ")
+            ->setParameter('search', '%' . $search . '%');
+        }
+
         return $response;
     }
 }
