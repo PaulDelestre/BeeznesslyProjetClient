@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EbookRepository::class)
@@ -72,6 +73,11 @@ class Ebook
 
     /**
     * @Vich\UploadableField(mapping="ebook_illustration", fileNameProperty="illustration")
+    * @Assert\File(
+    *     maxSize = "3000k",
+    *     mimeTypes = {"image/png", "image/jpeg"},
+    *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
+    * )
     * @var File
     */
     private $illustrationFile;
@@ -84,6 +90,11 @@ class Ebook
 
     /**
     * @Vich\UploadableField(mapping="ebook_file", fileNameProperty="documentEbook")
+    * @Assert\File(
+    *     maxSize = "2000k",
+    *     mimeTypes = {"application/pdf", "application/x-pdf"},
+    *     mimeTypesMessage = "Seuls les pdf sont acceptés"
+    * )
     * @var File
     */
     private $documentEbookFile;

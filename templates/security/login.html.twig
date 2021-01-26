@@ -26,6 +26,7 @@
                     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
                     <div class="text-center pt-5">
                         <button class="btn btn-lg btn-inscription" type="submit">
                             Connexion
