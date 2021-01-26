@@ -1,8 +1,7 @@
-<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-4">
+<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-4 d-flex">
     <div class="card-border">
         <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show-img">
-            <img src="/uploads/banner/{{ expert.banner }}"
-                class="card-img-top" alt="...">
+            <img src="/uploads/banner/{{ expert.banner }}" class="card-img-top" alt="...">
             <div class="text-right color-provider mr-3">
                 <button class="btn border-pres pl-3 pr-3">
                     <h4>
@@ -18,7 +17,6 @@
                     {{expert.companyName}}
                 </h2>
             </a>
-            
             {% else %}
             <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show">
                 <h2>
@@ -26,10 +24,10 @@
                 </h2>
             </a>
             {% endif %}
-            <div class="text-right">
-                <p>{{expert.town}}</p>
+            <div class="text-left">
+                <p><i class="fas fa-map-marker-alt color-icon-grey"></i> {{expert.town}}</p>
             </div>
-            {% for expertise in expert.expertise %}
+            {% for expertise in expert.expertise|slice(0, 3)%}
             <p class="text text-muted">
                 <i class="fas fa-check color-expertise"></i> {{expertise.name}}
             </p>

@@ -27,8 +27,7 @@ class ContactRepository extends ServiceEntityRepository
     {
         $query = $this
             ->createQueryBuilder('contact')
-            ->from($this->_entityName, 'c')
-            ->where('c.email = :email')
+            ->where('contact.email = :email')
             ->setParameter('email', $email);
         return $query->getQuery()->getResult();
     }

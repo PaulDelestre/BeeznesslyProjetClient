@@ -3,7 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-
 <div class="container-fluid subnav-bg">
     <div class="row justify-content-around align-items-center">
         <div class="text-center col-10 p-4">
@@ -14,8 +13,11 @@
     <div class="row">
         <div class="col-md-2 pt-3">
             <div class="filter d-none d-md-block">
-                <h4 class="mt-5 text-center"><a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">EN SAVOIR
-                        PLUS SUR L'EXPERT</a></h4>
+                <div class="">
+                    <a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">
+                        <img  id='logo' src="/uploads/logo/{{ ebook.user.logo }}" alt="logo de l'entreprise">
+                    </a>
+                </div>
                 <hr>
                 {% include 'design_form_yellow.html.twig'%}
             </div>
@@ -26,21 +28,21 @@
                     <h1 class="pt-3 name-expert-show"> {{ebook.title}}</h1>
                     <hr class="hr-expert">
                     <div class="row pl-2">
-                        <p class="pl-2 pr-4">
-                            {% if ebook.author is not null %}
-                            De {{ebook.author}}
-                            {% endif %}
-                        </p>
                         <p class="pr-4"><i class="fas fa-check color-icon-blue"></i> {{ebook.expertise}}</p>
                         <p><i class="far fa-user color-icon-blue"></i>
-                            Proposé par l'expert {{ebook.user}}</p>
+                            Proposé par {{ebook.user}}</p>
                     </div>
                 </div>
                 <section>
                     <div>
                         <div class="wrapperExpert">
                             <div>
-                                <h2>Editeur {{ebook.editorName}}</h2>
+                                <h2>Editeur : {{ebook.editorName}}</h2>
+                                <p>
+                                    {% if ebook.author is not null %}
+                                    Auteur : {{ebook.author}}
+                                    {% endif %}
+                                </p>
                                 <p>
                                     <i class="far fa-calendar-alt color-icon-blue"></i>
                                     Date de publication : {{ebook.releaseDate|date("d M Y")}}
@@ -48,24 +50,26 @@
                                 <table class="table table-borderless table-responsive{-sm|-md|-lg|-xl}">
                                     <tbody>
                                         <tr>
-                                            <th scope="row">
-                                                <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
-                                                    class="card-img-top" style="width: 8rem;"
+                                            <div class="text-center">
+                                            <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
+                                                    class="card-img-top" style="width: 15rem;"
                                                     alt="{{ ebook.illustration }}">
                                                 <button type="button"
                                                     class="btn btn-connexion d-lg-none d-md-none d-sm-none"
                                                     data-toggle="modal" data-target="#exampleModalCenter">
                                                     En savoir plus <i class="fas fa-arrow-right"></i>
                                                 </button>
-                                                {% if ebook.documentEbook is not empty %}
-
-                                                <button type="button" class=" btn btn-inscription" data-toggle="modal"
-                                                    data-target="#modalRGPD">Télécharger</button>
-
-                                                {% endif %}
-                                            </th>
+                                            </div>
+                                        </tr>
+                                        <tr>
                                             <td>
                                                 <p class="d-none d-sm-block">{{ebook.description}}</p><br>
+                                                {% if ebook.documentEbook is not empty %}
+                                                <div class="text-center">
+                                                <button type="button" class="btn btn-inscription" data-toggle="modal"
+                                                    data-target="#modalRGPD">Télécharger</button>
+                                                </div>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                     </tbody>
