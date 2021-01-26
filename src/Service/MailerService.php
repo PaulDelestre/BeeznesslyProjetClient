@@ -23,10 +23,13 @@ class MailerService
             ->to('beeznessly@gmail.com')
             ->subject('Nouveau message de Beeznessly')
             ->html(
-                '<p>' . $contact->getFirstname() . '</h4> vous a envoyé un message:</p>' .
-                '<p>' . $contact->getEmail() . '</h4> pour lui répondre</p>' .
-                '<p>Sujet: ' . $contact->getSubject() . '</p>' .
-                '<p>' . $contact->getMessage() . '</p>'
+                '<p>' . $contact->getFirstname() . ' ' .
+                $contact->getLastname() . '</p> vous a envoyé un message:</p>' .
+                '<p>Pour lui répondre ' .
+                '<p>Email : ' . $contact->getEmail() . ' ' . '<p>Téléphone : ' . $contact->getPhoneNumber() .
+                '<p>Sujet : ' . $contact->getSubject() . '</p>' .
+                '<p>Nom de l\'entreprise : ' . $contact->getCompanyName() . '</p>' .
+                '<p>Message ' . $contact->getMessage() . '</p>'
             );
 
         $this->mailer->send($email);

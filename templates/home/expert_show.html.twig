@@ -14,7 +14,12 @@
     <div class="row">
         <div class="col-md-2 pt-3">
             <div class="filter">
-                <img id='logo' src="/uploads/logo/{{ user.logo }}" alt="logo de l'entreprise {{user.firstname}}">
+                {% if user.logo is empty %}
+                    <p class="logo-default">LOGO</p>
+                    <img id='logo' src="https://i.postimg.cc/MG2dyGb2/logo-type.png" class="w-100" alt="logo de l'entreprise">
+                {% else %}
+                    <img id='logo' src="/uploads/logo/{{ user.logo }}" alt="logo de l'entreprise {{user.firstname}}">
+                {% endif %}
                 <h4 class="mt-5"><span class="color-letter"> A </span><a href="#A PROPOS DE NOUS"
                         style="color:#000000;">propos de
                         nous</a></h4>
@@ -35,8 +40,13 @@
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
+                                {% if user.banner is empty %}
+                                <img id="banner_picture" class="img-fluid" src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
+                                    alt="Banner picture">
+                                {% else %}
                                 <img id="banner_picture" class="img-fluid" src="/uploads/banner/{{ user.banner }}"
                                     alt="Banner picture">
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -64,8 +74,13 @@
                     <div class="pt-5 mt-4">
                         <div class="container-fluid wrapperExpertDescri">
                             <div class="pictureExpert">
+                                {% if user.profilePicture is empty %}
+                                <img id='profil' src="https://i.postimg.cc/DwVVmnNH/clem-onojeghuo-w0-SREKRMh-Dk-unsplash.jpg"
+                                    alt="photo de profil">
+                                {% else %}
                                 <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}"
                                     alt="photo de profil">
+                                {% endif %}
                             </div>
                             <div class="card-deck">
                                 <p> {{user.description}} </p>
@@ -111,21 +126,19 @@
                     {% else %}
                     {{ form_start(contactForm) }}
                     <div class="row">
-                        <div class="col-md-6 col-sm-12 pb-3">
-                            {{ form_row(contactForm.firstname) }}
-                        </div>
-                        <div class="col-md-6 col-sm-12 pb-3">
-                            {{ form_row(contactForm.lastname) }}
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-12 pb-3">
                             {{ form_row(contactForm.subject) }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 pb-3">
-                            {{ form_row(contactForm.message)}}
+                            {{ form_row(contactForm.message) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pb-3">
+                            <p>* Champs obligatoires<br>
+                            </p>
                         </div>
                     </div>
                     <div class="text-center my-4">

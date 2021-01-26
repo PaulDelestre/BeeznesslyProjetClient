@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container-fluid color-text-white">
+<div class="container-fluid">
     <div class="row align-items-center">
         <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
             <div class="jumbotron m-5 color-inscription form-bg-login">
@@ -45,6 +45,11 @@
                     </div>
                     <div class="col-6">
                         {{ form_row(registrationForm.town) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3 text-right">
+                      <p>* Champs obligatoires</p>
                     </div>
                 </div>
             </div>

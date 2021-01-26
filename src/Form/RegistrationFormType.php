@@ -31,18 +31,18 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Email'
+                    'placeholder' => 'Email *'
                     ]
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
                 'first_options'  => [
-                    'attr' => ['placeholder' => 'Mot de passe'],
+                    'attr' => ['placeholder' => 'Mot de passe *'],
                     'label' => false,
                 ],
                 'second_options'  => [
-                    'attr' => ['placeholder' => 'Confirmation mot de passe'],
+                    'attr' => ['placeholder' => 'Confirmation mot de passe *'],
                     'label' => false,
                 ],
                 'mapped' => false,
@@ -63,14 +63,14 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Prénom'
+                    'placeholder' => 'Prénom *'
                     ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Nom'
+                    'placeholder' => 'Nom *'
                     ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -78,7 +78,7 @@ class RegistrationFormType extends AbstractType
                 'label' => "J'accepte les CDG",
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions d\'utilisation !',
                     ]),
                 ],
             ])
@@ -124,7 +124,7 @@ class RegistrationFormType extends AbstractType
                 'multiple' => false,
                 'by_reference' => false,
                 'attr' => [
-                    'placeholder' => 'Je suis un/une'
+                    'placeholder' => 'Je suis un/une *'
                     ]
             ])
             ->add('companyName', TextType::class, [
@@ -134,7 +134,7 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Nom de mon entreprise'
                     ]
             ])
-            ->add('siretNumber', IntegerType::class, [
+            ->add('siretNumber', TextType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
