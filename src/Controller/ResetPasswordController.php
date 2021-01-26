@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -37,16 +38,20 @@ class ResetPasswordController extends AbstractController
      *
      * @Route("", name="app_forgot_password_request")
      */
-    public function request(Request $request, MailerInterface $mailer): Response
+    public function request(Request $request, MailerInterface $mailer, UserRepository $userRepository): Response
     {
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->processSendingPasswordResetEmail(
-                $form->get('email')->getData(),
-                $mailer
-            );
+            $email = $form->get('email')->getData();
+            if ($userRepository->findBy(['email' => $email])) {
+                return $this->processSendingPasswordResetEmail(
+                    $form->get('email')->getData(),
+                    $mailer
+                );
+            }
+            $this->addFlash('danger', 'Pas de compte client associé à cet email');
         }
 
         return $this->render('reset_password/request.html.twig', [
