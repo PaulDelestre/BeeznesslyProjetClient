@@ -5,9 +5,7 @@
 {% block body %}
 {{ include('entrepreneur/_navEntrepreneur.html.twig') }}
 <div class="container-fluid wrapperPresta text-center">
-  <div class="picturePresta">
-    <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
-  </div>
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
   {% if contact.user.lastname is empty %}
   {% else %}
   <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
