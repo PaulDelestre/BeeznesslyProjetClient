@@ -74,7 +74,7 @@ class Ebook
     /**
     * @Vich\UploadableField(mapping="ebook_illustration", fileNameProperty="illustration")
     * @Assert\File(
-    *     maxSize = "2000k",
+    *     maxSize = "3000k",
     *     mimeTypes = {"image/png", "image/jpeg"},
     *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
     * )

@@ -137,6 +137,11 @@ class User implements UserInterface, \Serializable
 
     /**
     * @Vich\UploadableField(mapping="banner_file", fileNameProperty="banner")
+    * @Assert\File(
+    *     maxSize = "3000k",
+    *     mimeTypes = {"image/png", "image/jpeg"},
+    *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
+    * )
     * @var File
     */
     private $bannerFile;
@@ -149,6 +154,11 @@ class User implements UserInterface, \Serializable
 
     /**
     * @Vich\UploadableField(mapping="profile_picture_file", fileNameProperty="profile_picture")
+    * @Assert\File(
+    *     maxSize = "3000k",
+    *     mimeTypes = {"image/png", "image/jpeg"},
+    *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
+    * )
     * @var File
     */
     private $profilePictureFile;
