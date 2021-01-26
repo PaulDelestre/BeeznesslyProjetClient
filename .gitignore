@@ -28,4 +28,4 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 .DS_Store
 .vscode/
-public/uploads/
+public/uploads/*
