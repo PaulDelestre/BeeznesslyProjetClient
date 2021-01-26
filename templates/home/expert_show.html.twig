@@ -111,21 +111,19 @@
                     {% else %}
                     {{ form_start(contactForm) }}
                     <div class="row">
-                        <div class="col-md-6 col-sm-12 pb-3">
-                            {{ form_row(contactForm.firstname) }}
-                        </div>
-                        <div class="col-md-6 col-sm-12 pb-3">
-                            {{ form_row(contactForm.lastname) }}
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-12 pb-3">
                             {{ form_row(contactForm.subject) }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 pb-3">
-                            {{ form_row(contactForm.message)}}
+                            {{ form_row(contactForm.message) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pb-3">
+                            <p>* Champs obligatoires<br>
+                            </p>
                         </div>
                     </div>
                     <div class="text-center my-4">

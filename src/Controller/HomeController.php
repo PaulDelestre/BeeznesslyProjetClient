@@ -8,6 +8,7 @@ use App\Entity\Contact;
 use App\Entity\Download;
 use App\Form\RgpdFormType;
 use App\Form\ContactFormType;
+use App\Form\ContactExpertFormType;
 use App\Entity\User;
 use App\Data\SearchEbooksData;
 use App\Form\SearchEbooksType;
@@ -109,10 +110,13 @@ class HomeController extends AbstractController
         MailerService $mailerService
     ): Response {
         $contact = new Contact();
-        $contactForm = $this->createForm(ContactFormType::class, $contact);
+        $contactForm = $this->createForm(ContactExpertFormType::class, $contact);
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $contact->setEmail($this->getUser()->getEmail());
+            $contact->setFirstname($this->getUser()->getFirstname());
+            $contact->setLastname($this->getUser()->getLastname());
             $contact->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);

@@ -68,7 +68,7 @@ class User implements UserInterface, \Serializable
     private $companyName;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $siretNumber;
 
