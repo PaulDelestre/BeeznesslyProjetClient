@@ -18,7 +18,7 @@ class MailerService
     public function sendEmailAfterContactBeeznessly(Contact $contact): void
     {
         $email = (new TemplatedEmail())
-            ->from($contact->getEmail())
+            ->from('beeznessly@gmail.com')
             //TODO: Change ->to('beeznessly')
             ->to('beeznessly@gmail.com')
             ->subject('Nouveau message de Beeznessly')
@@ -35,7 +35,7 @@ class MailerService
     public function sendEmailAfterContactExpert(Contact $contact): void
     {
         $email = (new TemplatedEmail())
-            ->from($contact->getEmail())
+            ->from('beeznessly@gmail.com')
             ->to($contact->getUser()->getEmail())
             ->subject('Nouveau message sur la plateforme Beeznessly')
             ->html(

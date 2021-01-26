@@ -200,4 +200,20 @@ class HomeController extends AbstractController
             'contactForm' => $contactForm->createView(),
         ]);
     }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faq()
+    {
+        return $this->render('home/faq.html.twig');
+    }
+
+    /**
+     * @Route("/mentions-legales", name="mentions_legales")
+     */
+    public function mentionsLegales()
+    {
+        return $this->render('home/mentions_legales.html.twig');
+    }
 }
