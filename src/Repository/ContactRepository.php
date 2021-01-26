@@ -20,16 +20,17 @@ class ContactRepository extends ServiceEntityRepository
         parent::__construct($registry, Contact::class);
     }
 
-    /**
+     /**
     * @return Contact[] Returns an array of Contact objects
     */
     public function findByEntrepreuneurEmail($email)
     {
         $query = $this
             ->createQueryBuilder('contact')
-            ->from($this->_entityName, 'c')
-            ->where('c.email = :email')
-            ->setParameter('email', $email);
-        return $query->getQuery()->getResult();
+            ->where('contact.email = :email')
+            ->setParameter('email', $email)
+            ->orderBy('contact.id', 'ASC');
+
+           return $query->getQuery()->getResult();
     }
 }
