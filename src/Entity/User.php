@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -125,6 +126,11 @@ class User implements UserInterface, \Serializable
 
     /**
     * @Vich\UploadableField(mapping="logo_file", fileNameProperty="logo")
+    * @Assert\File(
+    *     maxSize = "3000k",
+    *     mimeTypes = {"image/png", "image/jpeg"},
+    *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
+    * )
     * @var File
     */
     private $logoFile;
