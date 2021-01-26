@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ContactRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/entrepreneur", name="entrepreneur_")
@@ -64,8 +65,11 @@ class EntrepreneurController extends AbstractController
      /**
      * @Route("/messagerie", methods={"GET"}, name="messagerie")
      */
-    public function message(ContactRepository $contactRepository): Response
-    {
+    public function message(
+        ContactRepository $contactRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
             return $this->render('entrepreneur/validation.html.twig', [
@@ -75,8 +79,18 @@ class EntrepreneurController extends AbstractController
         $email = $user->getEmail();
         $contacts = $contactRepository->findByEntrepreuneurEmail($email);
 
+        // Paginate the results of the query
+        $messages = $paginator->paginate(
+            // Doctrine Query, not results
+            $contacts,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
+
         return $this->render('entrepreneur/messagerie.html.twig', [
-            'contacts' => $contacts,
+            'contacts' => $messages,
             'user' => $user = $this->getUser()
         ]);
     }
@@ -102,8 +116,11 @@ class EntrepreneurController extends AbstractController
       /**
      * @Route("/ebook", methods={"GET"}, name="ebook")
      */
-    public function ebooks(DownloadRepository $donwloadRepository): Response
-    {
+    public function ebooks(
+        DownloadRepository $donwloadRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
             return $this->render('entrepreneur/validation.html.twig', [
@@ -113,8 +130,18 @@ class EntrepreneurController extends AbstractController
 
         $downloads = $donwloadRepository->findBy(['user' => $user]);
 
+        // Paginate the results of the query
+        $ebooks = $paginator->paginate(
+            // Doctrine Query, not results
+            $downloads,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
+
         return $this->render('entrepreneur/ebook.html.twig', [
-            'downloads' => $downloads,
+            'downloads' => $ebooks,
             'user' => $user = $this->getUser()
         ]);
     }

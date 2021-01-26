@@ -8,21 +8,34 @@
   <div class="picturePresta">
     <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
   </div>
+  {% if contact.user.lastname is empty %}
+  {% else %}
   <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
   <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-    {{contact.lastname}}
+    {{contact.user.lastname}}
   </div>
+  {% endif %}
+  {% if contact.user.firstname is empty %}
+  {% else %}
   <h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3>
   <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-    {{contact.firstname}}
+    {{contact.user.firstname}}
+  </div>
+  {% endif %}
+  {% if contact.user.companyName is empty %}
+  {% else %}
+  <h3 class="text-subnav"><span class="color-letter">E</span>ntreprise</h3>
+  <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {{contact.user.companyName}}
+  </div>
+  {% endif %}
+  <h3 class="text-subnav"><span class="color-letter">E</span>mail</h3>
+  <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {{contact.user.email}}
   </div>
   <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
   <div class="card mb-3 alert alert-light rounded-pill" role="alert">
     {{contact.subject}}
-  </div>
-  <h3 class="text-subnav"><span class="color-letter">E</span>mail</h3>
-  <div class="card mb-3 alert alert-light rounded-pill" role="alert">
-    {{contact.email}}
   </div>
   <h3 class="text-subnav"><span class="color-letter">M</span>essage</h3>
   <div class="card mb-3 alert alert-light rounded" role="alert">
