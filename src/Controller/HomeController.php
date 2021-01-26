@@ -32,8 +32,11 @@ class HomeController extends AbstractController
      */
     public function index(ExpertiseRepository $expertiseRepository): Response
     {
+        $ebooks = $this->getDoctrine()->getRepository(Ebook::class)->findBy([], ['id' => 'ASC'], 4);
+
         return $this->render('home/index.html.twig', [
-            'expertises' => $expertiseRepository->findAll()
+            'expertises' => $expertiseRepository->findAll(),
+            'ebooks' => $ebooks
         ]);
     }
 
