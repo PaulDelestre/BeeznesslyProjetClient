@@ -28,7 +28,6 @@ class UserCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add('typeOfUser')
             ->add(BooleanFilter::new('isValidated'))
             ->add('expertise')
         ;

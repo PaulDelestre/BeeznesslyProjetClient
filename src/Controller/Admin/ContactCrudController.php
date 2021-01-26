@@ -51,7 +51,17 @@ class ContactCrudController extends AbstractCrudController
         FilterCollection $filters
     ): QueryBuilder {
         $response = $this->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        $response->where("entity.user is NULL");
+        $search = $searchDto->getQuery();
+        $response->andWhere("entity.user is NULL");
+        if (isset($search) && !empty($search)) {
+            $response->andWhere("entity.lastname LIKE :search 
+            OR entity.firstname LIKE :search 
+            OR entity.email LIKE :search
+            OR entity.subject LIKE :search
+            OR entity.message LIKE :search
+            ")
+            ->setParameter('search', '%' . $search . '%');
+        }
         return $response;
     }
 }

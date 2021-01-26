@@ -17,7 +17,7 @@
                         <a class="nav-link" href="{{ path('home_ebooks')}}">Télécharger les Ebooks</a>
                     </div>
                     <div class="col-auto nav-item mr-lg-5 pr-lg-5 mr-md-0 pr-md-0 ml-lg-1 pl-lg-0 ml-md-0 pl-md-0">
-                        <a class="nav-link" href="{{ path('contact')}}">Contacter Beeznessly</a>
+                        <a class="nav-link" href="{{ path('contact')}}">Contact</a>
                     </div>
                     <div class="col-auto nav-item ml-lg-3 pl-lg-3 ml-md-0 pl-md-0">
                         {% if app.user is null %}
@@ -43,6 +43,11 @@
                         {% endif %}
                         {% if app.user.roles[0] == "ROLE_ENTREPRENEUR" %}
                         <a class="nav-link navbar-brand" href="{{path('entrepreneur_index')}}">
+                            <i class="fas fa-user-alt user-icon"></i>
+                        </a>
+                        {% endif %}
+                        {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                        <a class="nav-link navbar-brand" href="{{path('admin')}}">
                             <i class="fas fa-user-alt user-icon"></i>
                         </a>
                         {% endif %}
