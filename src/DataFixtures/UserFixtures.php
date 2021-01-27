@@ -87,6 +87,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setEmail('user' . $i . '@entrepreneur.com');
             $user->setPassword($this->encoder->encodePassword($user, 'password'));
             $user->setRoles(['ROLE_ENTREPRENEUR']);
+            $user->setIsValidated(true);
             $user->setPhone($faker->randomNumber(9));
             $manager->persist($user);
             $this->addReference('user_' . $i, $user);
