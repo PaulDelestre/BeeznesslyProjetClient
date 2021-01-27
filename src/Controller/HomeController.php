@@ -30,9 +30,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ExpertiseRepository $expertiseRepository): Response
+    public function index(ExpertiseRepository $expertiseRepository, EbookRepository $ebookRepository): Response
     {
-        $ebooks = $this->getDoctrine()->getRepository(Ebook::class)->findBy([], ['id' => 'ASC'], 4);
+        // $ebooks = $this->getDoctrine()->getRepository(Ebook::class)->findBy([],
+        //     ['id' => 'ASC'], 4);
+
+        $ebooks = $ebookRepository->ebooksHome();
 
         return $this->render('home/index.html.twig', [
             'expertises' => $expertiseRepository->findAll(),
@@ -82,15 +85,12 @@ class HomeController extends AbstractController
         $search = new SearchEbooksData();
         $searchForm = $this->createForm(SearchEbooksType::class, $search);
         $searchForm->handleRequest($request);
-        $ebooks = $ebookRepository->searchEbooks($search);
-
-        $donnees = $this->getDoctrine()->getRepository(Ebook::class)->findBy([], ['id' => 'desc']);
-
+        $allEbooks = $ebookRepository->searchEbooks($search);
 
         // Paginate the results of the query
         $ebooks = $paginator->paginate(
             // Doctrine Query, not results
-            $donnees,
+            $allEbooks,
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page

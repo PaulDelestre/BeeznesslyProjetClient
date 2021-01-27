@@ -42,9 +42,7 @@
             <div class="container-fluid">
                 <div class="row">
                     {% for ebook in ebooks %}
-                    {% if ebook.isValidated == true %}
                     {% include 'home/ebooks_card.html.twig' with {ebook: ebook} only %}
-                    {% endif %}
                     {% endfor %}
                 </div>
                 <div class="navigation">

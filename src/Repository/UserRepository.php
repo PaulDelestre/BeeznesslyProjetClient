@@ -47,7 +47,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->createQueryBuilder('user')
             ->innerJoin('user.provider', 'provider')
             ->leftJoin('user.expertise', 'expertise')
-            // ->leftJoin('user.typeService', 'typeService')
             ->where('user.roles LIKE :roles')
             ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
             ->andWhere('user.isValidated = 1');
