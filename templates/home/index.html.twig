@@ -50,24 +50,30 @@
         <h2>Les derniers ebooks</h2>
         <div class="hr-expert"><hr></div>
         <div class="row">
-            {% for i in range(0, 3) %}
+            {% for ebook in ebooks %}
             <div class="col-lg-3 col-md-6 col-sm-12 my-3 pr-5 ">
                 <div>
                     <div class="text-center">
-                    <img src="https://i.postimg.cc/nh9LpHW8/livre-blanc-l-1-1.png" class="card-img-top" style="width: 13rem;" alt="...">
+                        <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show-img">
+                            <img src="/uploads/illustrationEbook/{{ ebook.illustration }}" style="width: 13rem;"
+                                alt="{{ ebook.illustration }}">
                     </div>
                     <div class="text-center">
                         <button class="btn border-pres pl-3 pr-3">
                             <h4>
-                                SEO
+                                {{ebook.expertise}}
                             </h4>
                         </button>
                     </div>
                     <div class="card-body text-center">
                         <h3>
-                           Le SEO, outil privilégié 
+                           {{ebook.title}}
                         </h3>
                     </div>
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-inscription" href="{{path ('home_ebook_show', {'slug': ebook.slug})}}"
+                        role="button">Voir +</a>
                 </div>
             </div>
             {% endfor %}
