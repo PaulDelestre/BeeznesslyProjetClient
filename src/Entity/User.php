@@ -342,12 +342,12 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getSiretNumber(): ?int
+    public function getSiretNumber(): ?string
     {
         return $this->siretNumber;
     }
 
-    public function setSiretNumber(?int $siretNumber): self
+    public function setSiretNumber(?string $siretNumber): self
     {
         $this->siretNumber = $siretNumber;
 
