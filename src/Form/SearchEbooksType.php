@@ -34,20 +34,14 @@ class SearchEbooksType extends AbstractType
             ])
 
             ->add('from', DateType::class, [
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'label' => false,
-                'required' => true,
-                'attr' => [
-                    'placeholder' => 'Entre le'
-                    ]
+                'required' => false
             ])
             ->add('to', DateType::class, [
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'label' => false,
-                'required' => true,
-                'attr' => [
-                    'placeholder' => 'et le'
-                    ]
+                'required' => false
             ])
         ;
     }
