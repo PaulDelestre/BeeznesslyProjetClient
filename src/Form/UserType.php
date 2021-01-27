@@ -54,7 +54,7 @@ class UserType extends AbstractType
                     'placeholder' => 'Nom de mon entreprise'
                     ]
             ])
-            ->add('siretNumber', IntegerType::class, [
+            ->add('siretNumber', TextType::class, [
                 'label' => 'Numéro de Siret',
                 'attr' => [
                     'placeholder' => 'Numéro de SIRET'

@@ -3,7 +3,40 @@
 </div>
 <div class="color-text-white">
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div>
+        {{ form_row(form.firstname) }}
+    </div>
+    <div>
+        {{ form_row(form.lastname) }}
+    </div>
+    <div>
+        {{ form_row(form.email) }}
+    </div>
+    <div>
+        {{ form_row(form.phone) }}
+    </div>
+    <div>
+        {{ form_row(form.companyName) }}
+    </div>
+    <div>
+        {{ form_row(form.siretNumver) }}
+    </div>
+    <div>
+        {{ form_row(form.town) }}
+    </div>
+    <div>
+        {{ form_row(form.zipcode) }}
+    </div>
+    <div>
+        {{ form_row(form.adress) }}
+    </div>
+    <div>
+        {{ form_row(form.provider) }}
+    </div>
+    <div>
+        {{ form_row(form.firstname) }}
+    </div>
+   
 </div>
 <div class="text-center">
     <button type="submit" class="btn btn-inscription nav-link mt-5 text-center">{{ button_label|default('Save')
@@ -12,4 +45,5 @@
         <button type="button" class="btn btn-inscription nav-link mt-5 text-center">Retour</button>
     </a>
 </div>
-{{ form_end(form) }}
+{{ form_widget(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}

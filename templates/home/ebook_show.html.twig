@@ -13,10 +13,18 @@
     <div class="row">
         <div class="col-md-2 pt-3">
             <div class="filter d-none d-md-block">
-                <div class="">
+                <div>
+                    {% if ebook.user.logo is empty %}
                     <a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">
-                        <img  id='logo' src="/uploads/logo/{{ ebook.user.logo }}" alt="logo de l'entreprise">
+                        <p class="logo-default">LOGO</p>
+                        <img id='logo' src="https://i.postimg.cc/MG2dyGb2/logo-type.png" class="w-100"
+                            alt="logo de l'entreprise">
                     </a>
+                    {% else %}
+                    <a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">
+                        <img id='logo' src="/uploads/logo/{{ ebook.user.logo }}" alt="logo de l'entreprise">
+                    </a>
+                    {% endif %}
                 </div>
                 <hr>
                 {% include 'design_form_yellow.html.twig'%}
@@ -51,7 +59,7 @@
                                     <tbody>
                                         <tr>
                                             <div class="text-center">
-                                            <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
+                                                <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
                                                     class="card-img-top" style="width: 15rem;"
                                                     alt="{{ ebook.illustration }}">
                                                 <button type="button"
@@ -66,8 +74,9 @@
                                                 <p class="d-none d-sm-block">{{ebook.description}}</p><br>
                                                 {% if ebook.documentEbook is not empty %}
                                                 <div class="text-center">
-                                                <button type="button" class="btn btn-inscription" data-toggle="modal"
-                                                    data-target="#modalRGPD">Télécharger</button>
+                                                    <button type="button" class="btn btn-inscription"
+                                                        data-toggle="modal"
+                                                        data-target="#modalRGPD">Télécharger</button>
                                                 </div>
                                                 {% endif %}
                                             </td>

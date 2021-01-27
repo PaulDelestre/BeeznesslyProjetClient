@@ -1,7 +1,12 @@
 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-4 d-flex">
     <div class="card-border">
         <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show-img">
-            <img src="/uploads/banner/{{ expert.banner }}" class="card-img-top" alt="...">
+            {% if expert.banner is empty %}
+                <img class="card-img-top" src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
+                    alt="Banner picture">
+            {% else %}
+            <img src="/uploads/banner/{{ expert.banner }}" class="card-img-top" alt="banner picture {{expert.companyName}}">
+            {% endif %}
             <div class="text-right color-provider mr-3">
                 <button class="btn border-pres pl-3 pr-3">
                     <h4>
