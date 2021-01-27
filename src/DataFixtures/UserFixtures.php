@@ -34,7 +34,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setDescription($faker->paragraph());
             $user->setPhone($faker->randomNumber(9));
             $user->setCompanyName($faker->words(2, true));
-            $user->setSiretNumber($faker->randomNumber(9));
+            $user->setSiretNumber('80244211100042');
             $user->setIsValidated($faker->boolean());
             $user->setTown($faker->city());
             $user->setZipcode($faker->randomNumber(5));
