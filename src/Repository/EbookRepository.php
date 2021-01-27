@@ -27,7 +27,7 @@ class EbookRepository extends ServiceEntityRepository
     {
         $query = $this
             ->createQueryBuilder('ebook')
-            ->innerJoin('ebook.expertise', 'expertise')
+            ->leftJoin('ebook.expertise', 'expertise')
             ->where('ebook.isValidated = 1');
 
         if (!empty($search->expertise)) {
