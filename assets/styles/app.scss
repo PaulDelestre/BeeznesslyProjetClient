@@ -135,6 +135,12 @@ p {
     width: 150%;
 }
 
+.size-img-experts {
+    width: 340px;
+    height: 263px;
+    object-fit: cover;
+}
+
 /* FIN PAGES ALL EXPERTS / EBOOKS */
 
 
@@ -371,7 +377,11 @@ h5{
     box-shadow: 2px 10px 13px -7px darkgrey, 3px 3px 3px -1px rgba(0,0,0,0);
 }
 
-.btn-blue {
+.btn-home-blue {
+    background-color: $blue;
+    color: white;
+}
+.btn-home-blue:hover {
     background-color: $blue;
     color: white;
 }
