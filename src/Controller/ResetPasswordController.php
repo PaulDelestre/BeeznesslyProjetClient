@@ -44,14 +44,10 @@ class ResetPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $email = $form->get('email')->getData();
-            if ($userRepository->findBy(['email' => $email])) {
-                return $this->processSendingPasswordResetEmail(
-                    $form->get('email')->getData(),
-                    $mailer
-                );
-            }
-            $this->addFlash('danger', 'Pas de compte client associé à cet email');
+            return $this->processSendingPasswordResetEmail(
+                $form->get('email')->getData(),
+                $mailer
+            );
         }
 
         return $this->render('reset_password/request.html.twig', [
