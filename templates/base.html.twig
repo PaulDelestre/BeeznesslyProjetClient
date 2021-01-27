@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}" />
+    <meta name="description" content="{% block metadescription %}{% endblock %}" />
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/MG2dyGb2/logo-type.png" />
+    <title>Beeznessly | {% block title %}{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Raleway:wght@200;300;400;500&display=swap"
@@ -13,7 +15,6 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" />
-    <title>Beeznessly | {% block title %}{% endblock %}</title>
     {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
     {% endblock %}

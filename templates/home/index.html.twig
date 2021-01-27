@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Les meilleurs experts du digital pour votre projet web{% endblock %}
+
+{% block metadescription %}
+Recherchez et travaillez avec le meilleur expert du digital. 
+Avec Beeznessly vous pouvez contacter les experts gratuitement, et même télécharger leurs livres blancs ! 
+SEO, SEA, Developpement web, communication, webmarketing: la plateforme vous propose toutes les expertises indispensables à votre projet web.
+{% endblock %}
 
 {% block body %}
 <div class="container-fluid">
@@ -22,21 +28,21 @@
 </div>
 <div class="container mb-5">
     <div class="row pt-5">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-5">
             <img src="https://i.postimg.cc/9fG9JFmt/inscription.png" class="img-fluid">
             <h2><span class="color-number">1.</span> Inscrivez-vous</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when
                 looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
                 of letters,</p>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-5">
             <img src="https://i.postimg.cc/1t73KLqr/undraw-people-search-wctu.png" class="img-fluid">
             <h2><span class="color-number">2.</span> Trouvez les experts</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when
                 looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
                 of letters,</p>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pr-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pr-5">
             <img src="https://i.postimg.cc/MHyK8XLd/undraw-Chatting-re-j55r.png" class="img-fluid">
             <h2><span class="color-number">3.</span> Entrez en contact</h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when
@@ -87,7 +93,7 @@
     <h2 class="text-center">Les expertises</h2>
     <div class="text-center pt-2">
         {% for expertise in expertises %}
-        <a class="btn btn-blue" href="" role="button">{{expertise.name}}</a>
+        <button class="btn btn-home-blue">{{expertise.name}}</button>
         {% endfor %}
     </div>
 </div>
