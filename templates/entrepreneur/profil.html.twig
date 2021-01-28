@@ -5,39 +5,73 @@
 {% block body %}
 {{ include('entrepreneur/_navEntrepreneur.html.twig') }}
 <div class="container-fluid wrapperPresta">
-  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <div class="d-none d-sm-block">
+    {{ include ('entrepreneur/picturePresta.html.twig')}}
+  </div>
   <div class="mt-5">
-    <h3 class="text-subnav"><span class="color-letter">I</span>nformation personnelles</h3>
+    <h1><span class="color-letter">I</span>nformation personnelles</h1><br>
   </div>
   <div class="card-deck">
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+    <div class="card alert mb-3 rounded-pill" role="alert">
+      {% if user.firstname is not empty %}
       {{ user.firstname }}
+      {% else %}
+      <p class="text-muted">Prénom</p>
+      {% endif %}
     </div>
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+    <div class="card alert mb-3 rounded-pill" role="alert">
+      {% if user.lastname is not empty %}
       {{ user.lastname }}
+      {% else %}
+      <p class="text-muted">Nom</p>
+      {% endif %}
     </div>
   </div>
   <div class="card-deck">
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-      {{ user.email }}
-    </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    <div class="card alert mb-3 rounded-pill" role="alert">
+      {% if user.phone is not empty %}
       {{ user.phone }}
+      {% else %}
+      <p class="text-muted">Téléphone</p>
+      {% endif %}
+    </div>
+    <div class="card mb-3 alert rounded-pill" role="alert">
+      {% if user.email is not empty %}
+      {{ user.email }}
+      {% else %}
+      <p class="text-muted">Email</p>
+      {% endif %}
     </div>
   </div>
-  <div class="alert alert-light rounded-pill" role="alert">
+  <div class="card alert rounded-pill" role="alert">
     {{ user.adress }}
+    {% if user.adress is not empty %}
+    {{ user.adress }}
+    {% else %}
+    <p class="text-muted">Adresse</p>
+    {% endif %}
   </div>
   <div class="card-deck">
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    <div class="card mb-3 alert rounded-pill" role="alert">
       {{ user.zipcode }}
+      {% if user.zipcode is not empty %}
+      {{ user.zipcode }}
+      {% else %}
+      <p class="text-muted">Code Postal</p>
+      {% endif %}
     </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    <div class="card mb-3 alert rounded-pill" role="alert">
       {{ user.town }}
+      {% if user.adress is not empty %}
+      {{ user.town }}
+      {% else %}
+      <p class="text-muted">Ville</p>
+      {% endif %}
     </div>
   </div>
   <a href="{{ path('entrepreneur_edit', {'id': user.id}) }}">
-    <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
+    <button type="button" class="btn btn-inscription nav-link mt-3"><i class="far fa-edit"></i> Editer mon
+      profil</button>
   </a>
 </div>
 {% endblock %}
