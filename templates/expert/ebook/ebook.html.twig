@@ -4,45 +4,34 @@
 
 {% block body %}
 {{ include('expert/navExpert.html.twig') }}
-<div class="container-fluid wrapperPresta">
-  <div class="picturePresta">
-    <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
-  </div>
-  <table class="table color-text-white">
+<div class="container-fluid wrapperPresta text-center">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <table class="table table-hover table-borderless table-striped table-responsive{-sm|-md|-lg|-xl}">
     <tbody>
       <tr>
         <th>
-          <h2><span class="color-letter">I</span>llustration</h2>
+          <h3 class="text-subnav"><span class="color-letter">T</span>itre</h3>
         </th>
         <th>
-          <h2><span class="color-letter">T</span>itre</h2>
+          <h3 class="text-subnav"><span class="color-letter">E</span>xpertise</h3>
         </th>
         <th>
-          <h2><span class="color-letter">E</span>xpertise</h2>
+          <h3 class="text-subnav"><span class="color-letter">M</span>odération</h3>
         </th>
         <th>
-          <h2><span class="color-letter">E</span>diteur</h2>
+          <h3 class="text-subnav"><span class="color-letter">T</span>éléchargement</h3>
         </th>
         <th>
-          <h2><span class="color-letter">M</span>odération</h2>
-        </th>
-        <th>
-          <h2><span class="color-letter">N</span>ombre de téléchargement</h2>
+          <h3 class="text-subnav"><span class="color-letter">A</span>ction</h3>
         </th>
       </tr>
       {% for ebook in ebooks %}
       <tr>
         <td>
-          <img class="w-50" src="/uploads/illustrationEbook/{{ ebook.illustration }}" alt="{{ ebook.illustration }}">
-        </td>
-        <td>
-          <h3>{{ebook.title}}</h3>
+          <p>{{ebook.title}}</p>
         </td>
         <td>
           <p>{{ebook.expertise}}</p>
-        </td>
-        <td>
-          <p>{{ebook.editorName}}</p>
         </td>
         <td>
           {% if ebook.isValidated == true %}
@@ -51,8 +40,8 @@
           <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
           {% endif %}
         </td>
-        <td>{{nbDownloadByEbook[ebook.id]}} <a href="{{ path('expert_ebook_download_show', {'id': ebook.id}) }}"> 
-          <button class="btn btn-inscription mb-3"><i class="fal fa-eye">voir plus</i></button>
+        <td><a href="{{ path('expert_ebook_download_show', {'id': ebook.id}) }}"> 
+          <button class="btn btn-inscription mb-3">{{nbDownloadByEbook[ebook.id]}}<br><i> voir plus</i></button>
        </td>
         <td>
           <a href="{{ path('expert_ebook_show', {'id': ebook.id}) }}"> 
