@@ -4,9 +4,12 @@
 
 {% block body %}
 {{ include('expert/navExpert.html.twig') }}
-<div class="container-fluid wrapperPresta text-center">
+<div class="container-fluid wrapperPresta">
   {{ include ('entrepreneur/picturePresta.html.twig')}}
-  <table class="table table-hover table-borderless table-striped table-responsive{-sm|-md|-lg|-xl}">
+  <div class="mt-4">
+    <h1><span class="color-letter">V</span>os ebooks</h1>
+  </div>
+  <table class="table table-hover table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
     <tbody>
       <tr>
         <th>
@@ -41,13 +44,14 @@
           {% endif %}
         </td>
         <td><a href="{{ path('expert_ebook_download_show', {'id': ebook.id}) }}"> 
-          <button class="btn btn-inscription mb-3">{{nbDownloadByEbook[ebook.id]}}<br><i> voir plus</i></button>
+          {{nbDownloadByEbook[ebook.id]}}<br><i class="color-letter"> voir plus</i>
        </td>
         <td>
           <a href="{{ path('expert_ebook_show', {'id': ebook.id}) }}"> 
-              <button class="btn btn-inscription mb-3"><i class="fal fa-eye"></i></button>
+            <i class="fal fa-eye color-letter"></i>
+            <br>
           <a href="{{ path('expert_ebook_edit', {'id': ebook.id}) }}"> 
-              <button class="btn btn-inscription"><i class="far fa-edit"></i></button>
+            <i class="far fa-edit color-letter"></i>
           </a>
         </td>
       </tr>

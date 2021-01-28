@@ -23,20 +23,32 @@
     <div class="card alert mb-3 rounded-pill">
       {{ user.email }}
     </div>
+    {% if user.phone is empty %}
+    {% else %}
     <div class="card alert  mb-3 rounded-pill">
       {{ user.phone }}
     </div>
+    {% endif %}
   </div>
+  {% if user.adress is empty %}
+    {% else %}
   <div class="card alert rounded-pill">
     {{ user.adress }}
   </div>
+  {% endif %}
   <div class="card-deck">
+    {% if user.zipcode is empty %}
+    {% else %}
     <div class="card alert  mb-3 rounded-pill">
       {{ user.zipcode }}
     </div>
+    {% endif %}
+    {% if user.town is empty %}
+    {% else %}
     <div class="alert card mb-3 rounded-pill">
       {{ user.town }}
     </div>
+    {% endif %}
   </div>
   <h2 class="mt-4"><span class="color-letter">V</span>otre Expertise</h2>
   <div class="card alert rounded-pill">

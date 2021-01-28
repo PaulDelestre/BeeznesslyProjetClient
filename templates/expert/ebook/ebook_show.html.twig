@@ -5,50 +5,39 @@
 {% block body %}
 {{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta text-center">
-    <div class="picturePresta">
-        <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}">
-    </div>
+    {{ include ('entrepreneur/picturePresta.html.twig')}}
+    <img class="w-50" src="/uploads/illustrationEbook/{{ ebook.illustration }}"
+                        alt="{{ ebook.illustration }}">
     <table class="table table-borderless">
         <tbody>
             <tr>
-                <td><img class="w-100" src="/uploads/illustrationEbook/{{ ebook.illustration }}"
-                        alt="{{ ebook.illustration }}"></td>
                 <td>
-                    <h1>{{ ebook.title }}</h1>
+                    <h1 class="mt-5">{{ ebook.title }}</h1>
                     <p><i class="far fa-calendar-alt"></i> Date de publication: {{ ebook.releaseDate ?
                         ebook.releaseDate|date('d M Y') : '' }} <br>
                         {% if ebook.author is not null %}
                         De {{ebook.author}}
                         {% endif %} <br>
-                    <h5 class="color-expertise"><i class="fas fa-check"></i> {{ebook.expertise}}</h5>
+                    <p> {{ebook.expertise}}</p>
                     </p>
                     <p> Editeur {{ ebook.editorName }}</p>
                     <p> Nombre de téléchargements : {{nbDownloads}}</p>
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>{{ ebook.description }}</td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    {% if ebook.isValidated == true %}
-                    <p><i class="fas fa-check-square color-letter"></i> Ebook validé par l'administrateur</p>
-                    {% else %}
-                    <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
-                    {% endif %}
+                    <p>{{ ebook.description }}</p>
+                    <p>{% if ebook.isValidated == true %}
+                        <p><i class="fas fa-check-square color-letter"></i> Ebook validé par l'administrateur</p>
+                        {% else %}
+                        <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
+                        {% endif %}</p>
                 </td>
             </tr>
         </tbody>
     </table>
     <div>
         <a href="{{ path('expert_ebook_edit', {'id': ebook.id}) }}">
-            <button type="button" class="btn btn-inscription mb-3"><i class="far fa-edit"></i> edit</button>
+            <button type="button" class="btn btn-inscription mb-3"><i class="far fa-edit"></i> Editer</button>
         </a>
-        {{ include('expert/ebook/ebook_delete_form.html.twig') }}
         <a href="{{ path('expert_ebook') }}">
-            <button type="button" class="btn btn-inscription nav-link">back to list</button>
+            <button type="button" class="btn btn-inscription nav-link">Retour</button>
         </a>
     </div>
 </div>

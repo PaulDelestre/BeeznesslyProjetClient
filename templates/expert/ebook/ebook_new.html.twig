@@ -4,12 +4,14 @@
 
 {% block body %}
 <div class="container-fluid wrapperPresta text-center">
-    <h1>Ajouter un nouveau Ebook</h1>
-    <table class="table table-borderless">
+    <div class="mt-2">
+        <h1 class="text-subnav"><span class="color-letter">A</span>jouter un nouveau ebook</h1>
+    </div>
+    
         {{ include('expert/ebook/ebook_form.html.twig') }}
         <a href="{{ path('expert_ebook') }}">
             <button type="button" class="btn btn-inscription nav-link">Retour à la liste</button>
         </a>
-    </table>
+   
 </div>
 {% endblock %}

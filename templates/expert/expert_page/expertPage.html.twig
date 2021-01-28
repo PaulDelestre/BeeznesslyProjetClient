@@ -5,14 +5,12 @@
 {% block body %}
 {{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta">
-    <div class="picturePresta">
-        <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
-    </div>
-    <div class="mt-4">
-        <h2><span class="color-letter">P</span>résentez-vous</h2>
+    {{ include ('entrepreneur/picturePresta.html.twig')}}
+    <div class="mt-3">
+        <h1><span class="color-letter">P</span>résentez-vous</h1>
     </div>
     
-    <div class="card mb-3 rounded">
+    <div class="card mb-3 rounded mt-4">
         <p class="p-4">{{ user.description }}</p>
     </div>
     
@@ -23,10 +21,9 @@
         </div>
     {% endfor %}
     </div>
-    
-    
+     
     <div class="mt-5">
-        <h2><span class="color-letter">V</span>otre identitée visuelle</h2>
+        <h1><span class="color-letter">V</span>otre identitée visuelle</h1>
     </div>
     
     <div class="card-deck mt-4 row">
