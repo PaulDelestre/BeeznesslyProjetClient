@@ -42,6 +42,7 @@ class ModerationEbookController extends AbstractCrudController
             Field::new('editorName', "Nom de l'éditeur"),
             Field::new('author', "Auteur"),
             AssociationField::new('expertise', "Catégorie")->hideOnIndex(),
+            AssociationField::new('user', "Expert")
         ];
     }
 
