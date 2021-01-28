@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conflit{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-around m-5">
+        <div class="col-lg-6 col-md-5 col-xs-12">
+            <h1 class="card-title">Erreur 409 - conflits</h1>
+            <p class="card-text">Vous essayez peut être de supprimer un élément qui est lié à d'autres. Vous devez
+                d'abord vous assurez que tous les éléments liés à ce que vous souhaitez supprimer sont également
+                supprimés.
+            </p>
+            <p class="card-text">Par exemple, si vous essayez de supprimer une expertise qui est utilisée par un
+                utilisateur, un ebook (téléchargés et/ou en ligne), vous devez d'abord vous assurez que cette
+                expertise n'est plus utilisée avant de pouvoir la supprimer.
+            </p>
+        </div>
+        <div class="col-lg-6 col-md-5 col-xs-12">
+            <img src="{{ asset('build/images/page409.png') }}" alt="illustration page 409" width="600">
+        </div>
+    </div>
+</div>
+{# <div class="container">
+    <div class="jumbotron m-5 color-inscription form-bg-login">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-7 col-md-7 col-xs-12 ml-3 color-banner-home">
+                <h1 class="color-connexion mb-3">Erreur 409 - conflits</h1>
+                <p>Vous essayez peut être de supprimer un élément qui est lié à d'autres. Vous devez d'abord vous assurez que tous les éléments liés à ce que vous souhaitez supprimer sont également supprimés.</p>
+                <p>Par exemple, si vous essayez de supprimer une expertise qui est utilisée par un utilisateur, un ebook (téléchargés et/ou en ligne), vous devez d'abord vous assurez que cette expertise n'est plus utilisée avant de pouvoir la supprimer</p>
+            </div>
+            <div class="col-lg-3 col-md-4 d-none d-sm-block text-center">
+                <img src="{{ asset('build/images/page409.png') }}" alt="illustration page 409">
+            </div>
+        </div>
+    </div>
+</div> #}
+{% endblock %}
