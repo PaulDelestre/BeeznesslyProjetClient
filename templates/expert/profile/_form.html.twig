@@ -17,6 +17,11 @@
         </div>
         <div class="col">
             {{ form_row(form.phone) }}
+            {% if user.phone is empty %}
+            <small class="form-text text-muted">
+                ** Format sans espaces, sans tirets
+            </small>
+            {% endif %}
         </div>
     </div>
     <div class="row mt-3">

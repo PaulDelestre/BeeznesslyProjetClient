@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ebook.title}}, 
+{{ebook.title}},
 {{ebook.expertise}}
 {% endblock %}
 
 {% block metadescription %}
- Avec Beeznessly, téléchargez des livres blancs, 
- trouvez et collaborez avec les meilleurs experts du digital. 
+Avec Beeznessly, téléchargez des livres blancs,
+trouvez et collaborez avec les meilleurs experts du digital.
 {% endblock %}
 
 {% block body %}
@@ -68,8 +68,7 @@
                                         <tr>
                                             <div class="text-center">
                                                 <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
-                                                    class="card-img-top" style="width: 15rem;"
-                                                    alt="{{ ebook.title }}">
+                                                    class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
                                                 <button type="button"
                                                     class="btn btn-connexion d-lg-none d-md-none d-sm-none"
                                                     data-toggle="modal" data-target="#exampleModalCenter">
@@ -104,8 +103,9 @@
         </div>
     </div>
 </div>
+<div class="hr-expert">
+    <hr>
 </div>
-<div class="hr-expert"><hr></div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">

@@ -5,69 +5,64 @@
 {% block body %}
 {{ include('entrepreneur/_navEntrepreneur.html.twig') }}
 <div class="container-fluid wrapperPresta">
-    {{ include ('entrepreneur/picturePresta.html.twig')}}
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
   <div class="mt-5">
     <h1><span class="color-letter">I</span>nformation personnelles</h1><br>
   </div>
   <div class="card-deck">
-    <div class="card alert mb-3 rounded-pill" role="alert">
-      {% if user.firstname is not empty %}
-      {{ user.firstname }}
-      {% else %}
-      <p class="text-muted">Prénom</p>
-      {% endif %}
-    </div>
-    <div class="card alert mb-3 rounded-pill" role="alert">
-      {% if user.lastname is not empty %}
-      {{ user.lastname }}
-      {% else %}
-      <p class="text-muted">Nom</p>
-      {% endif %}
-    </div>
-  </div>
-  <div class="card-deck">
-    <div class="card alert mb-3 rounded-pill" role="alert">
-      {% if user.phone is not empty %}
-      {{ user.phone }}
-      {% else %}
-      <p class="text-muted">Téléphone</p>
-      {% endif %}
-    </div>
-    <div class="card mb-3 alert rounded-pill" role="alert">
-      {% if user.email is not empty %}
-      {{ user.email }}
-      {% else %}
-      <p class="text-muted">Email</p>
-      {% endif %}
-    </div>
-  </div>
-  <div class="card alert rounded-pill" role="alert">
-    {% if user.adress is not empty %}
-    {{ user.adress }}
+    {% if user.firstname is empty %}
     {% else %}
-    <p class="text-muted">Adresse</p>
+    <div class="card alert mb-3 rounded-pill">
+      {{ user.firstname }}
+    </div>
+    {% endif %}
+    {% if user.lastname is empty %}
+    {% else %}
+    <div class="card alert mb-3 rounded-pill">
+      {{ user.lastname }}
+    </div>
     {% endif %}
   </div>
   <div class="card-deck">
-    <div class="card mb-3 alert rounded-pill" role="alert">
-      {% if user.zipcode is not empty %}
+    {% if user.phone is empty %}
+    {% else %}
+    <div class="card alert mb-3 rounded-pill">
+      {{ user.phone }}
+    </div>
+    {% endif %}
+    {% if user.email is empty %}
+    {% else %}
+    <div class="card mb-3 alert rounded-pill">
+      {{ user.email }}
+    </div>
+    {% endif %}
+  </div>
+  {% if user.adress is empty %}
+  {% else %}
+  <div class="card alert rounded-pill">
+    {{ user.adress }}
+  </div>
+  {% endif %}
+  <div class="card-deck">
+    {% if user.zipcode is empty %}
+    {% else %}
+    <div class="card mb-3 alert rounded-pill">
       {{ user.zipcode }}
-      {% else %}
-      <p class="text-muted">Code Postal</p>
-      {% endif %}
     </div>
-    <div class="card mb-3 alert rounded-pill" role="alert">
-      {% if user.town is not empty %}
+    {% endif %}
+    {% if user.town is empty %}
+    {% else %}
+    <div class="card mb-3 alert rounded-pill">
       {{ user.town }}
-      {% else %}
-      <p class="text-muted">Ville</p>
-      {% endif %}
     </div>
+    {% endif %}
   </div>
   <a href="{{ path('entrepreneur_edit', {'id': user.id}) }}">
     <button type="button" class="btn btn-inscription nav-link mt-3"><i class="far fa-edit"></i> Editer mon
       profil</button>
   </a>
 </div>
-<div class="hr-expert mt-5"><hr></div>
+<div class="hr-expert mt-5">
+  <hr>
+</div>
 {% endblock %}

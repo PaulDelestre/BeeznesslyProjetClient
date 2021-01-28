@@ -22,14 +22,14 @@ class EbookType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Titre du ebook'
+                    'placeholder' => 'Titre du ebook *'
                     ]
             ])
             ->add('description', TextareaType::class, [
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Description du ebook'
+                    'placeholder' => 'Description du ebook *'
                     ]
             ])
             ->add('releaseDate', DateType::class, [
@@ -37,14 +37,14 @@ class EbookType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Date de publication'
+                    'placeholder' => 'Date de publication *'
                     ]
             ])
             ->add('editorName', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Nom de l\'editeur'
+                    'placeholder' => 'Nom de l\'editeur *'
                     ]
             ])
             ->add('author', TextType::class, [
@@ -59,19 +59,22 @@ class EbookType extends AbstractType
                 'choice_label' => 'name',
                 'expanded' => false,
                 'by_reference' => true,
-                'label' => "Expertise principale du ebook",
+                'required' => true,
+                'label' => "Expertise principale du ebook *",
             ])
             ->add('illustrationFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => 'Ajouter l\'illustration du ebook',
+                'required' => true,
+                'label' => 'Ajouter l\'illustration du ebook * (format conseillé : 236 × 366)',
             ])
             ->add('documentEbookFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => 'Ajouter le pdf',
+                'required' => true,
+                'label' => 'Ajouter le pdf *',
             ])
         ;
     }
