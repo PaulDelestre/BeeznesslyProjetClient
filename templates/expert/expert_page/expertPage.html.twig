@@ -10,7 +10,14 @@
         <h1><span class="color-letter">P</span>résentez-vous</h1>
     </div>
     <div class="card mb-3 rounded mt-4">
+        {% if user.description is not empty %}
         <p class="p-4">{{ user.description }}</p>
+        {% else %}
+        <h4 class="pl-4 pr-4 pt-4">Bienvenue sur notre profil !</h4> <br> 
+        <p class="pl-4 pr-4">Nous sommes disponibles par message pour répondre à toutes vos questions.
+        <br>A bientôt
+        </p>
+        {% endif %}
     </div>
     <div class="row text-center">
         {% for expertise in user.expertise %}
@@ -24,12 +31,22 @@
     </div>
     <div class="card-deck mt-4 row">
         <div class="col">
+            {% if user.logo is empty %}
+            <img id="banner_picture" class="img-fluid mb-3" src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
+                alt="{{ user.banner }}">
+            {% else %}
             <img id="banner_picture" class="img-fluid mb-3" src="/uploads/banner/{{ user.banner }}"
                 alt="{{ user.banner }}">
+            {% endif %}
             <h4><span class="color-letter">B</span>annière</h4>
         </div>
         <div class="col">
+            {% if user.logo is empty %}
+            <p class="logo-default">LOGO</p>
+            <img id="logo" class="img-fluid mb-3" src="https://i.postimg.cc/MG2dyGb2/logo-type.png" alt="{{ user.logo }}">
+            {% else %}
             <img id="logo" class="img-fluid mb-3" src="/uploads/logo/{{ user.logo }}" alt="{{ user.logo }}">
+            {% endif %}
             <h4><span class="color-letter">L</span>ogo</h4>
         </div>
     </div>

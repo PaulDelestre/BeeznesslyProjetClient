@@ -58,6 +58,7 @@ class UserType extends AbstractType
             ])
             ->add('siretNumber', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Numéro de SIRET'
                     ]

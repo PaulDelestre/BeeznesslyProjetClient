@@ -58,9 +58,12 @@
       {{ user.companyName }}
     </div>
     {% endif %}
+    {% if user.siretNumber is empty %}
+    {% else %}
     <div class="card mb-3 alert rounded-pill">
       {{ user.siretNumber }}
     </div>
+    {% endif %}
   </div>
   <a href="{{ path('expert_edit', {'id': user.id}) }}">
     <button type="button" class="btn btn-inscription nav-link mt-3"><i class="far fa-edit"></i> Editer mon profil</button>

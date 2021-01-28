@@ -26,6 +26,9 @@ class ContactFormType extends AbstractType
             ->add('lastname', TextType::class, [
                 'label' => false,
                 'required' => true,
+                'attr' => [
+                    'placeholder' => 'Nom *'
+                    ]
             ])
             ->add('subject', TextType::class, [
                 'label' => false,
