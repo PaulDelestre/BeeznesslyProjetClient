@@ -1,20 +1,44 @@
-<div class="mt-5">
+<div class="mt-2">
     <h3 class="text-subnav"><span class="color-letter">E</span>diter vos informations</h3>
 </div>
-{{ form_start(form) }}
-    {{ form_row(form.firstname) }}
-    {{ form_row(form.lastname) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.adress) }}
-    {{ form_row(form.zipcode) }}
-    {{ form_row(form.town) }}
-    <p>{{ form_label(form.profilePictureFile) }}</p>
-    {{form_widget(form.profilePictureFile)}}
-    {{ form_widget(form._token) }} 
-    
-    <div class="text-center">
-<button class="btn btn-inscription nav-link mt-5 text-center">{{ button_label|default('Save') }}</button>
-<a href="{{ path('entrepreneur_profil')}}">
-    <button type="button" class="btn btn-inscription nav-link mt-5 text-center">Retour</button>
-    </a>
+<div class="text-center">
+    {{ form_start(form) }}
+    <div class="row mt-5">
+        <div class="col">
+            {{ form_row(form.firstname) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.lastname) }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_row(form.email) }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_row(form.adress) }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_row(form.town) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.zipcode) }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_row(form.profilePictureFile) }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-inscription text-center mb-3">{{ button_label|default('Enregistrer')
+        }}</button>
 </div>
+<a href="{{ path('entrepreneur_profil')}}">
+    <button type="button" class="btn btn-inscription text-center">Retour</button>
+</a>
+{{ form_widget(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

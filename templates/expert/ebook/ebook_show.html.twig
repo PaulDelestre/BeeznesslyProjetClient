@@ -6,8 +6,7 @@
 {{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta text-center">
     {{ include ('entrepreneur/picturePresta.html.twig')}}
-    <img class="w-50" src="/uploads/illustrationEbook/{{ ebook.illustration }}"
-                        alt="{{ ebook.illustration }}">
+    <img class="w-50" src="/uploads/illustrationEbook/{{ ebook.illustration }}" alt="{{ ebook.illustration }}">
     <table class="table table-borderless">
         <tbody>
             <tr>
@@ -24,10 +23,10 @@
                     <p> Nombre de téléchargements : {{nbDownloads}}</p>
                     <p>{{ ebook.description }}</p>
                     <p>{% if ebook.isValidated == true %}
-                        <p><i class="fas fa-check-square color-letter"></i> Ebook validé par l'administrateur</p>
-                        {% else %}
-                        <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
-                        {% endif %}</p>
+                    <p><i class="fas fa-check-square color-letter"></i> Ebook validé par l'administrateur</p>
+                    {% else %}
+                    <p><i class="fas fa-sync-alt color-letter"></i> Ebook en cours de validation</p>
+                    {% endif %}</p>
                 </td>
             </tr>
         </tbody>
@@ -40,5 +39,8 @@
             <button type="button" class="btn btn-inscription nav-link">Retour</button>
         </a>
     </div>
+</div>
+<div class="hr-expert mt-5">
+    <hr>
 </div>
 {% endblock %}

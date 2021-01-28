@@ -5,9 +5,7 @@
 {% block body %}
 {{ include('entrepreneur/_navEntrepreneur.html.twig') }}
 <div class="container-fluid wrapperPresta">
-  <div class="d-none d-sm-block">
     {{ include ('entrepreneur/picturePresta.html.twig')}}
-  </div>
   <div class="mt-5">
     <h1><span class="color-letter">I</span>nformation personnelles</h1><br>
   </div>
@@ -44,7 +42,6 @@
     </div>
   </div>
   <div class="card alert rounded-pill" role="alert">
-    {{ user.adress }}
     {% if user.adress is not empty %}
     {{ user.adress }}
     {% else %}
@@ -53,7 +50,6 @@
   </div>
   <div class="card-deck">
     <div class="card mb-3 alert rounded-pill" role="alert">
-      {{ user.zipcode }}
       {% if user.zipcode is not empty %}
       {{ user.zipcode }}
       {% else %}
@@ -61,8 +57,7 @@
       {% endif %}
     </div>
     <div class="card mb-3 alert rounded-pill" role="alert">
-      {{ user.town }}
-      {% if user.adress is not empty %}
+      {% if user.town is not empty %}
       {{ user.town }}
       {% else %}
       <p class="text-muted">Ville</p>
@@ -74,4 +69,5 @@
       profil</button>
   </a>
 </div>
+<div class="hr-expert mt-5"><hr></div>
 {% endblock %}
