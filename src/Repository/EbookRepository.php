@@ -23,15 +23,12 @@ class EbookRepository extends ServiceEntityRepository
         $this->paginator = $paginator;
     }
 
-     /**
-     * @return PaginationInterface
-     */
-    public function searchEbooks(searchEbooksData $search): PaginationInterface
+    public function searchEbooks(searchEbooksData $search)
     {
         $query = $this
             ->createQueryBuilder('ebook')
-            ->from($this->_entityName, 'e')
-            ->leftJoin('ebook.expertise', 'expertise');
+            ->leftJoin('ebook.expertise', 'expertise')
+            ->where('ebook.isValidated = 1');
 
         if (!empty($search->expertise)) {
             $query = $query
@@ -67,11 +64,16 @@ class EbookRepository extends ServiceEntityRepository
                 ->setParameter('q', "%{$search->q}%");
         }
 
-        $query = $query->getQuery()->getResult();
-        return $this->paginator->paginate(
-            $query,
-            1,
-            12
-        );
+        return $query->getQuery()->getResult();
+    }
+
+    public function ebooksHome ()
+    {
+        return $this->createQueryBuilder('ebook')
+            ->where('ebook.isValidated = 1')
+            ->orderby('ebook.id', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
     }
 }

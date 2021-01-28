@@ -2,10 +2,10 @@
     <div class="card-border">
         <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show-img">
             {% if expert.banner is empty %}
-                <img class="card-img-top" src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
+                <img class="card-img-top size-img-experts" src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
                     alt="Banner picture">
             {% else %}
-            <img src="/uploads/banner/{{ expert.banner }}" class="card-img-top" alt="banner picture {{expert.companyName}}">
+            <img src="/uploads/banner/{{ expert.banner }}" class="card-img-top size-img-experts" alt="banner picture {{expert.companyName}}">
             {% endif %}
             <div class="text-right color-provider mr-3">
                 <button class="btn border-pres pl-3 pr-3">
@@ -16,7 +16,7 @@
             </div>
         </a>
         <div class="card-body">
-            {% if expert.companyName is not null %}
+            {% if expert.companyName is not empty %}
             <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show">
                 <h2>
                     {{expert.companyName}}

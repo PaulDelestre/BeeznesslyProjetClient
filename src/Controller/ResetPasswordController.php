@@ -44,14 +44,10 @@ class ResetPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $email = $form->get('email')->getData();
-            if ($userRepository->findBy(['email' => $email])) {
-                return $this->processSendingPasswordResetEmail(
-                    $form->get('email')->getData(),
-                    $mailer
-                );
-            }
-            $this->addFlash('danger', 'Pas de compte client associé à cet email');
+            return $this->processSendingPasswordResetEmail(
+                $form->get('email')->getData(),
+                $mailer
+            );
         }
 
         return $this->render('reset_password/request.html.twig', [
@@ -164,7 +160,7 @@ class ResetPasswordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from(new Address('beeznessly@gmail.com', 'Beeznessly'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
+            ->subject('Votre demande de réinitialisation de mot de passe')
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
