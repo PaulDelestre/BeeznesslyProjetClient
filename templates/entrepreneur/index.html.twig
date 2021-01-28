@@ -5,27 +5,39 @@
 {% block body %}
 {{ include('entrepreneur/_navEntrepreneur.html.twig') }}
 <div class="container-fluid wrapperPresta d-flex justify-content-center">
-  <div class="media">
-    {% include 'design_form_yellow.html.twig'%}
-    <div class="media-body">
-      <h1 class="mt-0 text-subnav"><span class="color-letter">B</span>ienvenue dans votre compte {{user.firstname}} !
-      </h1>
-      <p>Dans cet espace, vous pouvez :
-      <ul>
-        <li>Modifier vos <a href="{{ path('entrepreneur_profil')}}"><span class="color-letter">informations
-              personnelles</span></a>,</li>
-        <li>Accéder aux <a href="{{ path('entrepreneur_ebook')}}"><span class="color-letter">ebooks</span></a> que vous
-          avez téléchargés,</li>
-        <li>Consulter vos <a href="{{ path('entrepreneur_messagerie')}}"><span class="color-letter">messages</span></a>.
-        </li>
-      </ul>
-      </p>
-      <a href="{{path ('home_ebooks')}}">
-        <button type="button" class=" btn btn-inscription">Télécharger un ebook</button>
-      </a>
-      <a href="{{path ('home_experts')}}">
-        <button type="button" class=" btn btn-inscription">Contacter un expert</button>
-      </a>
+  <div class="row justify-content-around align-items-center">
+    <div class="col-lg-4 col-md-6">
+      {% include 'design_form_yellow.html.twig'%}
+    </div>
+    <div class="col-lg-8 col-md-6">
+      <div class="pb-3">
+        <h1><span class="color-letter">B</span>ienvenue dans votre compte {{user.firstname}} !</h1><br>
+        <p>Dans cet espace, vous pouvez :</p>
+        <ul>
+          <li>
+            <p>Modifier vos <a href="{{ path('entrepreneur_profil')}}"><span class="color-letter">informations
+                  personnelles</span></a>,</p>
+          </li>
+          <li>
+            <p>Accéder aux <a href="{{ path('entrepreneur_ebook')}}"><span class="color-letter">ebooks</span></a> que
+              vous
+              avez téléchargés,</p>
+          </li>
+          <li>
+            <p>Consulter vos <a href="{{ path('entrepreneur_messagerie')}}"><span
+                  class="color-letter">messages</span></a>.
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <a href="{{path ('home_ebooks')}}">
+          <button type="button" class=" btn btn-inscription mr-2">Télécharger un ebook</button>
+        </a>
+        <a href="{{path ('home_experts')}}">
+          <button type="button" class=" btn btn-inscription">Contacter un expert</button>
+        </a>
+      </div>
     </div>
   </div>
 </div>
