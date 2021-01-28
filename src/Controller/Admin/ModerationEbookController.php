@@ -41,7 +41,8 @@ class ModerationEbookController extends AbstractCrudController
             Field::new('releaseDate', "Date de sortie"),
             Field::new('editorName', "Nom de l'éditeur"),
             Field::new('author', "Auteur"),
-            AssociationField::new('expertise', "Catégorie"),
+            AssociationField::new('expertise', "Catégorie")->hideOnIndex(),
+            AssociationField::new('user', "Expert")
         ];
     }
 
@@ -52,7 +53,16 @@ class ModerationEbookController extends AbstractCrudController
         FilterCollection $filters
     ): QueryBuilder {
         $response = $this->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        $response->where("entity.isValidated = 0");
+        $search = $searchDto->getQuery();
+        $response->andwhere('entity.isValidated = 0');
+        if (isset($search) && !empty($search)) {
+            $response->andWhere("entity.title LIKE :search 
+            OR entity.description LIKE :search 
+            OR entity.editorName LIKE :search
+            OR entity.author LIKE :search
+            ")
+            ->setParameter('search', '%' . $search . '%');
+        }
         return $response;
     }
 }

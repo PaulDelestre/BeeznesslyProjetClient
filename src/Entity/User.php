@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -68,7 +69,7 @@ class User implements UserInterface, \Serializable
     private $companyName;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $siretNumber;
 
@@ -125,6 +126,11 @@ class User implements UserInterface, \Serializable
 
     /**
     * @Vich\UploadableField(mapping="logo_file", fileNameProperty="logo")
+    * @Assert\File(
+    *     maxSize = "3000k",
+    *     mimeTypes = {"image/png"},
+    *     mimeTypesMessage = "Seul le format png est accepté"
+    * )
     * @var File
     */
     private $logoFile;
@@ -137,6 +143,11 @@ class User implements UserInterface, \Serializable
 
     /**
     * @Vich\UploadableField(mapping="banner_file", fileNameProperty="banner")
+    * @Assert\File(
+    *     maxSize = "3000k",
+    *     mimeTypes = {"image/png", "image/jpeg"},
+    *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
+    * )
     * @var File
     */
     private $bannerFile;
@@ -149,6 +160,11 @@ class User implements UserInterface, \Serializable
 
     /**
     * @Vich\UploadableField(mapping="profile_picture_file", fileNameProperty="profile_picture")
+    * @Assert\File(
+    *     maxSize = "3000k",
+    *     mimeTypes = {"image/png", "image/jpeg"},
+    *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
+    * )
     * @var File
     */
     private $profilePictureFile;
@@ -326,12 +342,12 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getSiretNumber(): ?int
+    public function getSiretNumber(): ?string
     {
         return $this->siretNumber;
     }
 
-    public function setSiretNumber(?int $siretNumber): self
+    public function setSiretNumber(?string $siretNumber): self
     {
         $this->siretNumber = $siretNumber;
 

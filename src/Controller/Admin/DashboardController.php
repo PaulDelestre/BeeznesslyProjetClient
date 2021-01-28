@@ -27,18 +27,18 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('/admin.html.twig');
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('0920 Paris Php Beeznessly');
+            ->setTitle('Admin Beeznessly');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Accueil', 'fa fa-home');
+        yield MenuItem::linkToRoute('Retour à Beeznessly', 'fa fa-home', 'home');
         yield MenuItem::linkToCrud('Messages', 'fas fa-envelope', Contact::class);
         yield MenuItem::subMenu('Modération', 'fas fa-check-circle')->setSubItems([
             MenuItem::linkToCrud('Experts', 'fas fa-user-cog', User::class)
@@ -55,7 +55,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Gestion', 'fas fa-pencil-ruler')->setSubItems([
             MenuItem::linkToCrud('Expertises', 'fas fa-briefcase', Expertise::class),
             MenuItem::linkToCrud("Type de prestataire", 'fas fa-city', Provider::class),
-            MenuItem::linkToCrud('Type de Service', 'fas fa-concierge-bell', TypeService::class)
         ]);
     }
 }

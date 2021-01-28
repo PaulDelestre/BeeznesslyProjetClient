@@ -13,14 +13,14 @@ class ContactFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $contact = new Contact();
             $contact->setFirstname($faker->firstName());
             $contact->setLastname($faker->lastName());
-            $contact->setEmail($faker->safeEmail());
+            $contact->setEmail($this->getReference('user_' . rand(11, 13))->getEmail());
             $contact->setMessage($faker->paragraph(4, true));
             $contact->setSubject($faker->words(4, true));
-            $contact->setUser($this->getReference('user_' . rand(0, 9)));
+            $contact->setUser($this->getReference('user_' . rand(0, 4)));
             $manager->persist($contact);
         }
         $manager->flush();

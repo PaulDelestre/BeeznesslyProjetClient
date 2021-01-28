@@ -8,6 +8,7 @@ use App\Entity\Contact;
 use App\Entity\Download;
 use App\Form\RgpdFormType;
 use App\Form\ContactFormType;
+use App\Form\ContactExpertFormType;
 use App\Entity\User;
 use App\Data\SearchEbooksData;
 use App\Form\SearchEbooksType;
@@ -30,10 +31,16 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ExpertiseRepository $expertiseRepository): Response
+    public function index(ExpertiseRepository $expertiseRepository, EbookRepository $ebookRepository): Response
     {
+        // $ebooks = $this->getDoctrine()->getRepository(Ebook::class)->findBy([],
+        //     ['id' => 'ASC'], 4);
+
+        $ebooks = $ebookRepository->ebooksHome();
+
         return $this->render('home/index.html.twig', [
-            'expertises' => $expertiseRepository->findAll()
+            'expertises' => $expertiseRepository->findAll(),
+            'ebooks' => $ebooks
         ]);
     }
 
@@ -79,15 +86,12 @@ class HomeController extends AbstractController
         $search = new SearchEbooksData();
         $searchForm = $this->createForm(SearchEbooksType::class, $search);
         $searchForm->handleRequest($request);
-        $ebooks = $ebookRepository->searchEbooks($search);
-
-        $donnees = $this->getDoctrine()->getRepository(Ebook::class)->findBy([], ['id' => 'desc']);
-
+        $allEbooks = $ebookRepository->searchEbooks($search);
 
         // Paginate the results of the query
         $ebooks = $paginator->paginate(
             // Doctrine Query, not results
-            $donnees,
+            $allEbooks,
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page
@@ -109,10 +113,13 @@ class HomeController extends AbstractController
         MailerService $mailerService
     ): Response {
         $contact = new Contact();
-        $contactForm = $this->createForm(ContactFormType::class, $contact);
+        $contactForm = $this->createForm(ContactExpertFormType::class, $contact);
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $contact->setEmail($this->getUser()->getEmail());
+            $contact->setFirstname($this->getUser()->getFirstname());
+            $contact->setLastname($this->getUser()->getLastname());
             $contact->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
@@ -196,5 +203,21 @@ class HomeController extends AbstractController
             'contact' => $contact,
             'contactForm' => $contactForm->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faq()
+    {
+        return $this->render('home/faq.html.twig');
+    }
+
+    /**
+     * @Route("/mentions-legales", name="mentions_legales")
+     */
+    public function mentionsLegales()
+    {
+        return $this->render('home/mentions_legales.html.twig');
     }
 }

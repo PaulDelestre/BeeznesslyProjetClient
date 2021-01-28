@@ -16,6 +16,8 @@ use Vich\UploaderBundle\Handler\DownloadHandler;
 use App\Repository\DownloadRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\ContactRepository;
 
 /**
  * @Route("/prestataire", name="expert_")
@@ -72,8 +74,10 @@ class ExpertController extends AbstractController
      /**
      * @Route("/messagerie", methods={"GET"}, name="messagerie")
      */
-    public function message(): Response
-    {
+    public function message(
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
             return $this->render('expert/validation.html.twig', [
@@ -81,8 +85,20 @@ class ExpertController extends AbstractController
             ]);
         }
 
+        $email = $user->getContacts();
+
+          // Paginate the results of the query
+          $messages = $paginator->paginate(
+              // Doctrine Query, not results
+              $email,
+              // Define the page parameter
+              $request->query->getInt('page', 1),
+              // Items per page
+              5
+          );
+
         return $this->render('expert/message/messagerie.html.twig', [
-            'contacts' => $user->getContacts(),
+            'contacts' => $messages,
             'user' => $user = $this->getUser()
         ]);
     }
@@ -108,8 +124,11 @@ class ExpertController extends AbstractController
       /**
      * @Route("/ebook", methods={"GET"}, name="ebook")
      */
-    public function ebooks(DownloadRepository $donwloadRepository): Response
-    {
+    public function ebooks(
+        DownloadRepository $donwloadRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
         $user = $this->getUser();
         if ($user->getIsValidated() == false) {
             return $this->render('expert/validation.html.twig', [
@@ -125,8 +144,18 @@ class ExpertController extends AbstractController
             $nbDownloadByEbook[$ebook->getId()] = $nbDownloads;
         }
 
+        // Paginate the results of the query
+        $allEbooks = $paginator->paginate(
+            // Doctrine Query, not results
+            $ebooks,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
+
         return $this->render('expert/ebook/ebook.html.twig', [
-            'ebooks' => $ebooks,
+            'ebooks' => $allEbooks,
             'nbDownloadByEbook' => $nbDownloadByEbook,
             'user' => $user
         ]);

@@ -28,6 +28,13 @@ It's symfony website-skeleton project with some additional tools to validate cod
 
 > You can watch this very tiny short video : (Loom : verrouillage branches GitHub)[https://www.loom.com/share/ad0c641d0b9447be9e40fa38a499953b]
 
+## Project 3 - Beeznessly
+
+This project is in partnership with the company Beeznessly.
+Beeznessly has for goal to connect entrepreneurs with digital experts and facilitate the download of ebooks.
+
+(https://i.postimg.cc/VNbWDnn2/Capture-d-e-cran-2021-01-28-a-11-41-17.png)
+
 ## Getting Started for Students
 
 ### Prerequisites
@@ -38,9 +45,10 @@ It's symfony website-skeleton project with some additional tools to validate cod
 ### Install
 
 1. Clone this project
-2. Run `composer install`
-3. Run `yarn install`
-4. Run `yarn encore dev` to build assets
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Run `composer install`
+4. Run `yarn install`
+5. Run `yarn encore dev` to build assets
 
 ### Working
 
@@ -84,6 +92,10 @@ Caprover configuration files are :
 ## Built With
 
 * [Symfony](https://github.com/symfony/symfony)
+* [Boostrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+* [Twig](https://twig.symfony.com/)
+* [HTML/CSS]
+* [MySQL](https://www.mysql.com/fr/)
 * [GrumPHP](https://github.com/phpro/grumphp)
 * [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 * [PHPStan](https://github.com/phpstan/phpstan)

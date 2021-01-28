@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -19,35 +20,50 @@ class ContactFormType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Prénom'
+                    'placeholder' => 'Prénom *'
                     ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Nom'
+                    'placeholder' => 'Nom *'
                     ]
             ])
             ->add('subject', TextType::class, [
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Objet'
+                    'placeholder' => 'Objet *'
                     ]
+            ])
+            ->add('companyName', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Nom de votre entreprise'
+                    ]
+            ])
+            ->add('phoneNumber', TelType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Téléphone **'
+                ]
             ])
             ->add('email', EmailType::class, [
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Email'
+                    'placeholder' => 'Email *'
                     ]
             ])
             ->add('message', TextareaType::class, [
                 'label' => false,
-                'required' => false,
+                'required' => true,
                 'attr' => [
-                    'placeholder' => 'Message'
+                    'placeholder' => 'Message *',
+                    'rows' => '10'
                     ]
             ])
 

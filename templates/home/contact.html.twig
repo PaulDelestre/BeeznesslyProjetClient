@@ -2,7 +2,12 @@
 
 {% block title %}Contact{% endblock %}
 
+{% block metadescription %}
+ Contactez l'équipe Beeznessly. Nous vous répondrons dans les plus brefs délais. 
+{% endblock %}
+
 {% block body %}
+<div class="hr-expert"><hr></div>
 <div class="container pt-5">
     <div class="jumbotron m-5 color-contact-card">
         <div id="flash_message" class="alert alert-danger d-none"></div>
@@ -16,6 +21,14 @@
                     </div>
                     <div class="col-md-6 col-sm-12 pb-3">
                         {{ form_row(contactForm.lastname) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.companyName) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.phoneNumber) }}
                     </div>
                 </div>
                 <div class="row">
@@ -33,6 +46,13 @@
                         {{ form_row(contactForm.message) }}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        <small>* Champs obligatoires<br>
+                            ** Format sans espaces, sans tirets
+                        </small>
+                    </div>
+                </div>
                 <div class="text-center my-4">
                     <button class="btn btn-inscription" type="submit" id="submit-contact"
                         data-sitekey="6LfJMCQaAAAAAJfXuLTH8XpIyUbYJiFE52pMX4hO"><i class="far fa-paper-plane"></i> {{
@@ -46,4 +66,5 @@
         </div>
     </div>
 </div>
+<div class="hr-expert"><hr></div>
 {% endblock %}

@@ -2,24 +2,28 @@
     <div class="container pb-3">
         <div class="row pt-5">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
-                <h2>BEEZNESS<span class="color-number">LY</span></h2>
-                <p>FAQ</p>
-                <p>A propos de nous</p>
-                <p>Mentions légales</p>
+                <h3>BEEZNESS<span class="color-number">LY</span></h3>
+                <p><a href="{{ path('faq')}}">FAQ</a></p>
+                <p><a href="{{ path('contact')}}">Contact</a></p>
+                <p><a href="{{ path('mentions_legales')}}">Mentions légales</a></p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-2 pr-4">
-                <h2>Nous rencontrer</h2>
+                <h3>Nous rencontrer</h3>
                 <p>Beeznessly</p>
                 <p>26 rue de la Madeleine</p>
                 <p>75020</p>
-                <img src="https://i.postimg.cc/NF3Gfk4w/Capture-d-e-cran-2020-12-03-a-09-54-11.png"
-                    class="img-fluid" width="200">
+                <div class="container-fluid">
+                    <a class="navbar-brand"><i class="fab fa-instagram"></i></a>
+                    <a class="navbar-brand"><i class="fab fa-facebook-square"></i></a>
+                    <a class="navbar-brand"><i class="fab fa-twitter-square"></i></a>
+                    <a class="navbar-brand"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pr-4">
-                <h2>Entrepreneur</h2>
-                <p>Découvrir tous les Beez experts</p>
-                <p>Créer mon profil pour télécharger les e-book</p>
-                <h2>Experts</h2>
+                <h3>Entrepreneur</h3>
+                <p><a href="{{ path('home_ebooks')}}">Découvrez les ebooks de nos experts</a></p>
+                <h3>Experts</h3>
+                <p><a href="{{path('app_register_expert')}}">Créez votre profil pour publier vos ebooks</a></p>
             </div>
         </div>
     </div>
