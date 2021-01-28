@@ -3,6 +3,7 @@
 {% block title %}Editer mon profil {% endblock %}
 
 {% block body %}
+{{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta">
     {{ include('expert/profile/_form.html.twig', {'button_label': 'Update'}) }}
 </div>

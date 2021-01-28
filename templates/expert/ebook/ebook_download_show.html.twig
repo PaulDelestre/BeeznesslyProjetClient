@@ -5,24 +5,24 @@
 {% block body %}
 {{ include('expert/navExpert.html.twig') }}
 <div class="container-fluid wrapperPresta">
-    <div class="picturePresta">
-        <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
-    </div>
-    <h1>Entrepreneurs qui ont téléchargé cet ebook</h1>
-    <table class="table color-text-white">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+    <div class="mt-2">
+      <h1 class="text-subnav"><span class="color-letter">I</span>nfos téléchargement</h1>
+  </div>
+    <table class="table table-hover table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
         <thead>
           <tr>
             <th>
-              <h2><span class="color-letter">P</span>rénom</h2>
+              <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
             </th>
             <th>
-              <h2><span class="color-letter">N</span>om</h2>
+              <h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3>
             </th>
             <th>
-              <h2><span class="color-letter">E</span>mail</h2>
+              <h3 class="text-subnav"><span class="color-letter">E</span>mail</h3>
             </th>
             <th>
-              <h2><span class="color-letter">D</span>ate du téléchargement</h2>
+              <h3 class="text-subnav"><span class="color-letter">D</span>ate</h3>
             </th>
           </tr>
         </thead>
@@ -30,10 +30,10 @@
           {% for entrepreneur in entrepreneurs %}
           <tr>
             <td>
-              <p>{{entrepreneur.firstname}}</p>
+              <p>{{entrepreneur.lastname}}</p>
             </td>
             <td>
-              <p>{{entrepreneur.lastname}}</p>
+              <p>{{entrepreneur.firstname}}</p>
             </td>
             <td>
               <p>{{entrepreneur.email}}</p>
@@ -45,5 +45,8 @@
           {% endfor %}
         </tbody>
     </table>
+    <a href="{{ path('expert_ebook') }}">
+      <button type="button" class="btn btn-inscription nav-link">Retour à la liste</button>
+  </a>
 </div>    
 {% endblock %}
