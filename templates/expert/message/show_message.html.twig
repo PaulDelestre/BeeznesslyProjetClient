@@ -4,46 +4,40 @@
 
 {% block body %}
 {{ include('expert/navExpert.html.twig') }}
-<div class="container-fluid wrapperPresta text-center">
-  <div class="picturePresta">
-    <img id="profil" src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+<div class="container-fluid wrapperPresta">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <h3 class="text-subnav"><span class="color-letter">D</span>e</h3>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{ contact.firstname }}
+    </div>
+    <div class="card alert mb-3 rounded-pill">
+      {{ contact.lastname }}
+    </div>
   </div>
-  <table class="table table-hover table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
-    <tbody>
-      <tr>
-        <th>
-          <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
-        </th>
-        <th>
-          <h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3>
-        </th>
-        <th>
-          <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
-        </th>
-        <th>
-          <h3 class="text-subnav"><span class="color-letter">E</span>mail</h3>
-        </th>
-        <th>
-          <h3 class="text-subnav"><span class="color-letter">D</span>ate</h3>
-        </th>
-        <th>
-          <h3 class="text-subnav"><span class="color-letter">M</span>essage</h3>
-        </th>
-      </tr>
-      <tr>
-        <td>{{contact.lastname}}</td>
-        <td>{{contact.firstname}} </td>
-        <td>{{contact.subject}} </td>
-        <td>{{contact.email}} </td>
-        <td>{{contact.createdAt|date('d D M Y')}} </td>
-        <td>{{contact.message}} </td>
-      </tr>
-      
-    </tbody>
-  </table>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{contact.email}} 
+    </div>
+  </div>
+  <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{contact.subject}} 
+    </div>
+  </div>
+  <h3 class="text-subnav"><span class="color-letter">M</span>essage</h3>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{contact.message}} 
+    </div>
+  </div>
+  <p class="text-right">Reçu le {{contact.createdAt|date('d D M Y')}} </p>
   <a href="{{ path('expert_messagerie')}}">
     <button type="button" class="btn btn-inscription nav-link mt-5">Retour</button>
   </a>
-  
+</div>
+<div class="hr-expert mt-5">
+  <hr>
 </div>
 {% endblock %}

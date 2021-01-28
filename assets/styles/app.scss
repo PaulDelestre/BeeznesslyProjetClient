@@ -135,12 +135,6 @@ p {
     width: 150%;
 }
 
-.size-img-experts {
-    width: 340px;
-    height: 263px;
-    object-fit: cover;
-}
-
 /* FIN PAGES ALL EXPERTS / EBOOKS */
 
 
@@ -208,7 +202,9 @@ p {
     font-weight: 500;
     letter-spacing: 5px;
 }
-
+.index-profile {
+    font-weight: bold;
+}
 // fin css for profil prestataire //
 /*PAGE VALIDATION PROVIDER*/
 .container-success {
@@ -286,6 +282,7 @@ a {
 
 a:hover {
     text-decoration: none;
+    color: black;
 }
 
 .link-for-show:hover {

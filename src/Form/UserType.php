@@ -26,28 +26,28 @@ class UserType extends AbstractType
             'label' => false,
             'required' => true,
             'attr' => [
-                'placeholder' => 'Prénom'
+                'placeholder' => 'Prénom *'
                 ]
         ])
         ->add('lastname', TextType::class, [
             'label' => false,
             'required' => true,
             'attr' => [
-                'placeholder' => 'Nom'
+                'placeholder' => 'Nom *'
                 ]
         ])
             ->add('email', EmailType::class, [
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Email'
+                    'placeholder' => 'Email *'
                     ]
             ])
             ->add('phone', TelType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Téléphone'
+                    'placeholder' => 'Téléphone **'
                 ]
             ])
             ->add('companyName', TextType::class, [
@@ -98,7 +98,7 @@ class UserType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => false,
+                'label' => "Ajouter une photo de profil (format conseillé : 3536 × 2362)",
             ])
         ;
     }

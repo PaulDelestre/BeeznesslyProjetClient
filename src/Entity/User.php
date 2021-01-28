@@ -128,8 +128,8 @@ class User implements UserInterface, \Serializable
     * @Vich\UploadableField(mapping="logo_file", fileNameProperty="logo")
     * @Assert\File(
     *     maxSize = "3000k",
-    *     mimeTypes = {"image/png", "image/jpeg"},
-    *     mimeTypesMessage = "Seuls les formats jpg, jpeg et png sont acceptés"
+    *     mimeTypes = {"image/png"},
+    *     mimeTypesMessage = "Seul le format png est accepté"
     * )
     * @var File
     */

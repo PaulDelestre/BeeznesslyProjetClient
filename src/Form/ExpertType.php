@@ -38,7 +38,7 @@ class ExpertType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => "Ajouter une bannière",
+                'label' => "Ajouter une bannière (format conseillé : 5184 × 3456)",
             ])
         ;
     }
