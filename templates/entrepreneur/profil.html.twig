@@ -7,37 +7,62 @@
 <div class="container-fluid wrapperPresta">
   {{ include ('entrepreneur/picturePresta.html.twig')}}
   <div class="mt-5">
-    <h3 class="text-subnav"><span class="color-letter">I</span>nformation personnelles</h3>
+    <h1><span class="color-letter">I</span>nformation personnelles</h1><br>
   </div>
   <div class="card-deck">
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+    {% if user.firstname is empty %}
+    {% else %}
+    <div class="card alert mb-3 rounded-pill">
       {{ user.firstname }}
     </div>
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
+    {% endif %}
+    {% if user.lastname is empty %}
+    {% else %}
+    <div class="card alert mb-3 rounded-pill">
       {{ user.lastname }}
     </div>
+    {% endif %}
   </div>
   <div class="card-deck">
-    <div class="card alert alert-light mb-3 rounded-pill" role="alert">
-      {{ user.email }}
-    </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {% if user.phone is empty %}
+    {% else %}
+    <div class="card alert mb-3 rounded-pill">
       {{ user.phone }}
     </div>
+    {% endif %}
+    {% if user.email is empty %}
+    {% else %}
+    <div class="card mb-3 alert rounded-pill">
+      {{ user.email }}
+    </div>
+    {% endif %}
   </div>
-  <div class="alert alert-light rounded-pill" role="alert">
+  {% if user.adress is empty %}
+  {% else %}
+  <div class="card alert rounded-pill">
     {{ user.adress }}
   </div>
+  {% endif %}
   <div class="card-deck">
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {% if user.zipcode is empty %}
+    {% else %}
+    <div class="card mb-3 alert rounded-pill">
       {{ user.zipcode }}
     </div>
-    <div class="card mb-3 alert alert-light rounded-pill" role="alert">
+    {% endif %}
+    {% if user.town is empty %}
+    {% else %}
+    <div class="card mb-3 alert rounded-pill">
       {{ user.town }}
     </div>
+    {% endif %}
   </div>
   <a href="{{ path('entrepreneur_edit', {'id': user.id}) }}">
-    <button type="button" class="btn btn-inscription nav-link mt-5">Editer mon profil</button>
+    <button type="button" class="btn btn-inscription nav-link mt-3"><i class="far fa-edit"></i> Editer mon
+      profil</button>
   </a>
+</div>
+<div class="hr-expert mt-5">
+  <hr>
 </div>
 {% endblock %}

@@ -4,31 +4,32 @@
 
 {% block body %}
 {{ include('entrepreneur/_navEntrepreneur.html.twig') }}
-<div class="container-fluid wrapperPresta text-center">
+<div class="container-fluid wrapperPresta">
   {{ include ('entrepreneur/picturePresta.html.twig')}}
-  <table class="table table-hover table-borderless table-responsive{-sm|-md|-lg|-xl}">
-    <tbody>
-      <tr>
+  <div class="mt-4">
+    <h1><span class="color-letter">V</span>os ebooks</h1>
+  </div>
+  <table class="table table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
+    <thead>
+    <tr>
         <th>
           <h3 class="text-subnav"><span class="color-letter">T</span>itre</h3>
         </th>
         <th>
-          <h3 class="text-subnav"><span class="color-letter">E</span>xpertise</h3>
-        </th>
-        <th>
-          <h3 class="text-subnav"><span class="color-letter">D</span>ate de téléchargement</h3>
+          <h3 class="text-subnav d-none d-sm-block"><span class="color-letter">E</span>xpertise</h3>
         </th>
         <th colspan="2">
-          <h3 class="text-subnav"><span class="color-letter">A</span>ction</h3>
+          <h3> </h3>
         </th>
       </tr>
+    </thead>
+    <tbody>
       {% for download in downloads|reverse %}
       <tr>
         <td>{{download.ebook.title}}</td>
-        <td>{{download.ebook.expertise}} </td>
-        <td>{{download.downloadedAt|date('d D M Y')}} </td>
-        <td><i class="fal fa-eye color-letter clickable" data-toggle="modal" data-target="#ebookModal-{{download.ebook.id}}"></i></td>
-        <td><a href="{{path ('ebook_download', {'id': download.ebook.id})}}"><i class="fas fa-download color-letter"></i></a></td>
+        <td class="d-none d-sm-block">{{download.ebook.expertise}} </td>
+        <td><button class="btn btn-connexion"><i class="fal fa-eye clickable" data-toggle="modal" data-target="#ebookModal-{{download.ebook.id}}"></i></button></td>
+        <td><a href="{{path ('ebook_download', {'id': download.ebook.id})}}"><button class="btn btn-inscription"><i class="fas fa-download"></i></a></button></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -37,7 +38,7 @@
     {{ knp_pagination_render(downloads) }}
   </div>
 </div>
-
+<div class="hr-expert mt-5"><hr></div>
 <!-- Modal -->
 {% for download in downloads %}
 <div class="modal fade" id="ebookModal-{{download.ebook.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -53,6 +54,7 @@
             <div class="modal-body">
                 <h5 class="color-expertise">{{download.ebook.expertise}}</h5>
                 <p>{{download.ebook.description}}</p>
+                <p class="text-muted text-right">Téléchargé le {{download.downloadedAt|date('d M Y')}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-connexion" data-dismiss="modal">Fermer</button>

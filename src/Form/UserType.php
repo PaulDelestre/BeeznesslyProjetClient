@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Provider;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,54 +23,54 @@ class UserType extends AbstractType
     {
         $builder
         ->add('firstname', TextType::class, [
-            'label' => 'Prénom',
+            'label' => false,
             'required' => true,
             'attr' => [
-                'placeholder' => 'Prénom'
+                'placeholder' => 'Prénom *'
                 ]
         ])
         ->add('lastname', TextType::class, [
-            'label' => 'Nom',
+            'label' => false,
             'required' => true,
             'attr' => [
-                'placeholder' => 'Nom'
+                'placeholder' => 'Nom *'
                 ]
         ])
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Email'
+                    'placeholder' => 'Email *'
                     ]
             ])
             ->add('phone', TelType::class, [
-                'label' => 'Téléphone',
+                'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Téléphone'
+                    'placeholder' => 'Téléphone **'
                 ]
             ])
             ->add('companyName', TextType::class, [
-                'label' => 'Nom de mon entreprise',
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Nom de mon entreprise'
                     ]
             ])
             ->add('siretNumber', TextType::class, [
-                'label' => 'Numéro de Siret',
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Numéro de SIRET'
                     ]
             ])
             ->add('town', TextType::class, [
-                'label' => 'Ville',
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Ville'
                     ]
             ])
             ->add('zipcode', IntegerType::class, [
-                'label' => 'Code postal',
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Code Postal'
@@ -81,18 +83,22 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('adress', TextareaType::class, [
-                'label' => 'Adresse',
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Adresse'
                     ]
             ])
-            ->add('provider')
+            ->add('provider', EntityType::class, [
+                'class' => Provider::class,
+                'label' => false,
+            ])
+
             ->add('profilePictureFile', VichFileType::class, [
                 'required'      => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
-                'label' => "Ajouter une photo de profil",
+                'allow_delete'  => false,
+                'download_uri' => false,
+                'label' => "Ajouter une photo de profil (format conseillé : 3536 × 2362)",
             ])
         ;
     }
