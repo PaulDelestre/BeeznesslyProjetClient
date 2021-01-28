@@ -63,14 +63,14 @@ class EbookType extends AbstractType
             ])
             ->add('illustrationFile', VichFileType::class, [
                 'required'      => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
+                'allow_delete'  => false,
+                'download_uri' => false,
                 'label' => 'Ajouter l\'illustration du ebook',
             ])
             ->add('documentEbookFile', VichFileType::class, [
                 'required'      => false,
-                'allow_delete'  => true,
-                'download_uri' => true,
+                'allow_delete'  => false,
+                'download_uri' => false,
                 'label' => 'Ajouter le pdf',
             ])
         ;
