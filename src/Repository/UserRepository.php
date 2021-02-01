@@ -77,4 +77,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         return $query->getQuery()->getResult();
     }
+
+    public function expertsHome()
+    {
+        return $this->createQueryBuilder('user')
+            ->where('user.isValidated = 1')
+            ->andWhere('user.roles LIKE :roles')
+            ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%')
+            ->orderby('user.id', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
 }
