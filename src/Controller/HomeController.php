@@ -24,21 +24,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use Vich\UploaderBundle\Handler\DownloadHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(ExpertiseRepository $expertiseRepository, EbookRepository $ebookRepository): Response
+    public function index(ExpertiseRepository $expertiseRepository, EbookRepository $ebookRepository, UserRepository $userRepository): Response
     {
-        // $ebooks = $this->getDoctrine()->getRepository(Ebook::class)->findBy([],
-        //     ['id' => 'ASC'], 4);
-
         $ebooks = $ebookRepository->ebooksHome();
+        $users = $userRepository->expertsHome();
 
         return $this->render('home/index.html.twig', [
+            'users' => $users,
             'expertises' => $expertiseRepository->findAll(),
             'ebooks' => $ebooks
         ]);

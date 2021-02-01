@@ -19,7 +19,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\HttpFoundation\Request;
 
 class ModerationExpertController extends AbstractCrudController
 {
@@ -55,9 +57,15 @@ class ModerationExpertController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
+        $deleteAction = Action::new('Delete', '')
+        ->setIcon('fas fa-trash')
+        ->linkToCrudAction('deleteAction');
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->remove(Crud::PAGE_INDEX, Action::NEW)
+            ->add(Crud::PAGE_INDEX, $deleteAction)
+            ->remove(Crud::PAGE_INDEX, Action::DELETE)
+            ->remove(Crud::PAGE_DETAIL, Action::DELETE)
         ;
     }
 
@@ -69,7 +77,9 @@ class ModerationExpertController extends AbstractCrudController
     ): QueryBuilder {
         $response = $this->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         $search = $searchDto->getQuery();
-        $response->andwhere('entity.isValidated = 0');
+        $response->andwhere('entity.isValidated = 0')
+        ->andWhere('entity.roles LIKE :roles')
+        ->setParameter('roles', '%"' . 'ROLE_EXPERT' . '"%');
         if (isset($search) && !empty($search)) {
             $response->andWhere("entity.lastname LIKE :search 
             OR entity.firstname LIKE :search 
@@ -80,5 +90,16 @@ class ModerationExpertController extends AbstractCrudController
         }
 
         return $response;
+    }
+
+    public function deleteAction(AdminContext $context, Request $request)
+    {
+        $id = $context->getRequest()->query->get('entityId');
+        $entity = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        $this->deleteEntity($this->get('doctrine')->getManagerForClass($context->getEntity()->getFqcn()), $entity);
+        $this->addFlash('success', 'Expert supprimé');
+        // ici modifier la redirection selon ou l'admin doit être redirigé après l'action delete
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 }
