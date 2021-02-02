@@ -37,9 +37,11 @@
                 <hr>
                 <h4><span class="color-letter">D</span>ate de publication</h4>
                 Du <br>
-                {{ form_widget(searchForm.from)}}
+                {{ form_widget(searchForm.from,{
+                    "attr": {"placeholder": "aaaa-mm-jj"}}) }}
                 Au <br>
-                {{ form_row(searchForm.to)}}
+                {{ form_row(searchForm.to,{
+                    "attr": {"placeholder": "aaaa-mm-jj"}}) }}
                 <hr>
             </div>
             <div class="text-center pb-3 pt-3">
