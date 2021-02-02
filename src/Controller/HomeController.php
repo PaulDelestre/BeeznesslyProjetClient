@@ -32,7 +32,8 @@ class HomeController extends AbstractController
      */
     public function index(ExpertiseRepository $expertiseRepository, EbookRepository $ebookRepository, UserRepository $userRepository): Response
     {
-        $ebooks = $ebookRepository->ebooksHome();
+        $ebooks = $ebookRepository->findBy(['isValidated' => '1'],
+            ['id' => 'ASC'], 4);
         $users = $userRepository->expertsHome();
 
         return $this->render('home/index.html.twig', [

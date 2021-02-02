@@ -66,14 +66,4 @@ class EbookRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getResult();
     }
-
-    public function ebooksHome ()
-    {
-        return $this->createQueryBuilder('ebook')
-            ->where('ebook.isValidated = 1')
-            ->orderby('ebook.id', 'DESC')
-            ->setMaxResults(4)
-            ->getQuery()
-            ->getResult();
-    }
 }
