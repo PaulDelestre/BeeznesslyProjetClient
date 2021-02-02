@@ -20,7 +20,7 @@ class Download
     /**
      * @ORM\Column(type="datetime")
      */
-    private $downloaded_at;
+    private $downloadedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="downloads")
@@ -35,7 +35,7 @@ class Download
 
     public function __construct()
     {
-        $this->downloaded_at = new \DateTime('now');
+        $this->downloadedAt = new \DateTime('now');
     }
 
     public function getId(): ?int
@@ -45,12 +45,12 @@ class Download
 
     public function getDownloadedAt(): ?\DateTimeInterface
     {
-        return $this->downloaded_at;
+        return $this->downloadedAt;
     }
 
-    public function setDownloadedAt(\DateTimeInterface $downloaded_at): self
+    public function setDownloadedAt(\DateTimeInterface $downloadedAt): self
     {
-        $this->downloaded_at = $downloaded_at;
+        $this->downloadedAt = $downloadedAt;
 
         return $this;
     }

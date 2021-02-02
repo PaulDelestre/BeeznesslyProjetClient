@@ -52,16 +52,6 @@ class EntrepreneurController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/mon-compte", name="en_attente")
-     */
-    public function moderation(): Response
-    {
-        return $this->render('entrepreneur/validation.html.twig', [
-            'user' => $this->getUser(),
-        ]);
-    }
-
      /**
      * @Route("/messagerie", methods={"GET"}, name="messagerie")
      */
