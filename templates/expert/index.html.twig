@@ -11,7 +11,10 @@
     </div>
     <div class="col-lg-8 col-md-6">
       <div class="pb-3">
-        <h1><span class="color-letter">B</span>ienvenue dans votre compte {{user.firstname}} !</h1><br>
+        <h1><span class="color-letter">B</span>ienvenue dans votre compte {{user.companyName}}
+          {% if user.companyName is empty %}
+          {{user.firstname}}
+          {% endif %} !</h1><br>
         <p>Dans cet espace, vous pouvez :</p>
         <ul>
           <li>

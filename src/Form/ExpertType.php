@@ -32,13 +32,13 @@ class ExpertType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => "Ajouter un logo",
+                'label' => "Ajouter un logo (format conseillé : 200 x 200)",
             ])
             ->add('bannerFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => "Ajouter une bannière (format conseillé : 5184 × 3456)",
+                'label' => "Ajouter une bannière (format conseillé : 1550 × 400)",
             ])
         ;
     }
