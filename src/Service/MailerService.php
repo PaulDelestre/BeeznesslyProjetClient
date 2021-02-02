@@ -42,7 +42,7 @@ class MailerService
             ->to($contact->getUser()->getEmail())
             ->subject('Nouveau message sur la plateforme Beeznessly')
             ->html(
-                '<p>' . $contact->getFirstname() . '</h4> vous a envoyé un message:</p>' .
+                '<p>' . $contact->getFirstname() . ' ' . $contact->getLastname() . '</h4> vous a envoyé un message:</p>' .
                 '<p>' . $contact->getEmail() . '</h4> pour lui répondre</p>' .
                 '<p>Sujet: ' . $contact->getSubject() . '</p>' .
                 '<p>' . $contact->getMessage() . '</p>'
