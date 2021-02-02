@@ -85,7 +85,7 @@ indispensables à votre projet web.
         </div>
     </div>
 </div>
-<div class="container-fluid mt-5 mb-5 p-5">
+<div class="container-fluid mt-5 mb-2 p-5">
     <h2 class="text-center title-ebook-home pb-3">Les expertises</h2>
     <div class="row justify-content-center m-4">
         {% for expertise in expertises %}
@@ -95,7 +95,7 @@ indispensables à votre projet web.
 </div>
 <div class="container-fluid">
     <div class="m-5">
-        <div class="ml-5 pl-1">
+        <div class="ml-lg-5 ml-sm-0 pl-1">
             <h2 class="title-ebook-home">Rencontrez nos nouveaux experts</h2>
             <div class="hr-expert">
                 <hr>
@@ -103,7 +103,7 @@ indispensables à votre projet web.
         </div>
         <div class="row">
             {% for user in users %}
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-10 my-4 d-flex mx-auto">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10 my-4 d-flex mx-auto">
                 <div>
                     <a href="{{path ('home_expert_show', {'slug': user.slug})}}" class="link-for-show-img">
                         {% if user.banner is empty %}
