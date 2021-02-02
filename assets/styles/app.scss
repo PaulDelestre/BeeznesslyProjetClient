@@ -86,12 +86,7 @@ h4 {
     color: $yellow;
     font-weight: 100;
 }
-.card-filter {
-    border: 1px solid whitesmoke;
-    -webkit-box-shadow: 2px 10px 13px -7px #000000, 3px 3px 3px -1px rgba(0,0,0,0); 
-    box-shadow: 2px 10px 13px -7px #000000, 3px 3px 3px -1px rgba(0,0,0,0);
-    border-radius: 16px 16px;
-}
+
 .subnav-bg{
     background-color:$yellow;
 }
@@ -108,7 +103,7 @@ h4 {
 
 .border-pres {
     border-radius: 15px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0px 4px 4px rgba(133, 133, 133, 0.25));
     color: $blue;
     background-color: white;
     margin-top: -30px;
@@ -425,3 +420,15 @@ h5{
 .ebook h3 {
     font-size: 20px;
 } 
+
+.card-body h2 {
+    font-size: 28px;
+}
+
+.size-expertise {
+    font-size: 15px;
+}
+
+.size-town {
+    font-size: 15px;
+}
