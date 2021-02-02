@@ -51,9 +51,9 @@ trouvez et collaborez avec les meilleurs experts du digital.
                 </div>
                 <section>
                     <div>
-                        <div class="wrapperExpert">
+                        <div class="ebook mb-5">
                             <div>
-                                <h2>Editeur : {{ebook.editorName}}</h2>
+                                <h2><a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">Editeur : {{ebook.editorName}} </a></h2>
                                 <p>
                                     {% if ebook.author is not null %}
                                     Auteur : {{ebook.author}}
@@ -81,7 +81,7 @@ trouvez et collaborez avec les meilleurs experts du digital.
                                                 <p class="d-none d-sm-block">{{ebook.description}}</p><br>
                                                 {% if ebook.documentEbook is not empty %}
                                                 <div class="text-center">
-                                                    <button type="button" class="btn btn-inscription"
+                                                    <button type="button" class="btn btn-inscription btn-lg"
                                                         data-toggle="modal"
                                                         data-target="#modalRGPD">Télécharger</button>
                                                 </div>
@@ -94,11 +94,6 @@ trouvez et collaborez avec les meilleurs experts du digital.
                         </div>
                     </div>
                 </section>
-                <div class="text-center">
-                    <a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">
-                        <button type="button" class="btn btn-blue-more m-5">En savoir plus sur l'expert</button>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
