@@ -99,7 +99,7 @@ class UserType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => false,
                 'download_uri' => false,
-                'label' => "Ajouter une photo de profil (format conseillé : 3536 × 2362)",
+                'label' => "Ajouter une photo de profil (format conseillé : 500 × 500)",
             ])
         ;
     }
