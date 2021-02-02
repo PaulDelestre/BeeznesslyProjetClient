@@ -48,6 +48,10 @@
                                 <button type="button" class="btn btn-inscription mb-3"><i class="far fa-edit"></i>
                                     Editer</button>
                             </a>
+                            <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}">
+                                <button type="button" class="btn btn-inscription mb-3"><i class="fal fa-eye"></i>
+                                    Voir ce Ebook</button>
+                            </a>
                             <a href="{{ path('expert_ebook') }}">
                                 <button type="button" class="btn btn-inscription nav-link">Retour</button>
                             </a>
