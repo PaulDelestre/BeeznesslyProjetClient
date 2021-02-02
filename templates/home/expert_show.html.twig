@@ -25,7 +25,7 @@ Voir le profil de
         </div>
     </div>
 </div>
-<div class="container mt-2">
+<div class="container-fluid p-lg-5 p-md-5 p-sm-0">
     <div class="row">
         <div class="col-md-2 pt-3">
             <div class="filter">
@@ -33,7 +33,7 @@ Voir le profil de
                     <p class="logo-default">LOGO</p>
                     <img id='logo' src="https://i.postimg.cc/MG2dyGb2/logo-type.png" class="img-fluid" alt="logo de l'entreprise">
                 {% else %}
-                    <img id='logo' src="/uploads/logo/{{ user.logo }}" alt="logo de l'entreprise {{user.firstname}}">
+                    <img id='logo' src="/uploads/logo/{{ user.logo }}" class="img-fluid" alt="logo de l'entreprise {{user.firstname}}">
                 {% endif %}
                 <h4 class="mt-5"><span class="color-letter"> A </span><a href="#A PROPOS DE NOUS"
                         style="color:#000000;">propos de
@@ -49,7 +49,7 @@ Voir le profil de
                 {% include 'design_form_yellow.html.twig'%}
             </div>
         </div>
-        <div class="col-md-9 mx-auto">
+        <div class="col-lg-10 col-md-10 col-sm-12 mx-auto">
             <div class="container-fluid">
                 <div class="row">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -67,7 +67,7 @@ Voir le profil de
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 col-sm-12">
                 <div class="pt-4 pb-3">
                     {% if user.companyName is not empty %}
                     <h1 class="name-expert-show"> {{user.companyName}}</h1>
@@ -88,7 +88,7 @@ Voir le profil de
                     </div>
                     <div class="pt-5 mt-4">
                         <div class="container-fluid wrapperExpertDescri">
-                            <div class="pictureExpert">
+                            <div class="pictureExpert ">
                                 {% if user.profilePicture is empty %}
                                 <img id='profil' src="https://i.postimg.cc/DwVVmnNH/clem-onojeghuo-w0-SREKRMh-Dk-unsplash.jpg"
                                     alt="photo de profil">
@@ -97,7 +97,7 @@ Voir le profil de
                                     alt="photo de profil">
                                 {% endif %}
                             </div>
-                            <div class="card-deck pl-3">
+                            <div class="pl-3">
                                 {% if user.description is not empty %}
                                 <p> {{user.description}} </p>
                                 {% else %}

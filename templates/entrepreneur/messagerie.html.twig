@@ -17,10 +17,10 @@
           <h3 class="text-subnav"><span class="color-letter">D</span>estinataire</h3>
         </th>
         <th>
-          <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
+          <h3 class="text-subnav d-none d-sm-block"><span class="color-letter">S</span>ujet</h3>
         </th>
         <th>
-          <h3 class="text-subnav"><span class="color-letter">D</span>ate</h3>
+          <h3 class="text-subnav d-none d-sm-block"><span class="color-letter">D</span>ate</h3>
         </th>
         <th>
 
@@ -37,8 +37,8 @@
           {{contact.user.firstname}} {{contact.user.lastname}}
           {% endif %}
         </td>
-        <td>{{contact.subject}} </td>
-        <td>{{contact.createdAt|date('d M Y')}} </td>
+        <td class="d-none d-sm-block">{{contact.subject}} </td>
+        <td class="d-none d-sm-block">{{contact.createdAt|date('d M Y')}} </td>
         <td><a href="{{ path('entrepreneur_messagerie_show', {'id': contact.id}) }}"><button class="btn btn-inscription"><i
               class="fal fa-eye"></i></button></a></td>
       </tr>
