@@ -61,16 +61,6 @@ class ExpertController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/mon-compte", name="en_attente")
-     */
-    public function moderation(): Response
-    {
-        return $this->render('expert/validation.html.twig', [
-            'user' => $this->getUser(),
-        ]);
-    }
-
      /**
      * @Route("/messagerie", methods={"GET"}, name="messagerie")
      */

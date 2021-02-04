@@ -1,7 +1,11 @@
 <ul class="nav justify-content-center mt-5">
     <li class="nav-item">
+        <a class="nav-link activeLink" href="{{ path('expert_index', {'id': user.id}) }}"><button type="button"
+                class="btn btn-inscription ml-5 activeLink"> Accueil </a></button>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{ path('expert_profil', {'id': user.id}) }}"><button type="button"
-                class="btn btn-inscription ml-5"> Profil</a></button>
+                class="btn btn-inscription ml-3"> Profil</a></button>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ path('expert_expertPage', {'id': user.id}) }}"><button type="button"

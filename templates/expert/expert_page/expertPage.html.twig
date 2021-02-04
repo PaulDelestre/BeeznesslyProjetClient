@@ -21,7 +21,7 @@
     </div>
     <div class="row text-center">
         {% for expertise in user.expertise %}
-        <div class="card alert mb-3 rounded-pill col-3 m-4">
+        <div class="card alert mb-3 rounded-pill col-lg-3 col-md-6 m-4">
             {{expertise.name}}
         </div>
         {% endfor %}
@@ -52,6 +52,10 @@
     </div>
     <a href="{{ path('expert_expertPage_edit', {'id': user.id}) }}">
         <button type="button" class="btn btn-inscription nav-link mt-5"><i class="far fa-edit"></i> Editer mon
+            profil</button>
+    </a>
+    <a href="{{path ('home_expert_show', {'slug': user.slug})}}">
+        <button type="button" class="btn btn-inscription nav-link mt-5"><i class="fal fa-eye"></i> Voir mon
             profil</button>
     </a>
 </div>

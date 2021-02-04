@@ -26,7 +26,7 @@
 </div>
 <div class="container-fluid pb-5">
     <div class="row mt-5 mx-auto">
-        <div class="col-lg-3 col-md-4 col-sm-10 card-filter pt-3 mx-auto">
+        <div class="col-lg-2 col-md-3 col-sm-10 pt-3 mx-auto">
             {{form_start(searchForm, {attr: {class:'filter'}})}}
             <div class="pl-2 pt-2">
                 <h2><span class="color-letter">F</span>iltres</h2>
@@ -37,9 +37,11 @@
                 <hr>
                 <h4><span class="color-letter">D</span>ate de publication</h4>
                 Du <br>
-                {{ form_widget(searchForm.from)}}
+                {{ form_widget(searchForm.from,{
+                    "attr": {"placeholder": "aaaa-mm-jj"}}) }}
                 Au <br>
-                {{ form_row(searchForm.to)}}
+                {{ form_row(searchForm.to,{
+                    "attr": {"placeholder": "aaaa-mm-jj"}}) }}
                 <hr>
             </div>
             <div class="text-center pb-3 pt-3">
@@ -47,7 +49,7 @@
             </div>
             {{form_end(searchForm)}}
         </div>
-        <div class="col-md-8">
+        <div class="col-lg-9 col-md-8 col-sm-10 mx-auto">
             <div class="container-fluid">
                 <div class="row">
                     {% for ebook in ebooks %}

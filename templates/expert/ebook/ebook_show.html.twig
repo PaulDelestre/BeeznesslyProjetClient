@@ -32,8 +32,13 @@
                             <tbody>
                                 <tr>
                                     <div class="text-center">
+                                        {% if ebook.illustration is empty %}
+                                            <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" 
+                                           class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                        {% else %}
                                         <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
                                             class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                        {% endif %}
                                     </div>
                                 </tr>
                                 <tr>
@@ -47,6 +52,10 @@
                             <a href="{{ path('expert_ebook_edit', {'id': ebook.id}) }}">
                                 <button type="button" class="btn btn-inscription mb-3"><i class="far fa-edit"></i>
                                     Editer</button>
+                            </a>
+                            <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}">
+                                <button type="button" class="btn btn-inscription mb-3"><i class="fal fa-eye"></i>
+                                    Voir ce Ebook</button>
                             </a>
                             <a href="{{ path('expert_ebook') }}">
                                 <button type="button" class="btn btn-inscription nav-link">Retour</button>

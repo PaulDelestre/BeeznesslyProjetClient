@@ -8,10 +8,10 @@
             <img src="/uploads/banner/{{ expert.banner }}" class="card-img-top" alt="banner picture {{expert.companyName}}">
             {% endif %}
             <div class="text-right color-provider mr-3">
-                <button class="btn border-pres pl-3 pr-3">
-                    <h4>
+                <button class="btn btn-sm border-pres pl-2 pr-2">
+                    <p class="pt-2 size-expertise">
                         {{expert.provider}}
-                    </h4>
+                    </p>
                 </button>
             </div>
         </a>
@@ -29,11 +29,11 @@
                 </h2>
             </a>
             {% endif %}
-            <div class="text-left">
+            <div class="text-left size-town">
                 <p><i class="fas fa-map-marker-alt color-icon-grey"></i> {{expert.town}}</p>
             </div>
             {% for expertise in expert.expertise|slice(0, 3)%}
-            <p class="text text-muted">
+            <p class="text-muted size-expertise">
                 <i class="fas fa-check color-expertise"></i> {{expertise.name}}
             </p>
             {% endfor %}
