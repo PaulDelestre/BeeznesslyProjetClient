@@ -2,8 +2,13 @@
     <div class="card border-light">
         <div class="text-center">
             <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show-img">
+                {% if ebook.illustration is empty %}
+                    <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" style="width: 13rem;"
+                    alt="{{ ebook.illustration }}">
+                {% else %}
                 <img src="/uploads/illustrationEbook/{{ ebook.illustration }}" style="width: 13rem;"
                     alt="{{ ebook.illustration }}">
+                    {% endif %}
         </div>
         <div class="text-center">
             <button class="btn btn-sm border-pres pl-2 pr-2">

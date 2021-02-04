@@ -69,8 +69,14 @@ indispensables à votre projet web.
                 <div class="p-5">
                     <div class="text-center">
                         <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show-img">
+                            {% if ebook.illustration is empty %}
+                                <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" 
+                                style="width: 13rem;"
+                                alt="{{ ebook.title }}">
+                            {% else %}
                             <img src="/uploads/illustrationEbook/{{ ebook.illustration }}" style="width: 13rem;"
                                 alt="{{ ebook.title }}">
+                            {% endif %}
                     </div>
                     <div class="text-center">
                         <h4>{{ebook.title}}</h4>

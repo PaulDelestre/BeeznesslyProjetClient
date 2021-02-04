@@ -32,8 +32,13 @@
                             <tbody>
                                 <tr>
                                     <div class="text-center">
+                                        {% if ebook.illustration is empty %}
+                                            <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" 
+                                           class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                        {% else %}
                                         <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
                                             class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                        {% endif %}
                                     </div>
                                 </tr>
                                 <tr>
