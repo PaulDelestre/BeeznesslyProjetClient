@@ -18,9 +18,6 @@
         <th class="d-none d-sm-block">
           <h3 class="text-subnav"><span class="color-letter">E</span>xpertise</h3>
         </th>
-        <th class="d-none d-sm-block">
-          <h3 class="text-subnav"><span class="color-letter">M</span>odération</h3>
-        </th>
         <th>
         </th>
         <th>
@@ -32,16 +29,14 @@
       <tr>
         <td>
           <p>{{ebook.title}}</p>
+          {% if ebook.isValidated == true %}
+          <p class="d-none d-md-block"><i class="fas fa-check-square color-letter"></i> Validé</p>
+          {% else %}
+          <p><i class="fas fa-sync-alt color-letter d-none d-md-block"></i> En cours de validation</p>
+          {% endif %}
         </td>
         <td class="d-none d-sm-block">
           <p>{{ebook.expertise}}</p>
-        </td>
-        <td class="d-none d-sm-block">
-          {% if ebook.isValidated == true %}
-          <p><i class="fas fa-check-square color-letter"></i> Validé</p>
-          {% else %}
-          <p><i class="fas fa-sync-alt color-letter"></i> En cours de validation</p>
-          {% endif %}
         </td>
         <td><button class="btn btn-inscription"><a href="{{ path('expert_ebook_download_show', {'id': ebook.id}) }}">
               {{nbDownloadByEbook[ebook.id]}} téléchargement(s) <i class="fas fa-arrow-circle-right"></i></button>

@@ -75,7 +75,9 @@ Voir le profil de
                     <h1 class="name-expert-show"> {{user.firstname }} {{user.lastname}}</h1>
                     {% endif %}
                     <div class="row pb-3 pl-3">
+                        {% if user.town is not empty %}
                         <p class="pr-4"><i class="fas fa-map-marker-alt color-icon-grey"></i> {{user.town}}</p>
+                        {% endif %}
                         {% for expertise in user.expertise %}
                         <p class="pr-4 "><i class="fas fa-check color-icon-blue"></i> {{expertise.name}}</p>
                         {% endfor %}
