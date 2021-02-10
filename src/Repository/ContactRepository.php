@@ -28,6 +28,7 @@ class ContactRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('contact')
             ->where('contact.email = :email')
+            ->andWhere('contact.user IS NOT NULL')
             ->setParameter('email', $email)
             ->orderBy('contact.id', 'ASC');
 
